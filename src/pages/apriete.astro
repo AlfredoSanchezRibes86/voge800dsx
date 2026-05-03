@@ -1,0 +1,101 @@
+---
+import Layout from '../layouts/Layout.astro';
+const base = import.meta.env.BASE_URL;
+---
+<Layout title="Pares de Apriete — VOGE 800 DSX" description="Tabla completa de torques y pares de apriete VOGE 800 DSX Rally">
+  <div class="main-content">
+    <nav class="breadcrumb">
+      <a href={base}>Inicio</a>
+      <span class="breadcrumb-sep">›</span>
+      <span>Pares de Apriete</span>
+    </nav>
+
+    <div class="page-actions">
+      <a href={base} class="btn btn-back">← Volver</a>
+      <a href="https://www.azmotors.fr/PIECES_VOGE/800_RALLY/vue-eclate-800DS-RALLY-EURO5.html" target="_blank" class="btn btn-ext">Ver despiece completo →</a>
+    </div>
+
+    <div class="section-header">
+      <div class="section-icon">⊕</div>
+      <h1>Pares de Apriete</h1>
+    </div>
+
+    <img src={`${base}images/apriete.jpg`} alt="Pares de apriete VOGE 800 DSX" class="section-image" />
+
+    <div class="card">
+      <h2>Motor</h2>
+      <table>
+        <thead><tr><th>Elemento</th><th>Rosca</th><th>N·m</th></tr></thead>
+        <tbody>
+          <tr><td>Tapón de vaciado aceite</td><td>M14×1.5</td><td>20 – 25</td></tr>
+          <tr><td>Filtro de aceite</td><td>—</td><td>11</td></tr>
+          <tr><td>Bujías</td><td>M12</td><td>15 – 20</td></tr>
+          <tr><td>Pernos tapa culata</td><td>M6</td><td>10</td></tr>
+          <tr><td>Pernos fijación motor (principales)</td><td>M10</td><td>45 – 50</td></tr>
+          <tr><td>Tornillos piñón de salida</td><td>M6</td><td>12</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card">
+      <h2>Ruedas y transmisión</h2>
+      <table>
+        <thead><tr><th>Elemento</th><th>Rosca</th><th>N·m</th></tr></thead>
+        <tbody>
+          <tr><td>Tuerca eje rueda trasera</td><td>M20</td><td>105 ± 7</td></tr>
+          <tr><td>Tuerca eje rueda delantera</td><td>M18</td><td>75 ± 5</td></tr>
+          <tr><td>Tornillo tensor cadena</td><td>M8</td><td>18 ± 1,8</td></tr>
+          <tr><td>Tornillos corona trasera</td><td>M10</td><td>40</td></tr>
+          <tr><td>Tuerca piñón conducción</td><td>M18</td><td>110</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card">
+      <h2>Frenos</h2>
+      <table>
+        <thead><tr><th>Elemento</th><th>Rosca</th><th>N·m</th></tr></thead>
+        <tbody>
+          <tr><td>Tornillos pinza freno delantera (soporte)</td><td>M8</td><td>40</td></tr>
+          <tr><td>Tornillos pinza freno trasera (soporte)</td><td>M8</td><td>30</td></tr>
+          <tr><td>Tornillos disco delantero</td><td>M8</td><td>20</td></tr>
+          <tr><td>Válvula de purga frenos</td><td>M8</td><td>8</td></tr>
+          <tr><td>Tornillo banjo latiguillos (freno)</td><td>M10</td><td>25</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card">
+      <h2>Suspensión y dirección</h2>
+      <table>
+        <thead><tr><th>Elemento</th><th>Rosca</th><th>N·m</th></tr></thead>
+        <tbody>
+          <tr><td>Tuerca tija superior horquilla</td><td>M22</td><td>80 ± 5</td></tr>
+          <tr><td>Tornillos abrazaderas tija (inferior)</td><td>M8</td><td>20</td></tr>
+          <tr><td>Tornillos amortiguador trasero (superior)</td><td>M10</td><td>55</td></tr>
+          <tr><td>Tornillos amortiguador trasero (inferior)</td><td>M10</td><td>55</td></tr>
+          <tr><td>Perno pivote basculante</td><td>M18</td><td>80</td></tr>
+          <tr><td>Tornillos linkage amortiguador</td><td>M10</td><td>45</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card">
+      <h2>Carrocería y accesorios</h2>
+      <table>
+        <thead><tr><th>Elemento</th><th>Rosca</th><th>N·m</th></tr></thead>
+        <tbody>
+          <tr><td>Perno de montaje conducto de admisión</td><td>M6</td><td>4,5</td></tr>
+          <tr><td>Tornillos carenado (plásticos)</td><td>M5</td><td>4,5</td></tr>
+          <tr><td>Tornillos reposapiés</td><td>M8</td><td>28</td></tr>
+          <tr><td>Tuerca caballete lateral (eje)</td><td>M8</td><td>22</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div style="margin-top:1rem; display:flex; gap:0.75rem; flex-wrap:wrap;">
+      <a href={base} class="btn btn-back">← Volver al inicio</a>
+      <a href="https://www.azmotors.fr/PIECES_VOGE/800_RALLY/vue-eclate-800DS-RALLY-EURO5.html" target="_blank" class="btn btn-ext">Ver despiece completo →</a>
+    </div>
+  </div>
+</Layout>

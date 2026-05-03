@@ -1,0 +1,94 @@
+---
+import Layout from '../layouts/Layout.astro';
+const base = import.meta.env.BASE_URL;
+---
+<Layout title="Performance — VOGE 800 DSX" description="Mejoras y optimizaciones de rendimiento para la VOGE 800 DSX Rally">
+  <div class="main-content">
+    <nav class="breadcrumb">
+      <a href={base}>Inicio</a>
+      <span class="breadcrumb-sep">›</span>
+      <span>Performance</span>
+    </nav>
+
+    <div class="page-actions">
+      <a href={base} class="btn btn-back">← Volver</a>
+      <a href="https://www.azmotors.fr/PIECES_VOGE/800_RALLY/vue-eclate-800DS-RALLY-EURO5.html" target="_blank" class="btn btn-ext">Ver despiece completo →</a>
+    </div>
+
+    <div class="section-header">
+      <div class="section-icon">🔥</div>
+      <h1>Performance</h1>
+    </div>
+
+    <div class="card">
+      <h2>Rendimiento stock</h2>
+      <table>
+        <tbody>
+          <tr><td><strong>Potencia máxima</strong></td><td>70 kW (95 CV) @ 9.000 rpm</td></tr>
+          <tr><td><strong>Par máximo</strong></td><td>81 Nm @ 6.500 rpm</td></tr>
+          <tr><td><strong>Velocidad máxima</strong></td><td>~210 km/h (sin limitador)</td></tr>
+          <tr><td><strong>0–100 km/h</strong></td><td>~3,8 segundos (estimado)</td></tr>
+          <tr><td><strong>Relación peso/potencia</strong></td><td>~2,39 kg/CV</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card">
+      <h2>Mejoras de escape</h2>
+      <ul style="padding-left:1.2rem; color:var(--text-muted); font-size:0.92rem; line-height:1.9;">
+        <li><strong>Slip-on:</strong> Sustitución del silenciador trasero — mejora sonido y reduce ~1-2 kg. No requiere remap.</li>
+        <li><strong>Full system:</strong> Colectores + silenciador — ganancia potencial de 5-8 CV. Requiere ECU flash.</li>
+        <li>Marcas compatibles conocidas: SC-Project, Akrapovic (adaptación), Arrow, Remus.</li>
+        <li>⚠️ Con escape libre puede ser necesario pasar ITV/homologación.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>Reprogramación ECU (Remap/Flash)</h2>
+      <ul style="padding-left:1.2rem; color:var(--text-muted); font-size:0.92rem; line-height:1.9;">
+        <li>El mapa stock tiene restricciones de emisiones Euro 5+.</li>
+        <li>Un remap optimiza la curva de inyección y encendido para mejor respuesta.</li>
+        <li>Se puede eliminar la restricción de velocidad y el limitador de arranque en frío.</li>
+        <li>Algunos talleres ofrecen flash vía OBD sin desmontaje.</li>
+        <li>⚠️ Un remap puede anular la garantía del fabricante.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>Filtro de aire de alto flujo</h2>
+      <ul style="padding-left:1.2rem; color:var(--text-muted); font-size:0.92rem; line-height:1.9;">
+        <li>Filtros de espuma/algodón (K&N estilo) mejoran el flujo de aire hasta un 20%.</li>
+        <li>Requieren limpieza periódica con kit específico (no sustituir, relavar).</li>
+        <li>Complementa bien al remap de ECU para aprovechar el mayor flujo.</li>
+        <li>Verificar compatibilidad antes de comprar — el alojamiento es estándar 800cc.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>Suspensión performance</h2>
+      <ul style="padding-left:1.2rem; color:var(--text-muted); font-size:0.92rem; line-height:1.9;">
+        <li>Aceite de horquilla: probar con viscosidad 7.5W (stock ~10W) para más sensación off-road.</li>
+        <li>Muelles de horquilla progresivos (Andreani, Ohlins) para uso mixto asfalto/tierra.</li>
+        <li>Amortiguador trasero Öhlins STX36 o equivalente — mejora notable en seguimiento.</li>
+        <li>Resorte trasero más blando para pilotos de menos de 75kg.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>Neumáticos recomendados</h2>
+      <table>
+        <thead><tr><th>Uso</th><th>Delantero (90/90-21)</th><th>Trasero (150/70 R18)</th></tr></thead>
+        <tbody>
+          <tr><td>Off-road / mixto</td><td>Mitas E-07+ / Shinko 705</td><td>Mitas E-07+ / Shinko 705</td></tr>
+          <tr><td>Road / aventura</td><td>Michelin Anakee Wild / Anakee 3</td><td>Michelin Anakee Wild / Anakee 3</td></tr>
+          <tr><td>Enduro duro</td><td>Dunlop D908RR / TKC80</td><td>Dunlop D908RR / TKC80</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div style="margin-top:1rem; display:flex; gap:0.75rem; flex-wrap:wrap;">
+      <a href={base} class="btn btn-back">← Volver al inicio</a>
+      <a href="https://www.azmotors.fr/PIECES_VOGE/800_RALLY/vue-eclate-800DS-RALLY-EURO5.html" target="_blank" class="btn btn-ext">Ver despiece completo →</a>
+    </div>
+  </div>
+</Layout>

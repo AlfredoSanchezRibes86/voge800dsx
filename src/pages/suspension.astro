@@ -1,0 +1,82 @@
+---
+import Layout from '../layouts/Layout.astro';
+const base = import.meta.env.BASE_URL;
+---
+<Layout title="Suspensión — VOGE 800 DSX" description="Ajuste de horquilla invertida y amortiguador trasero VOGE 800 DSX Rally">
+  <div class="main-content">
+    <nav class="breadcrumb">
+      <a href={base}>Inicio</a>
+      <span class="breadcrumb-sep">›</span>
+      <span>Suspensión</span>
+    </nav>
+
+    <div class="page-actions">
+      <a href={base} class="btn btn-back">← Volver</a>
+      <a href="https://www.azmotors.fr/PIECES_VOGE/800_RALLY/vue-eclate-800DS-RALLY-EURO5.html" target="_blank" class="btn btn-ext">Ver despiece completo →</a>
+    </div>
+
+    <div class="section-header">
+      <div class="section-icon">↕</div>
+      <h1>Suspensión</h1>
+    </div>
+
+    <img src={`${base}images/suspension.jpg`} alt="Horquilla y amortiguador VOGE 800 DSX" class="section-image" />
+
+    <div class="card">
+      <h2>Especificaciones suspensión delantera</h2>
+      <table>
+        <tbody>
+          <tr><td><strong>Tipo</strong></td><td>Horquilla invertida telescópica</td></tr>
+          <tr><td><strong>Diámetro barras</strong></td><td>43 mm</td></tr>
+          <tr><td><strong>Recorrido</strong></td><td>200 mm</td></tr>
+          <tr><td><strong>Ajuste rebote</strong></td><td>10 posiciones (tornillo superior)</td></tr>
+          <tr><td><strong>Ajuste compresión</strong></td><td>10 posiciones (tornillo inferior)</td></tr>
+          <tr><td><strong>Configuración stock rebote</strong></td><td>5 clics desde cerrado</td></tr>
+          <tr><td><strong>Configuración stock compresión</strong></td><td>5 clics desde cerrado</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card">
+      <h2>Especificaciones suspensión trasera</h2>
+      <table>
+        <tbody>
+          <tr><td><strong>Tipo</strong></td><td>Amortiguador monobrazos linkage</td></tr>
+          <tr><td><strong>Recorrido rueda</strong></td><td>183 mm</td></tr>
+          <tr><td><strong>Precarga stock</strong></td><td>19 mm (ajustable)</td></tr>
+          <tr><td><strong>Ajuste rebote</strong></td><td>Sí (tornillo parte inferior)</td></tr>
+          <tr><td><strong>Ajuste compresión</strong></td><td>No (modelo estándar)</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card">
+      <h2>Cómo ajustar la horquilla</h2>
+      <ol class="steps">
+        <li>Identifica los ajustadores: en la parte superior de cada tubo (rebote) y en la parte inferior (compresión).</li>
+        <li>Cierra completamente el tornillo (sentido horario) contando los clics hasta el final — anota el total.</li>
+        <li>Abre desde cerrado el número de clics deseado para tu configuración.</li>
+        <li>⚠️ No fuerces más allá del tope — los tornillos son delicados.</li>
+        <li>Para más rebote (terreno accidentado): abre más clics (tornillo superior).</li>
+        <li>Para menos rebote (asfalto): menos clics (más cerrado).</li>
+        <li>Ajusta siempre los dos tubos igual para mantener la geometría.</li>
+      </ol>
+    </div>
+
+    <div class="card">
+      <h2>Ajuste precarga trasera</h2>
+      <ol class="steps">
+        <li>Mide la longitud libre del amortiguador (sin carga) con la moto en el caballete central.</li>
+        <li>Usa la llave de gancho para girar el anillo de precarga del amortiguador trasero.</li>
+        <li>Mide el SAG (hundimiento): con piloto sentado debe ser ~30-35mm (road) o ~35-40mm (off-road).</li>
+        <li>Más precarga = menos SAG = suspensión más dura.</li>
+        <li>Stock: 19mm de precarga medida desde el extremo del muelle al tope.</li>
+      </ol>
+    </div>
+
+    <div style="margin-top:1rem; display:flex; gap:0.75rem; flex-wrap:wrap;">
+      <a href={base} class="btn btn-back">← Volver al inicio</a>
+      <a href="https://www.azmotors.fr/PIECES_VOGE/800_RALLY/vue-eclate-800DS-RALLY-EURO5.html" target="_blank" class="btn btn-ext">Ver despiece completo →</a>
+    </div>
+  </div>
+</Layout>

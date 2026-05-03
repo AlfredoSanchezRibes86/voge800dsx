@@ -1,0 +1,88 @@
+---
+import Layout from '../layouts/Layout.astro';
+const base = import.meta.env.BASE_URL;
+---
+<Layout title="Frenos — VOGE 800 DSX" description="Especificaciones DOT4, pastillas y procedimiento de sangrado de frenos">
+  <div class="main-content">
+    <nav class="breadcrumb">
+      <a href={base}>Inicio</a>
+      <span class="breadcrumb-sep">›</span>
+      <span>Frenos</span>
+    </nav>
+
+    <div class="page-actions">
+      <a href={base} class="btn btn-back">← Volver</a>
+      <a href="https://www.azmotors.fr/PIECES_VOGE/800_RALLY/vue-eclate-800DS-RALLY-EURO5.html" target="_blank" class="btn btn-ext">Ver despiece completo →</a>
+    </div>
+
+    <div class="section-header">
+      <div class="section-icon">⊗</div>
+      <h1>Frenos</h1>
+    </div>
+
+    <img src={`${base}images/frenos.jpg`} alt="Sistema de frenos VOGE 800 DSX" class="section-image" />
+
+    <div class="card">
+      <h2>Especificaciones de frenos</h2>
+      <table>
+        <thead><tr><th>Parámetro</th><th>Delantero</th><th>Trasero</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Tipo</strong></td><td>Doble disco flotante</td><td>Disco simple</td></tr>
+          <tr><td><strong>Diámetro disco</strong></td><td>310 mm</td><td>240 mm</td></tr>
+          <tr><td><strong>Pinzas</strong></td><td>Radiales 4 pistones</td><td>1 pistón flotante</td></tr>
+          <tr><td><strong>Líquido de frenos</strong></td><td colspan="2">DOT 4</td></tr>
+          <tr><td><strong>ABS</strong></td><td colspan="2">2 canales (desactivable trasero en Off-Road)</td></tr>
+          <tr><td><strong>Grosor mín. pastillas</strong></td><td colspan="2">1,0 mm (marca de desgaste)</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card">
+      <h2>Inspección de pastillas</h2>
+      <ol class="steps">
+        <li>Inspecciona visualmente las pastillas con la rueda instalada (usa linterna).</li>
+        <li>La marca de desgaste es una ranura en la pastilla — cuando desaparece, sustituir.</li>
+        <li>El grosor mínimo de material de fricción es 1,0 mm.</li>
+        <li>Sustituye siempre en parejas (las dos pastillas del mismo disco a la vez).</li>
+        <li>Al montar pastillas nuevas, aplica pasta anti-chirrido en el dorso (no en la fricción).</li>
+        <li>Realiza 5-6 frenadas suaves desde 50km/h para asentar las pastillas nuevas.</li>
+      </ol>
+    </div>
+
+    <div class="card">
+      <h2>Procedimiento de sangrado de frenos</h2>
+      <ol class="steps">
+        <li>⚠️ El DOT4 ataca la pintura — protege la moto y lava inmediatamente cualquier derrame.</li>
+        <li>Sitúa la moto en vertical. Localiza el depósito del freno a sangrar.</li>
+        <li>Retira la tapa del depósito y comprueba el nivel — debe estar cerca de MAX.</li>
+        <li>Conecta un tubo transparente a la válvula de purga de la pinza y su otro extremo a un recipiente.</li>
+        <li>Afloja la válvula de purga 1/4 de vuelta con llave de 8mm o 10mm.</li>
+        <li>Acciona la palanca/pedal lentamente hasta el fondo y mantenlo.</li>
+        <li>Cierra la válvula de purga. Suelta la palanca/pedal.</li>
+        <li>Repite el proceso hasta que el líquido que sale sea claro y sin burbujas.</li>
+        <li>Mantén el depósito siempre por encima del mínimo durante el proceso.</li>
+        <li>Cierra la válvula de purga con 8 N·m. No sobre-aprietes.</li>
+        <li>Rellena el depósito hasta MAX y coloca la tapa.</li>
+        <li>Verifica que la palanca/pedal tienen recorrido firme antes de circular.</li>
+      </ol>
+    </div>
+
+    <div class="card">
+      <h2>Pares de apriete frenos</h2>
+      <table>
+        <thead><tr><th>Elemento</th><th>Par (N·m)</th></tr></thead>
+        <tbody>
+          <tr><td>Tornillos pinza delantera (soporte)</td><td>40</td></tr>
+          <tr><td>Tornillos pinza trasera (soporte)</td><td>30</td></tr>
+          <tr><td>Tornillo disco delantero</td><td>20</td></tr>
+          <tr><td>Válvula de purga</td><td>8</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div style="margin-top:1rem; display:flex; gap:0.75rem; flex-wrap:wrap;">
+      <a href={base} class="btn btn-back">← Volver al inicio</a>
+      <a href="https://www.azmotors.fr/PIECES_VOGE/800_RALLY/vue-eclate-800DS-RALLY-EURO5.html" target="_blank" class="btn btn-ext">Ver despiece completo →</a>
+    </div>
+  </div>
+</Layout>

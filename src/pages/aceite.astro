@@ -1,0 +1,75 @@
+---
+import Layout from '../layouts/Layout.astro';
+const base = import.meta.env.BASE_URL;
+---
+<Layout title="Aceite Motor — VOGE 800 DSX" description="Especificaciones de aceite y procedimiento de cambio VOGE 800 DSX Rally">
+  <div class="main-content">
+    <nav class="breadcrumb">
+      <a href={base}>Inicio</a>
+      <span class="breadcrumb-sep">›</span>
+      <span>Aceite Motor</span>
+    </nav>
+
+    <div class="page-actions">
+      <a href={base} class="btn btn-back">← Volver</a>
+      <a href="https://www.azmotors.fr/PIECES_VOGE/800_RALLY/vue-eclate-800DS-RALLY-EURO5.html" target="_blank" class="btn btn-ext">Ver despiece completo →</a>
+    </div>
+
+    <div class="section-header">
+      <div class="section-icon">◈</div>
+      <h1>Aceite Motor</h1>
+    </div>
+
+    <img src={`${base}images/aceite.jpg`} alt="Sistema de aceite VOGE 800 DSX" class="section-image" />
+
+    <div class="card">
+      <h2>Especificaciones del aceite</h2>
+      <table>
+        <tbody>
+          <tr><td><strong>Viscosidad recomendada</strong></td><td>SAE 10W/40</td></tr>
+          <tr><td><strong>Clasificación API</strong></td><td>SL o superior</td></tr>
+          <tr><td><strong>Capacidad total (con filtro)</strong></td><td>3,2 litros</td></tr>
+          <tr><td><strong>Capacidad sin filtro</strong></td><td>~3,0 litros</td></tr>
+          <tr><td><strong>Primer cambio de aceite</strong></td><td>1.000 km (rodaje)</td></tr>
+          <tr><td><strong>Intervalo de cambio</strong></td><td>Cada 5.000 km</td></tr>
+          <tr><td><strong>Par apriete tapón de vaciado</strong></td><td>20 – 25 N·m</td></tr>
+          <tr><td><strong>Par apriete filtro de aceite</strong></td><td>11 N·m</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card">
+      <h2>Procedimiento de cambio de aceite</h2>
+      <ol class="steps">
+        <li>Calienta el motor 3-5 minutos para que el aceite fluya mejor (no al máximo — solo tibio).</li>
+        <li>Coloca la moto en posición vertical con el caballete central.</li>
+        <li>Sitúa una bandeja de recogida (mínimo 3,5L) bajo el motor.</li>
+        <li>Retira el tapón de vaciado con llave de 17mm — deja drenar 5-10 minutos.</li>
+        <li>Desenrosca el filtro de aceite con llave de filtros — ten cuidado, saldrá aceite.</li>
+        <li>Limpia la zona de la junta del filtro y del tapón de vaciado.</li>
+        <li>Instala el filtro nuevo: aplica aceite limpio a la junta y aprieta a 11 N·m.</li>
+        <li>Reinstala el tapón de vaciado con arandela nueva y aprieta a 20-25 N·m.</li>
+        <li>Añade 3,0L de aceite por el orificio superior (junto al cuadro). Espera 1 minuto.</li>
+        <li>Arranca el motor 30 segundos, apaga y espera 2 minutos para que baje el nivel.</li>
+        <li>Comprueba el nivel con la varilla — debe estar entre MIN y MAX. Añade si es necesario.</li>
+        <li>Verifica que no hay fugas en el tapón y el filtro.</li>
+        <li>Desecha el aceite usado en un punto limpio.</li>
+      </ol>
+    </div>
+
+    <div class="card">
+      <h2>⚠️ Advertencias</h2>
+      <ul style="padding-left:1.2rem; color:var(--text-muted); font-size:0.92rem; line-height:1.8;">
+        <li>No mezcles aceites minerales con sintéticos.</li>
+        <li>No uses aceite para coches con modificador de fricción — dañará el embrague húmedo.</li>
+        <li>En clima frío extremo puedes usar 5W/40 de la misma clasificación API.</li>
+        <li>El aceite también lubrica la caja de cambios — usa siempre aceite para moto.</li>
+      </ul>
+    </div>
+
+    <div style="margin-top:1rem; display:flex; gap:0.75rem; flex-wrap:wrap;">
+      <a href={base} class="btn btn-back">← Volver al inicio</a>
+      <a href="https://www.azmotors.fr/PIECES_VOGE/800_RALLY/vue-eclate-800DS-RALLY-EURO5.html" target="_blank" class="btn btn-ext">Ver despiece completo →</a>
+    </div>
+  </div>
+</Layout>

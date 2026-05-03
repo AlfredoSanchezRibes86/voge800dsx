@@ -1,0 +1,98 @@
+---
+import Layout from '../layouts/Layout.astro';
+const base = import.meta.env.BASE_URL;
+---
+<Layout title="Tiendas & Repuestos — VOGE 800 DSX" description="Dónde comprar piezas y accesorios para la VOGE 800 DSX Rally">
+  <div class="main-content">
+    <nav class="breadcrumb">
+      <a href={base}>Inicio</a>
+      <span class="breadcrumb-sep">›</span>
+      <span>Tiendas & Repuestos</span>
+    </nav>
+
+    <div class="page-actions">
+      <a href={base} class="btn btn-back">← Volver</a>
+    </div>
+
+    <div class="section-header">
+      <div class="section-icon">🛒</div>
+      <h1>Tiendas & Repuestos</h1>
+    </div>
+
+    <div class="card">
+      <h2>Despieces y catálogos de piezas</h2>
+      <table>
+        <thead><tr><th>Tienda</th><th>Descripción</th><th>Link</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>AZMotors</strong></td>
+            <td>Despiece interactivo oficial 800 DSX Rally Euro5</td>
+            <td><a href="https://www.azmotors.fr/PIECES_VOGE/800_RALLY/vue-eclate-800DS-RALLY-EURO5.html" target="_blank">Ver despiece →</a></td>
+          </tr>
+          <tr>
+            <td><strong>VOGE Official</strong></td>
+            <td>Página oficial VOGE España — repuestos y accesorios</td>
+            <td><a href="https://vogemotor.es" target="_blank">vogemotor.es →</a></td>
+          </tr>
+          <tr>
+            <td><strong>VOGE Global</strong></td>
+            <td>Tienda oficial internacional</td>
+            <td><a href="https://www.vogemotor.com" target="_blank">vogemotor.com →</a></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card">
+      <h2>Distribuidores y talleres oficiales España</h2>
+      <ul style="padding-left:1.2rem; color:var(--text-muted); font-size:0.92rem; line-height:1.9;">
+        <li><strong>Motocard</strong> — Distribuidor oficial VOGE en España · <a href="https://www.motocard.com" target="_blank">motocard.com</a></li>
+        <li><strong>Motorent</strong> — Distribuidor VOGE Valencia · Consultar web oficial</li>
+        <li>Busca tu distribuidor más cercano en la web oficial de VOGE España</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>Tiendas de recambios online</h2>
+      <table>
+        <thead><tr><th>Tienda</th><th>Especialidad</th><th>Link</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>Louis Moto</strong></td>
+            <td>Amplio catálogo piezas universales y accesorios</td>
+            <td><a href="https://www.louis.es" target="_blank">louis.es →</a></td>
+          </tr>
+          <tr>
+            <td><strong>Motardinn</strong></td>
+            <td>Accesorios y ropa moto — precios competitivos</td>
+            <td><a href="https://www.motardinn.com" target="_blank">motardinn.com →</a></td>
+          </tr>
+          <tr>
+            <td><strong>Polo Motorrad</strong></td>
+            <td>Accesorios y equipamiento moto</td>
+            <td><a href="https://www.polo-motorrad.es" target="_blank">polo-motorrad.es →</a></td>
+          </tr>
+          <tr>
+            <td><strong>Aliexpress VOGE</strong></td>
+            <td>Búsqueda directa piezas VOGE 800</td>
+            <td><a href="https://www.aliexpress.com/w/wholesale-voge-800.html" target="_blank">aliexpress.com →</a></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card">
+      <h2>Comunidad y foros</h2>
+      <ul style="padding-left:1.2rem; color:var(--text-muted); font-size:0.92rem; line-height:1.9;">
+        <li><strong>Facebook VOGE Owners Spain</strong> — Grupo propietarios español</li>
+        <li><strong>Reddit r/VogeMoto</strong> — Comunidad internacional</li>
+        <li><strong>Foro Motos.es</strong> — Subforo VOGE en español</li>
+        <li><strong>YouTube VOGE Official</strong> — Vídeos de mantenimiento y presentaciones</li>
+      </ul>
+    </div>
+
+    <div style="margin-top:1rem; display:flex; gap:0.75rem; flex-wrap:wrap;">
+      <a href={base} class="btn btn-back">← Volver al inicio</a>
+    </div>
+  </div>
+</Layout>

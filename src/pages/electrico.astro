@@ -1,0 +1,101 @@
+---
+import Layout from '../layouts/Layout.astro';
+const base = import.meta.env.BASE_URL;
+---
+<Layout title="Sistema Eléctrico — VOGE 800 DSX" description="Batería, fusibles y bujía VOGE 800 DSX Rally">
+  <div class="main-content">
+    <nav class="breadcrumb">
+      <a href={base}>Inicio</a>
+      <span class="breadcrumb-sep">›</span>
+      <span>Sistema Eléctrico</span>
+    </nav>
+
+    <div class="page-actions">
+      <a href={base} class="btn btn-back">← Volver</a>
+      <a href="https://www.azmotors.fr/PIECES_VOGE/800_RALLY/vue-eclate-800DS-RALLY-EURO5.html" target="_blank" class="btn btn-ext">Ver despiece completo →</a>
+    </div>
+
+    <div class="section-header">
+      <div class="section-icon">⚡</div>
+      <h1>Sistema Eléctrico</h1>
+    </div>
+
+    <img src={`${base}images/electrico.jpg`} alt="Sistema eléctrico VOGE 800 DSX" class="section-image" />
+
+    <div class="card">
+      <h2>Batería</h2>
+      <table>
+        <tbody>
+          <tr><td><strong>Tipo</strong></td><td>AGM / VRLA sellada</td></tr>
+          <tr><td><strong>Tensión</strong></td><td>12 V</td></tr>
+          <tr><td><strong>Capacidad</strong></td><td>10 Ah</td></tr>
+          <tr><td><strong>Tensión carga (motor en marcha)</strong></td><td>14,0 – 14,5 V</td></tr>
+          <tr><td><strong>Tensión mínima de arranque</strong></td><td>~12,4 V</td></tr>
+          <tr><td><strong>Ubicación</strong></td><td>Bajo el asiento, lado derecho</td></tr>
+          <tr><td><strong>Desconexión correcta</strong></td><td>Negativo primero, positivo al último</td></tr>
+          <tr><td><strong>Conexión correcta</strong></td><td>Positivo primero, negativo al último</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card">
+      <h2>Fusibles</h2>
+      <table>
+        <thead><tr><th>Fusible</th><th>Amperaje</th><th>Circuito protegido</th></tr></thead>
+        <tbody>
+          <tr><td>Principal 1</td><td>40 A</td><td>Fusible principal del sistema</td></tr>
+          <tr><td>Principal 2</td><td>25 A</td><td>Inyección / ECU</td></tr>
+          <tr><td>Luces</td><td>15 A</td><td>Sistema de iluminación</td></tr>
+          <tr><td>Accesorios</td><td>10 A</td><td>Instrumentos, señales, accesorios</td></tr>
+          <tr><td>ABS</td><td>10 A</td><td>Sistema ABS (si aplica)</td></tr>
+          <tr><td>Cargador USB</td><td>5 A</td><td>Puerto USB (si instalado)</td></tr>
+        </tbody>
+      </table>
+      <p style="font-size:0.82rem; color:var(--text-faint); margin-top:0.5rem;">La caja de fusibles está bajo el asiento junto a la batería. Sustituye siempre con el amperaje correcto.</p>
+    </div>
+
+    <div class="card">
+      <h2>Bujías</h2>
+      <table>
+        <tbody>
+          <tr><td><strong>Referencia</strong></td><td>NGK LMAR8J-9E</td></tr>
+          <tr><td><strong>Separación de electrodos</strong></td><td>0,8 – 0,9 mm</td></tr>
+          <tr><td><strong>Par de apriete</strong></td><td>15 – 20 N·m</td></tr>
+          <tr><td><strong>Intervalo de inspección</strong></td><td>Cada 5.000 km</td></tr>
+          <tr><td><strong>Intervalo de sustitución</strong></td><td>Cada 10.000 km</td></tr>
+          <tr><td><strong>Número de bujías</strong></td><td>2 (una por cilindro)</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card">
+      <h2>Iluminación</h2>
+      <table>
+        <thead><tr><th>Elemento</th><th>Tipo</th></tr></thead>
+        <tbody>
+          <tr><td>Faro delantero</td><td>LED</td></tr>
+          <tr><td>Luz trasera / stop</td><td>LED</td></tr>
+          <tr><td>Intermitentes</td><td>LED</td></tr>
+          <tr><td>Luz de matrícula</td><td>LED</td></tr>
+          <tr><td>Cuadro de instrumentos</td><td>TFT color 5"</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card">
+      <h2>Diagnóstico y conectividad</h2>
+      <ul style="padding-left:1.2rem; color:var(--text-muted); font-size:0.92rem; line-height:1.9;">
+        <li>Conector de diagnóstico OBD compatible: bajo el asiento</li>
+        <li>Bluetooth integrado para conectividad con app VOGE Global</li>
+        <li>TCS (Control de Tracción) — desactivable desde el menú del cuadro</li>
+        <tr>TPMS (sensor presión neumáticos) — opcional</tr>
+        <li>Cámara integrada — conector en manillar (modelo con cámara)</li>
+      </ul>
+    </div>
+
+    <div style="margin-top:1rem; display:flex; gap:0.75rem; flex-wrap:wrap;">
+      <a href={base} class="btn btn-back">← Volver al inicio</a>
+      <a href="https://www.azmotors.fr/PIECES_VOGE/800_RALLY/vue-eclate-800DS-RALLY-EURO5.html" target="_blank" class="btn btn-ext">Ver despiece completo →</a>
+    </div>
+  </div>
+</Layout>

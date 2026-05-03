@@ -1,0 +1,76 @@
+---
+import Layout from '../layouts/Layout.astro';
+const base = import.meta.env.BASE_URL;
+---
+<Layout title="Refrigerante — VOGE 800 DSX" description="Sistema de refrigeración, nivel y cambio de refrigerante VOGE 800 DSX Rally">
+  <div class="main-content">
+    <nav class="breadcrumb">
+      <a href={base}>Inicio</a>
+      <span class="breadcrumb-sep">›</span>
+      <span>Refrigerante</span>
+    </nav>
+
+    <div class="page-actions">
+      <a href={base} class="btn btn-back">← Volver</a>
+      <a href="https://www.azmotors.fr/PIECES_VOGE/800_RALLY/vue-eclate-800DS-RALLY-EURO5.html" target="_blank" class="btn btn-ext">Ver despiece completo →</a>
+    </div>
+
+    <div class="section-header">
+      <div class="section-icon">❄</div>
+      <h1>Refrigerante</h1>
+    </div>
+
+    <img src={`${base}images/refrigerante.jpg`} alt="Sistema de refrigeración VOGE 800 DSX" class="section-image" />
+
+    <div class="card">
+      <h2>Especificaciones</h2>
+      <table>
+        <tbody>
+          <tr><td><strong>Capacidad total</strong></td><td>1,75 litros</td></tr>
+          <tr><td><strong>Tipo de refrigerante</strong></td><td>Anticongelante/refrigerante orgánico (OAT) sin silicatos</td></tr>
+          <tr><td><strong>Mezcla recomendada</strong></td><td>50% refrigerante + 50% agua destilada</td></tr>
+          <tr><td><strong>Protección mínima</strong></td><td>Hasta -25°C con mezcla 50/50</td></tr>
+          <tr><td><strong>Intervalo de cambio</strong></td><td>Cada 2 años o 20.000 km</td></tr>
+          <tr><td><strong>Temperatura de apertura termostato</strong></td><td>~82°C</td></tr>
+          <tr><td><strong>Temperatura de alarma en cuadro</strong></td><td>~110°C</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card">
+      <h2>Comprobación del nivel</h2>
+      <ol class="steps">
+        <li>⚠️ Comprueba el nivel siempre con el motor FRÍO (puede pasar horas tras último uso).</li>
+        <li>El depósito de expansión está visible en el lateral derecho de la moto.</li>
+        <li>El nivel debe estar entre las marcas MIN y MAX del depósito transparente.</li>
+        <li>Si está por debajo de MIN, añade mezcla 50/50 (nunca agua sola).</li>
+        <li>Si hay que añadir frecuentemente, busca posible fuga.</li>
+      </ol>
+    </div>
+
+    <div class="card">
+      <h2>Procedimiento de cambio de refrigerante</h2>
+      <ol class="steps">
+        <li>⚠️ Espera a que el motor esté completamente frío (mínimo 2 horas tras uso).</li>
+        <li>⚠️ El refrigerante es tóxico — no dejes al alcance de animales ni lo viertas en desagüe.</li>
+        <li>Retira el tapón del radiador con cuidado — primero afloja un cuarto de vuelta para liberar presión.</li>
+        <li>Localiza el tornillo de vaciado en la parte inferior del radiador y coloca un recipiente.</li>
+        <li>Retira el tornillo de vaciado y deja drenar completamente (5-10 minutos).</li>
+        <li>Enjuaga el sistema con agua destilada si el refrigerante viejo estaba muy sucio.</li>
+        <li>Reinstala el tornillo de vaciado.</li>
+        <li>Prepara 1,75L de mezcla 50/50 con agua destilada.</li>
+        <li>Vierte lentamente por el tapón del radiador hasta que esté lleno, sin burbujas.</li>
+        <li>Rellena el depósito de expansión hasta MAX.</li>
+        <li>Reinstala el tapón del radiador.</li>
+        <li>Arranca el motor y deja que alcance temperatura de trabajo — el termostato abrirá.</li>
+        <li>Comprueba que no hay fugas. Con el motor caliente, verifica nivel en depósito de expansión.</li>
+        <li>Tras enfriar, ajusta el nivel si ha bajado.</li>
+      </ol>
+    </div>
+
+    <div style="margin-top:1rem; display:flex; gap:0.75rem; flex-wrap:wrap;">
+      <a href={base} class="btn btn-back">← Volver al inicio</a>
+      <a href="https://www.azmotors.fr/PIECES_VOGE/800_RALLY/vue-eclate-800DS-RALLY-EURO5.html" target="_blank" class="btn btn-ext">Ver despiece completo →</a>
+    </div>
+  </div>
+</Layout>

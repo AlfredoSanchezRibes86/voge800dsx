@@ -1,0 +1,86 @@
+---
+import Layout from '../layouts/Layout.astro';
+const base = import.meta.env.BASE_URL;
+---
+<Layout title="Accesorios — VOGE 800 DSX" description="Accesorios y equipamiento por categorías para la VOGE 800 DSX Rally">
+  <div class="main-content">
+    <nav class="breadcrumb">
+      <a href={base}>Inicio</a>
+      <span class="breadcrumb-sep">›</span>
+      <span>Accesorios</span>
+    </nav>
+
+    <div class="page-actions">
+      <a href={base} class="btn btn-back">← Volver</a>
+      <a href="https://www.azmotors.fr/PIECES_VOGE/800_RALLY/vue-eclate-800DS-RALLY-EURO5.html" target="_blank" class="btn btn-ext">Ver despiece completo →</a>
+    </div>
+
+    <div class="section-header">
+      <div class="section-icon">🧰</div>
+      <h1>Accesorios</h1>
+    </div>
+
+    <div class="card">
+      <h2>Protección y defensas</h2>
+      <table>
+        <thead><tr><th>Accesorio</th><th>Descripción</th></tr></thead>
+        <tbody>
+          <tr><td>Defensas de motor</td><td>Protección aluminio para carters y colectores</td></tr>
+          <tr><td>Peto motor (bash plate)</td><td>Placa bajo motor para proteger en off-road</td></tr>
+          <tr><td>Protectores de manos</td><td>Cubremanos con refuerzo para ramas y caídas</td></tr>
+          <tr><td>Protector de radiador</td><td>Rejilla metálica contra piedras en pista</td></tr>
+          <tr><td>Protector de cadena</td><td>Guía de cadena reforzada (off-road)</td></tr>
+          <tr><td>Crash pad manillar</td><td>Protectores de extremos del manillar</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card">
+      <h2>Equipaje y transporte</h2>
+      <table>
+        <thead><tr><th>Accesorio</th><th>Descripción</th></tr></thead>
+        <tbody>
+          <tr><td>Alforjas laterales rígidas</td><td>Par de alforjas aluminio o polipropileno</td></tr>
+          <tr><td>Top-case</td><td>Baúl trasero con soporte específico</td></tr>
+          <tr><td>Soporte GPS/móvil</td><td>Montaje manillar 22mm-28mm</td></tr>
+          <tr><td>Bolsa de depósito</td><td>Magnética, acceso mapa en marcha</td></tr>
+          <tr><td>Portaequipajes trasero</td><td>Rack aluminio para fardos/soft bags</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card">
+      <h2>Ergonomía y confort</h2>
+      <table>
+        <thead><tr><th>Accesorio</th><th>Descripción</th></tr></thead>
+        <tbody>
+          <tr><td>Manillar alternativo</td><td>Renthal Fatbar 28mm — más alto/bajo según uso</td></tr>
+          <tr><td>Adaptador manillar 28→22mm</td><td>Para accesorios de 22mm en manillar stock 28mm</td></tr>
+          <tr><td>Sillín personalizado</td><td>Altura reducida o espuma Saddlemen</td></tr>
+          <tr><td>Reposapiés regulables</td><td>Posición adelante/atrás para mayor comodidad</td></tr>
+          <tr><td>Alzas de manillar</td><td>Elevar 20-40mm la posición del manillar</td></tr>
+          <tr><td>Caballete de paddock</td><td>Soporte para basculante o bobbins en swingarm</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card">
+      <h2>Electrónica y conectividad</h2>
+      <table>
+        <thead><tr><th>Accesorio</th><th>Descripción</th></tr></thead>
+        <tbody>
+          <tr><td>Puerto USB</td><td>Cargador USB-A/C con soporte en manillar</td></tr>
+          <tr><td>Adaptador GPS DIN</td><td>Enchufe Hella/DIN 12V para GPS o cargador</td></tr>
+          <tr><td>Intercomunicador Bluetooth</td><td>Sena/Cardo compatible con casco integral/modular</td></tr>
+          <tr><td>Cámara de acción</td><td>GoPro/Insta360 con soporte en casco o manillar</td></tr>
+          <tr><td>Alarma GPS</td><td>Rastreador OBD o cableado directo a batería</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div style="margin-top:1rem; display:flex; gap:0.75rem; flex-wrap:wrap;">
+      <a href={base} class="btn btn-back">← Volver al inicio</a>
+      <a href={`${base}tiendas`} class="btn btn-ext">Ver tiendas de repuestos →</a>
+    </div>
+  </div>
+</Layout>

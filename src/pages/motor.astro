@@ -1,0 +1,93 @@
+---
+import Layout from '../layouts/Layout.astro';
+const base = import.meta.env.BASE_URL;
+---
+<Layout title="Motor & Arranque — VOGE 800 DSX" description="Especificaciones del motor bicilíndrico DOHC 798cc y procedimiento de arranque">
+  <div class="main-content">
+    <nav class="breadcrumb">
+      <a href={base}>Inicio</a>
+      <span class="breadcrumb-sep">›</span>
+      <span>Motor & Arranque</span>
+    </nav>
+
+    <div class="page-actions">
+      <a href={base} class="btn btn-back">← Volver</a>
+      <a href="https://www.azmotors.fr/PIECES_VOGE/800_RALLY/vue-eclate-800DS-RALLY-EURO5.html" target="_blank" class="btn btn-ext">Ver despiece completo →</a>
+    </div>
+
+    <div class="section-header">
+      <div class="section-icon">▶</div>
+      <h1>Motor & Arranque</h1>
+    </div>
+
+    <img src={`${base}images/motor.jpg`} alt="Diagrama motor VOGE 800 DSX" class="section-image" />
+
+    <div class="card">
+      <h2>Especificaciones del motor</h2>
+      <table>
+        <tbody>
+          <tr><td><strong>Tipo</strong></td><td>Bicilíndrico en línea DOHC, 4 tiempos, refrigerado por agua</td></tr>
+          <tr><td><strong>Cilindrada</strong></td><td>798 cc</td></tr>
+          <tr><td><strong>Álvara × carrera</strong></td><td>84 × 72 mm</td></tr>
+          <tr><td><strong>Relación de compresión</strong></td><td>12:1</td></tr>
+          <tr><td><strong>Potencia máxima</strong></td><td>70 kW (95 CV) @ 9.000 rpm</td></tr>
+          <tr><td><strong>Par máximo</strong></td><td>81 Nm @ 6.500 rpm</td></tr>
+          <tr><td><strong>Ralentí</strong></td><td>1.250 ± 100 rpm</td></tr>
+          <tr><td><strong>Distribución</strong></td><td>DOHC, 4 válvulas por cilindro</td></tr>
+          <tr><td><strong>Juego válvulas admisión</strong></td><td>0,15 – 0,20 mm (frío)</td></tr>
+          <tr><td><strong>Juego válvulas escape</strong></td><td>0,20 – 0,25 mm (frío)</td></tr>
+          <tr><td><strong>Norma emisiones</strong></td><td>Euro 5+</td></tr>
+          <tr><td><strong>Alimentación</strong></td><td>Inyección electrónica EFI</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card">
+      <h2>Transmisión</h2>
+      <table>
+        <tbody>
+          <tr><td><strong>Caja de cambios</strong></td><td>6 velocidades</td></tr>
+          <tr><td><strong>1ª velocidad</strong></td><td>3,083</td></tr>
+          <tr><td><strong>2ª velocidad</strong></td><td>2,125</td></tr>
+          <tr><td><strong>3ª velocidad</strong></td><td>1,667</td></tr>
+          <tr><td><strong>4ª velocidad</strong></td><td>1,333</td></tr>
+          <tr><td><strong>5ª velocidad</strong></td><td>1,087</td></tr>
+          <tr><td><strong>6ª velocidad</strong></td><td>0,900</td></tr>
+          <tr><td><strong>Embrague</strong></td><td>Multidisco en baño de aceite</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card">
+      <h2>Procedimiento de arranque</h2>
+      <ol class="steps">
+        <li>Asegúrate de que la moto está en punto muerto (indicador N verde encendido).</li>
+        <li>Gira la llave de contacto a la posición ON — el cuadro TFT se inicializa.</li>
+        <li>Comprueba que el interruptor de corte del motor (manillar derecho) está en posición RUN.</li>
+        <li>Si el motor está frío, no es necesario tirar del choke — la EFI lo gestiona automáticamente.</li>
+        <li>Con el embrague pulsado (o en punto muerto), pulsa el botón de arranque.</li>
+        <li>Deja que el ralentí se estabilice en ~1.250 rpm antes de arrancar.</li>
+        <li>Evita revolucionar en frío — espera 2-3 minutos antes de cargar el motor.</li>
+        <li>⚠️ El interruptor del caballete lateral corta el motor si está en primera: asegúrate de recogerlo.</li>
+      </ol>
+    </div>
+
+    <div class="card">
+      <h2>Modos de conducción</h2>
+      <table>
+        <thead><tr><th>Modo</th><th>Descripción</th></tr></thead>
+        <tbody>
+          <tr><td><strong>ROAD</strong></td><td>Modo estándar, respuesta de gas suave</td></tr>
+          <tr><td><strong>RAIN</strong></td><td>Potencia reducida, máxima seguridad en mojado</td></tr>
+          <tr><td><strong>SPORT</strong></td><td>Respuesta agresiva, máxima potencia disponible</td></tr>
+          <tr><td><strong>OFF-ROAD</strong></td><td>TCS adaptado para tierra/grava, ABS trasero desactivado</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div style="margin-top:1rem; display:flex; gap:0.75rem; flex-wrap:wrap;">
+      <a href={base} class="btn btn-back">← Volver al inicio</a>
+      <a href="https://www.azmotors.fr/PIECES_VOGE/800_RALLY/vue-eclate-800DS-RALLY-EURO5.html" target="_blank" class="btn btn-ext">Ver despiece completo →</a>
+    </div>
+  </div>
+</Layout>

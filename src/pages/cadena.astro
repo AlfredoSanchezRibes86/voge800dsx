@@ -1,0 +1,76 @@
+---
+import Layout from '../layouts/Layout.astro';
+const base = import.meta.env.BASE_URL;
+---
+<Layout title="Cadena — VOGE 800 DSX" description="Tensado y lubricación de cadena 520SX2 VOGE 800 DSX Rally">
+  <div class="main-content">
+    <nav class="breadcrumb">
+      <a href={base}>Inicio</a>
+      <span class="breadcrumb-sep">›</span>
+      <span>Cadena</span>
+    </nav>
+
+    <div class="page-actions">
+      <a href={base} class="btn btn-back">← Volver</a>
+      <a href="https://www.azmotors.fr/PIECES_VOGE/800_RALLY/vue-eclate-800DS-RALLY-EURO5.html" target="_blank" class="btn btn-ext">Ver despiece completo →</a>
+    </div>
+
+    <div class="section-header">
+      <div class="section-icon">⊞</div>
+      <h1>Cadena</h1>
+    </div>
+
+    <img src={`${base}images/cadena.jpg`} alt="Cadena y piñón VOGE 800 DSX" class="section-image" />
+
+    <div class="card">
+      <h2>Especificaciones</h2>
+      <table>
+        <tbody>
+          <tr><td><strong>Tipo de cadena</strong></td><td>520SX2 (X-Ring)</td></tr>
+          <tr><td><strong>Número de eslabones</strong></td><td>122</td></tr>
+          <tr><td><strong>Holgura vertical (juego)</strong></td><td>30 – 40 mm (medido en el punto inferior)</td></tr>
+          <tr><td><strong>Piñón delantero</strong></td><td>16 dientes (Z16)</td></tr>
+          <tr><td><strong>Corona trasera</strong></td><td>46 dientes (Z46)</td></tr>
+          <tr><td><strong>Tuerca eje trasero</strong></td><td>105 ± 7 N·m</td></tr>
+          <tr><td><strong>Tornillo tensor cadena</strong></td><td>18 ± 1,8 N·m</td></tr>
+          <tr><td><strong>Intervalo inspección</strong></td><td>Cada 1.000 km</td></tr>
+          <tr><td><strong>Intervalo lubricación</strong></td><td>Cada 500 km o tras lluvia/barro</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card">
+      <h2>Procedimiento de tensado</h2>
+      <ol class="steps">
+        <li>Coloca la moto en el caballete central con la transmisión en punto muerto.</li>
+        <li>Mide la holgura vertical en el punto inferior de la cadena (centro entre piñón y corona).</li>
+        <li>La holgura correcta es 30-40 mm medida con dos dedos desde abajo.</li>
+        <li>Si hay que ajustar: afloja la tuerca del eje trasero (105 N·m → solo afloja, no saques).</li>
+        <li>Afloja las contratuercas de los tensores de ambos lados del basculante.</li>
+        <li>Gira los tornilores tensores igual número de vueltas en ambos lados para mantener la alineación.</li>
+        <li>Comprueba la alineación usando las marcas del basculante — deben coincidir en ambos lados.</li>
+        <li>Aprieta la tuerca del eje trasero a 105 ± 7 N·m.</li>
+        <li>Aprieta los tornillos tensores a 18 ± 1,8 N·m.</li>
+        <li>Verifica la holgura de nuevo después de apretar — puede cambiar ligeramente.</li>
+      </ol>
+    </div>
+
+    <div class="card">
+      <h2>Lubricación de cadena</h2>
+      <ol class="steps">
+        <li>Limpia la cadena primero con un cepillo suave y limpiador específico para cadenas.</li>
+        <li>Deja secar completamente antes de lubricar.</li>
+        <li>Usa lubricante específico para cadenas O/X-ring (spray o líquido).</li>
+        <li>Aplica el lubricante en el interior de la cadena (lado de los eslabones), no en el exterior.</li>
+        <li>Gira la rueda trasera manualmente mientras aplicas para cubrir toda la cadena.</li>
+        <li>Deja reposar 5-10 minutos para que penetre. Elimina el exceso con un trapo.</li>
+        <li>⚠️ Nunca uses aceite de motor o WD-40 — deterioran los anillos de sellado.</li>
+      </ol>
+    </div>
+
+    <div style="margin-top:1rem; display:flex; gap:0.75rem; flex-wrap:wrap;">
+      <a href={base} class="btn btn-back">← Volver al inicio</a>
+      <a href="https://www.azmotors.fr/PIECES_VOGE/800_RALLY/vue-eclate-800DS-RALLY-EURO5.html" target="_blank" class="btn btn-ext">Ver despiece completo →</a>
+    </div>
+  </div>
+</Layout>

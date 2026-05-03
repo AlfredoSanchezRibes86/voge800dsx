@@ -1,0 +1,313 @@
+---
+export interface Props {
+  title: string;
+  description?: string;
+}
+const { title, description = 'Guía técnica completa VOGE 800 DSX Rally' } = Astro.props;
+const base = import.meta.env.BASE_URL;
+---
+<!DOCTYPE html>
+<html lang="es" id="html-root" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{title}</title>
+  <meta name="description" content={description} />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root, [data-theme="dark"] {
+      --bg: #0d1117;
+      --bg-card: #161b22;
+      --bg-alt: #1c2128;
+      --bg-hover: #21262d;
+      --text: #e6edf3;
+      --text-muted: #8b949e;
+      --text-faint: #6e7681;
+      --border: #30363d;
+      --accent: #d32f2f;
+      --accent2: #e53935;
+      --table-header-bg: #21262d;
+      --footer-bg: #010409;
+    }
+    [data-theme="light"] {
+      --bg: #f5f5f5;
+      --bg-card: #ffffff;
+      --bg-alt: #eeeeee;
+      --bg-hover: #e0e0e0;
+      --text: #1a1a2e;
+      --text-muted: #555577;
+      --text-faint: #888899;
+      --border: #ccccdd;
+      --accent: #d32f2f;
+      --accent2: #e53935;
+      --table-header-bg: #e0e0e0;
+      --footer-bg: #d0d0d0;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      line-height: 1.6;
+    }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { color: var(--accent2); text-decoration: underline; }
+
+    /* NAV */
+    .site-nav {
+      background: var(--bg-card);
+      border-bottom: 1px solid var(--border);
+      padding: 0 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 56px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .nav-brand {
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: var(--text);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .nav-brand span { color: var(--accent); }
+    .nav-controls { display: flex; align-items: center; gap: 0.75rem; }
+    .lang-select {
+      background: var(--bg-alt);
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 0.25rem 0.5rem;
+      border-radius: 4px;
+      font-size: 0.85rem;
+      cursor: pointer;
+    }
+    .theme-btn {
+      background: var(--bg-alt);
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 0.25rem 0.6rem;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      line-height: 1.5;
+    }
+    .theme-btn:hover { background: var(--bg-hover); }
+
+    /* BREADCRUMB */
+    .breadcrumb {
+      padding: 0.75rem 1.5rem;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      display: flex;
+      gap: 0.4rem;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .breadcrumb a { color: var(--text-muted); }
+    .breadcrumb a:hover { color: var(--text); }
+    .breadcrumb-sep { opacity: 0.5; }
+
+    /* MAIN */
+    .main-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 1.5rem;
+    }
+
+    /* SECTION HEADER */
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 2rem;
+      padding-bottom: 1rem;
+      border-bottom: 2px solid var(--accent);
+    }
+    .section-icon { font-size: 2.5rem; line-height: 1; }
+    .section-header h1 { font-size: 1.8rem; font-weight: 700; }
+
+    /* TABLES */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 1.5rem;
+      font-size: 0.92rem;
+    }
+    th {
+      background: var(--table-header-bg);
+      color: var(--text);
+      padding: 0.65rem 1rem;
+      text-align: left;
+      font-weight: 600;
+      border: 1px solid var(--border);
+    }
+    td {
+      padding: 0.6rem 1rem;
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+    }
+    tr:nth-child(even) td { background: var(--bg-alt); }
+
+    /* CARDS */
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1.25rem;
+      margin-bottom: 1.5rem;
+    }
+    .card h2 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      color: var(--text);
+    }
+
+    /* STEPS */
+    .steps { list-style: none; counter-reset: steps; }
+    .steps li {
+      counter-increment: steps;
+      display: flex;
+      gap: 0.75rem;
+      padding: 0.6rem 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.92rem;
+      color: var(--text-muted);
+    }
+    .steps li:last-child { border-bottom: none; }
+    .steps li::before {
+      content: counter(steps);
+      min-width: 1.5rem;
+      height: 1.5rem;
+      background: var(--accent);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      font-weight: 700;
+      flex-shrink: 0;
+      margin-top: 0.1rem;
+    }
+
+    /* IMAGE */
+    .section-image {
+      width: 100%;
+      max-height: 400px;
+      object-fit: contain;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      background: var(--bg-card);
+      margin-bottom: 1rem;
+    }
+
+    /* BUTTONS */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      cursor: pointer;
+      border: none;
+      text-decoration: none;
+    }
+    .btn-back {
+      background: var(--bg-alt);
+      color: var(--text-muted);
+      border: 1px solid var(--border);
+    }
+    .btn-back:hover { background: var(--bg-hover); color: var(--text); text-decoration: none; }
+    .btn-ext {
+      background: var(--accent);
+      color: white;
+    }
+    .btn-ext:hover { background: var(--accent2); color: white; text-decoration: none; }
+
+    .page-actions {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-bottom: 1.5rem;
+    }
+
+    /* FOOTER */
+    footer {
+      background: var(--footer-bg);
+      border-top: 1px solid var(--border);
+      text-align: center;
+      padding: 1.5rem;
+      color: var(--text-faint);
+      font-size: 0.82rem;
+      margin-top: 3rem;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 600px) {
+      .site-nav { padding: 0 1rem; }
+      .main-content { padding: 1rem; }
+      .section-header h1 { font-size: 1.4rem; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="site-nav">
+    <a class="nav-brand" href={base}>
+      VOGE <span>800 DSX</span>
+    </a>
+    <div class="nav-controls">
+      <select class="lang-select" id="lang-select">
+        <option value="es">🇪🇸 ES</option>
+        <option value="en">🇬🇧 EN</option>
+        <option value="fr">🇫🇷 FR</option>
+      </select>
+      <button class="theme-btn" id="theme-btn" title="Toggle dark/light">🌙</button>
+    </div>
+  </nav>
+
+  <slot />
+
+  <footer>
+    <p>VOGE 800 DSX Rally — Guía Técnica · Basado en Manual del Propietario y Manual de Taller oficial</p>
+    <p style="margin-top:0.3rem">No es documentación oficial. Comprueba siempre con tu distribuidor VOGE.</p>
+  </footer>
+
+  <script>
+    // Theme toggle
+    const btn = document.getElementById('theme-btn');
+    const html = document.getElementById('html-root');
+    const saved = localStorage.getItem('theme') || 'dark';
+    html.setAttribute('data-theme', saved);
+    btn.textContent = saved === 'dark' ? '🌙' : '☀️';
+    btn.addEventListener('click', () => {
+      const cur = html.getAttribute('data-theme');
+      const next = cur === 'dark' ? 'light' : 'dark';
+      html.setAttribute('data-theme', next);
+      btn.textContent = next === 'dark' ? '🌙' : '☀️';
+      localStorage.setItem('theme', next);
+    });
+
+    // Language selector (placeholder - redirect to lang versions if available)
+    const langSel = document.getElementById('lang-select');
+    const storedLang = localStorage.getItem('lang') || 'es';
+    langSel.value = storedLang;
+    langSel.addEventListener('change', () => {
+      localStorage.setItem('lang', langSel.value);
+      // Future: redirect to /{lang}/ paths
+    });
+  </script>
+</body>
+</html>
