@@ -1,607 +1,1896 @@
 ---
-import data from '../data.json';
-const lang = 'es';
-import t from '../i18n/es.json';
+// VOGE 800 DSX Rally — Guía Técnica Completa
+// Diseño inspirado en rieju307rally.es — sidebar lateral sticky, secciones con specs + procedimiento + despiece
 ---
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" id="html-root">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>VOGE 800 DSX Rally — Guía Técnica</title>
-  <meta name="description" content="Guía técnica completa para la VOGE 800 DSX Rally. Especificaciones, mantenimiento, pares de apriete, suspensión, performance y accesorios." />
+  <meta name="description" content="Guía técnica completa para la VOGE 800 DSX Rally. Especificaciones, mantenimiento, frenos, suspensión y más." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
-    :root {
-      --bg: #0d1117;
-      --bg2: #161b22;
-      --bg3: #21262d;
-      --border: #30363d;
-      --text: #e6edf3;
-      --text2: #8b949e;
-      --accent: #1f6feb;
-      --accent2: #388bfd;
-      --green: #3fb950;
-      --orange: #d29922;
-      --red: #f85149;
-      --white: #ffffff;
+    /* ===== RESET & BASE ===== */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: #f8f9fa;
+      color: #1a1a2e;
+      line-height: 1.6;
+      font-size: 15px;
     }
-    * { margin:0; padding:0; box-sizing:border-box; }
-    body { font-family:'Inter',sans-serif; background:var(--bg); color:var(--text); line-height:1.6; }
-    
-    /* NAV */
-    nav { position:sticky; top:0; z-index:100; background:rgba(13,17,23,0.95); backdrop-filter:blur(10px); border-bottom:1px solid var(--border); padding:0 1rem; }
-    .nav-inner { max-width:1200px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; height:60px; }
-    .nav-logo { font-weight:700; font-size:1.1rem; color:var(--white); text-decoration:none; display:flex; align-items:center; gap:8px; }
-    .nav-logo span { color:var(--accent2); }
-    .nav-links { display:flex; gap:1.5rem; list-style:none; }
-    .nav-links a { color:var(--text2); text-decoration:none; font-size:0.875rem; transition:color 0.2s; }
-    .nav-links a:hover { color:var(--text); }
-    .lang-selector { display:flex; gap:6px; }
-    .lang-btn { padding:4px 10px; border:1px solid var(--border); border-radius:6px; background:transparent; color:var(--text2); cursor:pointer; font-size:0.8rem; transition:all 0.2s; }
-    .lang-btn.active, .lang-btn:hover { background:var(--accent); border-color:var(--accent); color:white; }
-    .nav-mobile-toggle { display:none; background:none; border:none; color:var(--text); cursor:pointer; font-size:1.5rem; }
-    
-    /* HERO */
-    .hero { background:linear-gradient(135deg, #0d1117 0%, #0a1628 50%, #0d1117 100%); padding:5rem 1rem 4rem; text-align:center; border-bottom:1px solid var(--border); position:relative; overflow:hidden; }
-    .hero::before { content:''; position:absolute; top:0; left:0; right:0; bottom:0; background:radial-gradient(ellipse at 50% 0%, rgba(31,111,235,0.15) 0%, transparent 70%); }
-    .hero-content { position:relative; max-width:800px; margin:0 auto; }
-    .hero-badge { display:inline-block; padding:4px 14px; border:1px solid var(--accent); border-radius:20px; font-size:0.75rem; color:var(--accent2); margin-bottom:1.5rem; letter-spacing:1px; text-transform:uppercase; }
-    .hero h1 { font-size:clamp(2rem,5vw,3.5rem); font-weight:700; margin-bottom:1rem; }
-    .hero h1 span { color:var(--accent2); }
-    .hero-sub { color:var(--text2); font-size:1.1rem; margin-bottom:2rem; }
-    .hero-stats { display:flex; justify-content:center; gap:2rem; flex-wrap:wrap; margin-bottom:2.5rem; }
-    .stat { text-align:center; }
-    .stat-val { font-size:1.8rem; font-weight:700; color:var(--white); display:block; }
-    .stat-label { font-size:0.75rem; color:var(--text2); text-transform:uppercase; letter-spacing:1px; }
-    .cta-btn { display:inline-block; padding:12px 28px; background:var(--accent); color:white; border-radius:8px; text-decoration:none; font-weight:600; transition:background 0.2s; }
-    .cta-btn:hover { background:var(--accent2); }
-    
-    /* LAYOUT */
-    .container { max-width:1200px; margin:0 auto; padding:0 1rem; }
-    .section { padding:3rem 1rem; border-bottom:1px solid var(--border); }
-    .section:last-child { border-bottom:none; }
-    .section-title { font-size:1.5rem; font-weight:700; margin-bottom:1.5rem; display:flex; align-items:center; gap:10px; }
-    .section-title::before { content:''; display:block; width:4px; height:1.5rem; background:var(--accent); border-radius:2px; }
-    
-    /* CARDS GRID */
-    .cards { display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:1rem; margin-bottom:1.5rem; }
-    .card { background:var(--bg2); border:1px solid var(--border); border-radius:10px; padding:1.5rem; }
-    .card h3 { font-size:0.875rem; color:var(--text2); text-transform:uppercase; letter-spacing:1px; margin-bottom:1rem; }
-    
-    /* SPEC TABLE */
-    .spec-table { width:100%; border-collapse:collapse; }
-    .spec-table tr { border-bottom:1px solid var(--border); }
-    .spec-table tr:last-child { border-bottom:none; }
-    .spec-table td { padding:10px 0; font-size:0.9rem; }
-    .spec-table td:first-child { color:var(--text2); width:55%; }
-    .spec-table td:last-child { font-weight:500; color:var(--text); }
-    
-    /* TORQUE TABLE */
-    .torque-table { width:100%; border-collapse:collapse; background:var(--bg2); border-radius:10px; overflow:hidden; border:1px solid var(--border); }
-    .torque-table th { background:var(--bg3); padding:12px 16px; text-align:left; font-size:0.8rem; color:var(--text2); text-transform:uppercase; letter-spacing:1px; }
-    .torque-table td { padding:12px 16px; font-size:0.9rem; border-top:1px solid var(--border); }
-    .torque-table td:last-child { font-weight:600; color:var(--accent2); }
-    .torque-table tr:hover td { background:var(--bg3); }
-    
-    /* MAINTENANCE */
-    .maint-grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:1rem; }
-    .maint-card { background:var(--bg2); border:1px solid var(--border); border-radius:10px; padding:1.5rem; }
-    .maint-km { font-size:1.5rem; font-weight:700; color:var(--accent2); margin-bottom:0.5rem; }
-    .maint-items { list-style:none; }
-    .maint-items li { padding:4px 0; font-size:0.875rem; color:var(--text2); }
-    .maint-items li::before { content:'▸ '; color:var(--accent); }
-    
-    /* ACCORDION */
-    .accordion { border:1px solid var(--border); border-radius:10px; overflow:hidden; margin-bottom:1rem; }
-    .accordion summary { padding:1rem 1.5rem; cursor:pointer; background:var(--bg2); font-weight:600; display:flex; justify-content:space-between; align-items:center; list-style:none; }
-    .accordion summary::-webkit-details-marker { display:none; }
-    .accordion summary::after { content:'▸'; transition:transform 0.2s; color:var(--accent2); }
-    .accordion[open] summary::after { transform:rotate(90deg); }
-    .accordion-body { padding:1.5rem; background:var(--bg); border-top:1px solid var(--border); }
-    
-    /* SHOPS */
-    .shops-grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(250px, 1fr)); gap:1rem; }
-    .shop-card { background:var(--bg2); border:1px solid var(--border); border-radius:10px; padding:1.5rem; text-decoration:none; color:var(--text); transition:border-color 0.2s, transform 0.2s; display:block; }
-    .shop-card:hover { border-color:var(--accent); transform:translateY(-2px); }
-    .shop-tag { display:inline-block; padding:2px 10px; border-radius:20px; font-size:0.75rem; margin-bottom:0.75rem; }
-    .shop-tag.despiece { background:rgba(63,185,80,0.15); color:var(--green); border:1px solid rgba(63,185,80,0.3); }
-    .shop-tag.accesorios { background:rgba(31,111,235,0.15); color:var(--accent2); border:1px solid rgba(31,111,235,0.3); }
-    .shop-card h3 { font-size:1rem; font-weight:600; margin-bottom:0.5rem; }
-    .shop-card p { font-size:0.875rem; color:var(--text2); }
-    .shop-arrow { color:var(--accent2); margin-top:1rem; font-size:0.875rem; }
-    
-    /* PERFORMANCE */
-    .perf-grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(250px, 1fr)); gap:1rem; }
-    .perf-card { background:var(--bg2); border:1px solid var(--border); border-radius:10px; padding:1.5rem; }
-    .perf-icon { font-size:2rem; margin-bottom:0.75rem; }
-    .perf-card h3 { font-weight:600; margin-bottom:0.5rem; }
-    .perf-card p { font-size:0.875rem; color:var(--text2); }
-    
-    /* BADGE */
-    .badge { display:inline-block; padding:2px 10px; border-radius:20px; font-size:0.75rem; font-weight:500; }
-    .badge-green { background:rgba(63,185,80,0.15); color:var(--green); }
-    .badge-blue { background:rgba(31,111,235,0.15); color:var(--accent2); }
-    .badge-orange { background:rgba(210,153,34,0.15); color:var(--orange); }
-    
-    /* FOOTER */
-    footer { background:var(--bg2); border-top:1px solid var(--border); padding:2rem 1rem; text-align:center; color:var(--text2); font-size:0.875rem; }
-    footer a { color:var(--accent2); text-decoration:none; }
-    
-    /* RESPONSIVE */
-    @media (max-width: 768px) {
-      .nav-links { display:none; }
-      .nav-links.open { display:flex; flex-direction:column; position:absolute; top:60px; left:0; right:0; background:var(--bg2); padding:1rem; border-bottom:1px solid var(--border); }
-      .nav-mobile-toggle { display:block; }
-      .hero-stats { gap:1rem; }
-      .stat-val { font-size:1.4rem; }
+
+    /* ===== LAYOUT ===== */
+    .layout {
+      display: flex;
+      min-height: 100vh;
     }
+
+    /* ===== SIDEBAR ===== */
+    .sidebar {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      width: 72px;
+      background: #ffffff;
+      border-right: 1px solid #e5e7eb;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 1.2rem 0;
+      gap: 0.25rem;
+      z-index: 200;
+      overflow-y: auto;
+      flex-shrink: 0;
+      box-shadow: 2px 0 8px rgba(0,0,0,0.04);
+    }
+    .sidebar-logo {
+      font-size: 0.6rem;
+      font-weight: 700;
+      color: #d32f2f;
+      text-align: center;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 0.8rem;
+      padding: 0 0.5rem;
+      line-height: 1.2;
+    }
+    .sidebar-divider {
+      width: 36px;
+      height: 1px;
+      background: #e5e7eb;
+      margin: 0.4rem 0;
+    }
+    .nav-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 3px;
+      padding: 0.55rem 0.4rem;
+      border-radius: 10px;
+      cursor: pointer;
+      text-decoration: none;
+      color: #6b7280;
+      transition: all 0.2s;
+      width: 58px;
+      text-align: center;
+    }
+    .nav-item:hover, .nav-item.active {
+      background: #fff3f3;
+      color: #d32f2f;
+    }
+    .nav-item .icon {
+      font-size: 1.3rem;
+      line-height: 1;
+    }
+    .nav-item .label {
+      font-size: 0.52rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      line-height: 1.2;
+    }
+
+    /* ===== MAIN CONTENT ===== */
+    .main {
+      flex: 1;
+      overflow-x: hidden;
+    }
+
+    /* ===== TOP BAR ===== */
+    .topbar {
+      background: #ffffff;
+      border-bottom: 1px solid #e5e7eb;
+      padding: 0.75rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .topbar-title {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #1a1a2e;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .topbar-title span { color: #d32f2f; }
+    .lang-selector {
+      display: flex;
+      gap: 6px;
+    }
+    .lang-btn {
+      padding: 4px 12px;
+      border: 1px solid #e5e7eb;
+      border-radius: 6px;
+      background: #f9fafb;
+      color: #6b7280;
+      cursor: pointer;
+      font-size: 0.78rem;
+      font-weight: 500;
+      font-family: inherit;
+      transition: all 0.2s;
+    }
+    .lang-btn.active, .lang-btn:hover {
+      background: #d32f2f;
+      border-color: #d32f2f;
+      color: white;
+    }
+
+    /* ===== HERO ===== */
+    .hero {
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+      color: white;
+      padding: 4rem 3rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="80" cy="20" r="60" fill="rgba(211,47,47,0.08)"/></svg>') no-repeat right center / 600px;
+    }
+    .hero-inner { position: relative; max-width: 900px; }
+    .hero-badge {
+      display: inline-block;
+      padding: 3px 12px;
+      background: rgba(211,47,47,0.2);
+      border: 1px solid rgba(211,47,47,0.4);
+      border-radius: 20px;
+      font-size: 0.7rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #ff6b6b;
+      margin-bottom: 1.2rem;
+    }
+    .hero h1 {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 700;
+      line-height: 1.1;
+      margin-bottom: 0.5rem;
+    }
+    .hero h1 span { color: #ef5350; }
+    .hero-subtitle {
+      font-size: 1rem;
+      color: rgba(255,255,255,0.6);
+      margin-bottom: 2.5rem;
+    }
+    .hero-stats {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .stat {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 12px;
+      padding: 1rem 1.4rem;
+      min-width: 110px;
+      transition: background 0.2s;
+    }
+    .stat:hover { background: rgba(255,255,255,0.1); }
+    .stat-value {
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: white;
+      line-height: 1;
+    }
+    .stat-unit { font-size: 0.85rem; color: rgba(255,255,255,0.5); }
+    .stat-label { font-size: 0.7rem; color: rgba(255,255,255,0.4); margin-top: 0.2rem; text-transform: uppercase; letter-spacing: 1px; }
+
+    /* ===== SECTIONS ===== */
+    .content { padding: 0; }
+
+    .section {
+      padding: 3rem 3rem;
+      border-bottom: 1px solid #e5e7eb;
+      background: #ffffff;
+    }
+    .section:nth-child(even) { background: #f8f9fa; }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+    .section-icon {
+      width: 48px;
+      height: 48px;
+      background: #fff3f3;
+      border: 1px solid #fecaca;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      flex-shrink: 0;
+    }
+    .section-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #1a1a2e;
+    }
+    .section-title-en { display: none; }
+    .section-title-fr { display: none; }
+
+    .section-body {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      align-items: start;
+    }
+    .section-body.full-width {
+      grid-template-columns: 1fr;
+    }
+    .section-body.three-col {
+      grid-template-columns: 1fr 1fr 1fr;
+    }
+
+    /* ===== SPECS TABLE ===== */
+    .specs-block h3 {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: #d32f2f;
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+    }
+    .specs-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    .specs-table tr { border-bottom: 1px solid #f3f4f6; }
+    .specs-table tr:last-child { border-bottom: none; }
+    .specs-table td {
+      padding: 0.5rem 0.25rem;
+      font-size: 0.875rem;
+      vertical-align: top;
+    }
+    .specs-table td:first-child {
+      color: #6b7280;
+      width: 45%;
+      font-weight: 500;
+    }
+    .specs-table td:last-child {
+      color: #1a1a2e;
+      font-weight: 600;
+    }
+
+    /* ===== PROCEDURE ===== */
+    .procedure-block h3 {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: #d32f2f;
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+    }
+    .procedure-list {
+      list-style: none;
+      counter-reset: step;
+    }
+    .procedure-list li {
+      counter-increment: step;
+      display: flex;
+      gap: 0.75rem;
+      padding: 0.5rem 0;
+      border-bottom: 1px solid #f3f4f6;
+      font-size: 0.875rem;
+      align-items: flex-start;
+    }
+    .procedure-list li:last-child { border-bottom: none; }
+    .procedure-list li::before {
+      content: counter(step);
+      background: #d32f2f;
+      color: white;
+      font-size: 0.7rem;
+      font-weight: 700;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    /* ===== ALERT BOX ===== */
+    .alert {
+      padding: 0.75rem 1rem;
+      border-radius: 8px;
+      font-size: 0.82rem;
+      margin-top: 1rem;
+      display: flex;
+      gap: 0.5rem;
+      align-items: flex-start;
+    }
+    .alert-warning { background: #fef3c7; border-left: 3px solid #f59e0b; color: #92400e; }
+    .alert-info { background: #eff6ff; border-left: 3px solid #3b82f6; color: #1e40af; }
+    .alert-danger { background: #fef2f2; border-left: 3px solid #ef4444; color: #991b1b; }
+
+    /* ===== DESPIECE IMAGE ===== */
+    .despiece-block h3 {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: #d32f2f;
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+    }
+    .despiece-img {
+      width: 100%;
+      border: 1px solid #e5e7eb;
+      border-radius: 10px;
+      overflow: hidden;
+      background: white;
+    }
+    .despiece-img img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    .despiece-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      margin-top: 0.75rem;
+      padding: 0.5rem 1rem;
+      background: #d32f2f;
+      color: white;
+      border-radius: 8px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+    .despiece-link:hover { background: #b71c1c; }
+
+    /* ===== TORQUE TABLE ===== */
+    .torque-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 1rem;
+    }
+    .torque-card {
+      background: white;
+      border: 1px solid #e5e7eb;
+      border-radius: 10px;
+      padding: 1rem;
+    }
+    .torque-card .torque-part {
+      font-size: 0.8rem;
+      color: #6b7280;
+      margin-bottom: 0.25rem;
+    }
+    .torque-card .torque-value {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: #d32f2f;
+      line-height: 1;
+    }
+    .torque-card .torque-unit {
+      font-size: 0.75rem;
+      color: #9ca3af;
+    }
+
+    /* ===== MAINTENANCE SCHEDULE ===== */
+    .maint-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.85rem;
+    }
+    .maint-table th {
+      background: #1a1a2e;
+      color: white;
+      padding: 0.6rem 0.75rem;
+      text-align: left;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+    }
+    .maint-table td {
+      padding: 0.5rem 0.75rem;
+      border-bottom: 1px solid #f3f4f6;
+    }
+    .maint-table tr:nth-child(even) td { background: #f9fafb; }
+    .maint-table .check { color: #16a34a; font-weight: 700; text-align: center; }
+    .maint-table .replace { color: #d32f2f; font-weight: 700; text-align: center; }
+    .maint-table .inspect { color: #d97706; font-weight: 700; text-align: center; }
+
+    /* ===== ACCESORIOS GRID ===== */
+    .acc-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 1rem;
+    }
+    .acc-card {
+      border: 1px solid #e5e7eb;
+      border-radius: 10px;
+      padding: 1.2rem;
+      background: white;
+    }
+    .acc-card .acc-icon { font-size: 2rem; margin-bottom: 0.5rem; }
+    .acc-card .acc-name { font-size: 0.9rem; font-weight: 600; color: #1a1a2e; }
+    .acc-card .acc-desc { font-size: 0.78rem; color: #6b7280; margin-top: 0.25rem; }
+
+    /* ===== TIENDAS ===== */
+    .tiendas-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1rem;
+    }
+    .tienda-card {
+      border: 1px solid #e5e7eb;
+      border-radius: 10px;
+      padding: 1.2rem;
+      background: white;
+    }
+    .tienda-card .tienda-flag { font-size: 1.5rem; margin-bottom: 0.4rem; }
+    .tienda-card .tienda-name { font-size: 1rem; font-weight: 700; color: #1a1a2e; }
+    .tienda-card .tienda-url {
+      font-size: 0.8rem;
+      color: #d32f2f;
+      text-decoration: none;
+      word-break: break-all;
+    }
+    .tienda-card .tienda-url:hover { text-decoration: underline; }
+    .tienda-card .tienda-desc { font-size: 0.78rem; color: #6b7280; margin-top: 0.25rem; }
+
+    /* ===== FOOTER ===== */
+    .footer {
+      background: #1a1a2e;
+      color: rgba(255,255,255,0.5);
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.8rem;
+    }
+    .footer a { color: #ef5350; text-decoration: none; }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 900px) {
+      .sidebar { display: none; }
+      .topbar { padding: 0.75rem 1rem; }
+      .hero { padding: 2.5rem 1.5rem; }
+      .section { padding: 2rem 1.5rem; }
+      .section-body { grid-template-columns: 1fr; }
+      .section-body.three-col { grid-template-columns: 1fr; }
+    }
+
+    /* ===== I18N ===== */
+    [data-lang="en"] .es { display: none; }
+    [data-lang="en"] .en { display: block; }
+    [data-lang="en"] .en-inline { display: inline; }
+    [data-lang="en"] .es-inline { display: none; }
+    [data-lang="fr"] .es { display: none; }
+    [data-lang="fr"] .fr { display: block; }
+    [data-lang="fr"] .fr-inline { display: inline; }
+    [data-lang="fr"] .es-inline { display: none; }
+    .en { display: none; }
+    .fr { display: none; }
+    .en-inline { display: none; }
+    .fr-inline { display: none; }
+    .es-inline { display: inline; }
+    [data-lang="en"] .en-inline { display: inline; }
+    [data-lang="fr"] .fr-inline { display: inline; }
   </style>
 </head>
 <body>
 
-<!-- NAV -->
-<nav>
-  <div class="nav-inner">
-    <a href="#" class="nav-logo">VOGE <span>800 DSX</span></a>
-    <ul class="nav-links" id="navLinks">
-      <li><a href="#specs">Especificaciones</a></li>
-      <li><a href="#maintenance">Mantenimiento</a></li>
-      <li><a href="#torque">Pares de apriete</a></li>
-      <li><a href="#suspension">Suspensión</a></li>
-      <li><a href="#performance">Performance</a></li>
-      <li><a href="#shops">Tiendas</a></li>
-    </ul>
-    <div style="display:flex;gap:10px;align-items:center">
+<div class="layout" id="html-root">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sidebar-logo">VOGE<br/>800 DSX</div>
+    <div class="sidebar-divider"></div>
+    <a class="nav-item" href="#arranque" title="Arranque">
+      <span class="icon">🔑</span>
+      <span class="label">Arranque</span>
+    </a>
+    <a class="nav-item" href="#aceite" title="Aceite">
+      <span class="icon">🛢️</span>
+      <span class="label">Aceite</span>
+    </a>
+    <a class="nav-item" href="#frenos" title="Frenos">
+      <span class="icon">🛑</span>
+      <span class="label">Frenos</span>
+    </a>
+    <a class="nav-item" href="#suspension" title="Suspensión">
+      <span class="icon">↕</span>
+      <span class="label">Suspensión</span>
+    </a>
+    <a class="nav-item" href="#cadena" title="Cadena">
+      <span class="icon">⛓️</span>
+      <span class="label">Cadena</span>
+    </a>
+    <a class="nav-item" href="#pares" title="Pares apriete">
+      <span class="icon">🔩</span>
+      <span class="label">Pares</span>
+    </a>
+    <a class="nav-item" href="#refrigerante" title="Refrigerante">
+      <span class="icon">❄</span>
+      <span class="label">Refriger.</span>
+    </a>
+    <a class="nav-item" href="#mantenimiento" title="Mantenimiento">
+      <span class="icon">🔧</span>
+      <span class="label">Mant.</span>
+    </a>
+    <a class="nav-item" href="#electrico" title="Eléctrico">
+      <span class="icon">⚡</span>
+      <span class="label">Eléctrico</span>
+    </a>
+    <a class="nav-item" href="#performance" title="Performance">
+      <span class="icon">🏁</span>
+      <span class="label">Perf.</span>
+    </a>
+    <a class="nav-item" href="#accesorios" title="Accesorios">
+      <span class="icon">🎒</span>
+      <span class="label">Acces.</span>
+    </a>
+    <a class="nav-item" href="#tiendas" title="Tiendas">
+      <span class="icon">🏪</span>
+      <span class="label">Tiendas</span>
+    </a>
+  </aside>
+
+  <!-- MAIN -->
+  <div class="main">
+
+    <!-- TOPBAR -->
+    <div class="topbar">
+      <div class="topbar-title">
+        VOGE <span>800 DSX Rally</span> &mdash;
+        <span class="es-inline">Guía Técnica</span>
+        <span class="en-inline">Technical Guide</span>
+        <span class="fr-inline">Guide Technique</span>
+      </div>
       <div class="lang-selector">
         <button class="lang-btn active" onclick="setLang('es')">ES</button>
         <button class="lang-btn" onclick="setLang('en')">EN</button>
         <button class="lang-btn" onclick="setLang('fr')">FR</button>
       </div>
-      <button class="nav-mobile-toggle" onclick="toggleNav()">☰</button>
     </div>
-  </div>
-</nav>
 
-<!-- HERO -->
-<section class="hero">
-  <div class="hero-content">
-    <div class="hero-badge">Guía Técnica Oficial</div>
-    <h1>VOGE <span>800 DSX Rally</span></h1>
-    <p class="hero-sub">800 cc · 70 kW · Euro 5+ · Bicilíndrico DOHC</p>
-    <div class="hero-stats">
-      <div class="stat"><span class="stat-val">798cc</span><span class="stat-label">Cilindrada</span></div>
-      <div class="stat"><span class="stat-val">95CV</span><span class="stat-label">Potencia</span></div>
-      <div class="stat"><span class="stat-val">81Nm</span><span class="stat-label">Par máximo</span></div>
-      <div class="stat"><span class="stat-val">210</span><span class="stat-label">km/h máx.</span></div>
-      <div class="stat"><span class="stat-val">227kg</span><span class="stat-label">Peso</span></div>
-      <div class="stat"><span class="stat-val">24L</span><span class="stat-label">Depósito</span></div>
-    </div>
-    <a href="#specs" class="cta-btn">Ver especificaciones completas</a>
-  </div>
-</section>
-
-<div class="container">
-
-<!-- ESPECIFICACIONES -->
-<section class="section" id="specs">
-  <div class="section-title">Especificaciones técnicas</div>
-  <div class="cards">
-    <div class="card">
-      <h3>⚙️ Motor</h3>
-      <table class="spec-table">
-        <tr><td>Tipo</td><td>Bicil. en línea, líquido, DOHC</td></tr>
-        <tr><td>Cilindrada</td><td>798 cc</td></tr>
-        <tr><td>Diámetro × carrera</td><td>84 × 72 mm</td></tr>
-        <tr><td>Compresión</td><td>12,0:1</td></tr>
-        <tr><td>Potencia máxima</td><td>70 kW @ 9.000 rpm</td></tr>
-        <tr><td>Par máximo</td><td>81,0 Nm @ 6.500 rpm</td></tr>
-        <tr><td>Ralentí</td><td>1.250 ± 100 rpm</td></tr>
-        <tr><td>Emisión</td><td><span class="badge badge-green">Euro 5+</span></td></tr>
-      </table>
-    </div>
-    <div class="card">
-      <h3>⛽ Alimentación y bujía</h3>
-      <table class="spec-table">
-        <tr><td>Alimentación</td><td>Inyección EFI</td></tr>
-        <tr><td>Aceite motor</td><td>3,2 L · SAE 10W/40 – SL</td></tr>
-        <tr><td>Bujía</td><td>LMAR8J-9E</td></tr>
-        <tr><td>Separación bujía</td><td>0,8 – 0,9 mm</td></tr>
-        <tr><td>Válvulas admisión</td><td>0,15 – 0,20 mm</td></tr>
-        <tr><td>Válvulas escape</td><td>0,20 – 0,25 mm</td></tr>
-        <tr><td>Depósito combustible</td><td>24 L</td></tr>
-        <tr><td>Consumo</td><td>≤ 5,2 L/100 km</td></tr>
-      </table>
-    </div>
-    <div class="card">
-      <h3>📐 Dimensiones y pesos</h3>
-      <table class="spec-table">
-        <tr><td>Peso en marcha</td><td>227 kg</td></tr>
-        <tr><td>Carga máxima</td><td>205 kg</td></tr>
-        <tr><td>Peso máximo total</td><td>432 kg</td></tr>
-        <tr><td>Velocidad máxima</td><td>210 km/h</td></tr>
-        <tr><td>Refrigerante</td><td>1,75 L</td></tr>
-        <tr><td>Cadena</td><td>520SX2 × 122 eslabones</td></tr>
-      </table>
-    </div>
-    <div class="card">
-      <h3>🔄 Transmisión</h3>
-      <table class="spec-table">
-        <tr><td>Cambio</td><td>6 velocidades</td></tr>
-        <tr><td>Embrague</td><td>Discos en baño aceite</td></tr>
-        <tr><td>Trans. primaria</td><td>1,816</td></tr>
-        <tr><td>Trans. final</td><td>3,067</td></tr>
-        <tr><td>1ª / 2ª / 3ª</td><td>2,833 / 2,125 / 1,667</td></tr>
-        <tr><td>4ª / 5ª / 6ª</td><td>1,333 / 1,087 / 0,960</td></tr>
-      </table>
-    </div>
-    <div class="card">
-      <h3>🛞 Ruedas y frenos</h3>
-      <table class="spec-table">
-        <tr><td>Neumático delantero</td><td>90/90-21 M/C</td></tr>
-        <tr><td>Neumático trasero</td><td>150/70 R18 M/C</td></tr>
-        <tr><td>Llanta delantera</td><td>1.85×21</td></tr>
-        <tr><td>Llanta trasera</td><td>4.00×18</td></tr>
-        <tr><td>Freno delantero</td><td>Doble disco 310 mm</td></tr>
-        <tr><td>Freno trasero</td><td>Disco 240 mm</td></tr>
-        <tr><td>ABS</td><td>2 canales</td></tr>
-        <tr><td>Líquido frenos</td><td>DOT 4</td></tr>
-      </table>
-    </div>
-    <div class="card">
-      <h3>⚡ Sistema eléctrico</h3>
-      <table class="spec-table">
-        <tr><td>Batería</td><td>12V 10Ah</td></tr>
-        <tr><td>Fusibles</td><td>40A, 25A, 15A, 10A</td></tr>
-        <tr><td>Faro largas/cortas</td><td>12V 25/14W</td></tr>
-        <tr><td>Bujía</td><td>LMAR8J-9E</td></tr>
-      </table>
-    </div>
-    <div class="card">
-      <h3>🏍️ Suspensión</h3>
-      <table class="spec-table">
-        <tr><td>Delantera</td><td>Horquilla inv. 43 mm</td></tr>
-        <tr><td>Recorrido delantero</td><td>200 mm</td></tr>
-        <tr><td>Trasera</td><td>Amortiguador central</td></tr>
-        <tr><td>Recorrido trasero</td><td>183 mm</td></tr>
-        <tr><td>Precarga fábrica</td><td>19 mm</td></tr>
-        <tr><td>Ajuste rebote</td><td>10 posiciones</td></tr>
-        <tr><td>Ajuste compresión</td><td>10 posiciones</td></tr>
-      </table>
-    </div>
-  </div>
-</section>
-
-<!-- MANTENIMIENTO -->
-<section class="section" id="maintenance">
-  <div class="section-title">Mantenimiento</div>
-  
-  <details class="accordion" open>
-    <summary>🏁 Período de rodaje</summary>
-    <div class="accordion-body">
-      <div class="cards">
-        <div class="card">
-          <h3>0 – 500 km</h3>
-          <p style="color:var(--orange);font-weight:600;font-size:1.2rem">Máx. 5.000 rpm</p>
-          <p style="color:var(--text2);font-size:0.875rem;margin-top:0.5rem">Varía marchas frecuentemente. No mantengas régimen fijo.</p>
+    <!-- HERO -->
+    <div class="hero">
+      <div class="hero-inner">
+        <div class="hero-badge">
+          <span class="es-inline">Guía Técnica Oficial</span>
+          <span class="en-inline">Official Technical Guide</span>
+          <span class="fr-inline">Guide Technique Officiel</span>
         </div>
-        <div class="card">
-          <h3>500 – 1.000 km</h3>
-          <p style="color:var(--orange);font-weight:600;font-size:1.2rem">Máx. 7.000 rpm</p>
-          <p style="color:var(--text2);font-size:0.875rem;margin-top:0.5rem">Evita aceleraciones y frenadas bruscas.</p>
-        </div>
-        <div class="card">
-          <h3>⚠️ A los 1.000 km</h3>
-          <p style="color:var(--red);font-weight:600">Cambio de aceite OBLIGATORIO</p>
-          <p style="color:var(--text2);font-size:0.875rem;margin-top:0.5rem">Primera revisión completa en taller autorizado.</p>
+        <h1>VOGE 800 <span>DSX Rally</span></h1>
+        <p class="hero-subtitle">
+          <span class="es">Motor bicilíndrico DOHC · Euro5+ · 2023–2025</span>
+          <span class="en">Twin cylinder DOHC engine · Euro5+ · 2023–2025</span>
+          <span class="fr">Moteur bicylindre DOHC · Euro5+ · 2023–2025</span>
+        </p>
+        <div class="hero-stats">
+          <div class="stat">
+            <div class="stat-value">798</div>
+            <div class="stat-unit">cc</div>
+            <div class="stat-label">
+              <span class="es-inline">Cilindrada</span>
+              <span class="en-inline">Displacement</span>
+              <span class="fr-inline">Cylindrée</span>
+            </div>
+          </div>
+          <div class="stat">
+            <div class="stat-value">95</div>
+            <div class="stat-unit">CV</div>
+            <div class="stat-label">
+              <span class="es-inline">Potencia</span>
+              <span class="en-inline">Power</span>
+              <span class="fr-inline">Puissance</span>
+            </div>
+          </div>
+          <div class="stat">
+            <div class="stat-value">81</div>
+            <div class="stat-unit">Nm</div>
+            <div class="stat-label">
+              <span class="es-inline">Par motor</span>
+              <span class="en-inline">Torque</span>
+              <span class="fr-inline">Couple</span>
+            </div>
+          </div>
+          <div class="stat">
+            <div class="stat-value">210</div>
+            <div class="stat-unit">km/h</div>
+            <div class="stat-label">
+              <span class="es-inline">Vel. máx.</span>
+              <span class="en-inline">Top speed</span>
+              <span class="fr-inline">Vit. max.</span>
+            </div>
+          </div>
+          <div class="stat">
+            <div class="stat-value">227</div>
+            <div class="stat-unit">kg</div>
+            <div class="stat-label">
+              <span class="es-inline">Peso (llena)</span>
+              <span class="en-inline">Weight (full)</span>
+              <span class="fr-inline">Poids (plein)</span>
+            </div>
+          </div>
+          <div class="stat">
+            <div class="stat-value">24</div>
+            <div class="stat-unit">L</div>
+            <div class="stat-label">
+              <span class="es-inline">Depósito</span>
+              <span class="en-inline">Tank</span>
+              <span class="fr-inline">Réservoir</span>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-  </details>
 
-  <details class="accordion">
-    <summary>🔧 Intervalos de mantenimiento</summary>
-    <div class="accordion-body">
-      <div class="maint-grid">
-        <div class="maint-card">
-          <div class="maint-km">1.000 km</div>
-          <ul class="maint-items">
-            <li>Cambio aceite motor + filtro</li>
-            <li>Inspección general</li>
-            <li>Revisión cadena</li>
-          </ul>
+    <!-- CONTENT SECTIONS -->
+    <div class="content">
+
+      <!-- ARRANQUE -->
+      <section class="section" id="arranque">
+        <div class="section-header">
+          <div class="section-icon">🔑</div>
+          <h2 class="section-title">
+            <span class="es">Arranque y Motor</span>
+            <span class="en">Starting & Engine</span>
+            <span class="fr">Démarrage & Moteur</span>
+          </h2>
         </div>
-        <div class="maint-card">
-          <div class="maint-km">5.000 km</div>
-          <ul class="maint-items">
-            <li>Cambio aceite motor + filtro</li>
-            <li>Inspección cadena</li>
-            <li>Revisión frenos</li>
-            <li>Comprobación neumáticos</li>
-          </ul>
+        <div class="section-body">
+          <div>
+            <div class="specs-block">
+              <h3>
+                <span class="es-inline">Especificaciones motor</span>
+                <span class="en-inline">Engine specs</span>
+                <span class="fr-inline">Spécifications moteur</span>
+              </h3>
+              <table class="specs-table">
+                <tr><td><span class="es-inline">Tipo</span><span class="en-inline">Type</span><span class="fr-inline">Type</span></td><td>Bicilíndrico DOHC en línea / Parallel Twin DOHC</td></tr>
+                <tr><td><span class="es-inline">Cilindrada</span><span class="en-inline">Displacement</span><span class="fr-inline">Cylindrée</span></td><td>798 cc</td></tr>
+                <tr><td><span class="es-inline">Álvara × carrera</span><span class="en-inline">Bore × stroke</span><span class="fr-inline">Alésage × course</span></td><td>84 × 72 mm</td></tr>
+                <tr><td><span class="es-inline">Rel. compresión</span><span class="en-inline">Compression ratio</span><span class="fr-inline">Taux de compression</span></td><td>12:1</td></tr>
+                <tr><td><span class="es-inline">Potencia máx.</span><span class="en-inline">Max power</span><span class="fr-inline">Puissance max.</span></td><td>70 kW (95 CV) @ 9000 rpm</td></tr>
+                <tr><td><span class="es-inline">Par máximo</span><span class="en-inline">Max torque</span><span class="fr-inline">Couple max.</span></td><td>81 Nm @ 6500 rpm</td></tr>
+                <tr><td><span class="es-inline">Ralentí</span><span class="en-inline">Idle speed</span><span class="fr-inline">Régime ralenti</span></td><td>1250 ± 100 rpm</td></tr>
+                <tr><td>Alimentación</td><td>Inyección electrónica</td></tr>
+                <tr><td><span class="es-inline">Norma emisiones</span><span class="en-inline">Emissions</span><span class="fr-inline">Émissions</span></td><td>Euro 5+</td></tr>
+                <tr><td><span class="es-inline">Bujía</span><span class="en-inline">Spark plug</span><span class="fr-inline">Bougie</span></td><td>LMAR8J-9E (NGK)</td></tr>
+                <tr><td><span class="es-inline">Gap bujía</span><span class="en-inline">Plug gap</span><span class="fr-inline">Écartement bougie</span></td><td>0.8 – 0.9 mm</td></tr>
+              </table>
+            </div>
+            <div class="alert alert-warning" style="margin-top:1rem">
+              ⚠️ <span>
+                <span class="es">No arrancar sin aceite. Comprobar nivel antes de cada uso.</span>
+                <span class="en">Do not start without oil. Check level before each use.</span>
+                <span class="fr">Ne pas démarrer sans huile. Vérifier le niveau avant chaque utilisation.</span>
+              </span>
+            </div>
+          </div>
+          <div>
+            <div class="procedure-block">
+              <h3>
+                <span class="es-inline">Procedimiento de arranque</span>
+                <span class="en-inline">Starting procedure</span>
+                <span class="fr-inline">Procédure de démarrage</span>
+              </h3>
+              <ol class="procedure-list">
+                <li class="es">Girar llave de contacto a posición ON. Comprobar testigos.</li>
+                <li class="en" style="display:none">Turn key to ON position. Check dashboard lights.</li>
+                <li class="fr" style="display:none">Tourner la clé sur ON. Vérifier les témoins.</li>
+                <li class="es">Poner la moto en punto muerto (N).</li>
+                <li class="en" style="display:none">Set motorcycle to neutral (N).</li>
+                <li class="fr" style="display:none">Mettre le point mort (N).</li>
+                <li class="es">Pulsar el botón de arranque (sin accionar el acelerador en frío).</li>
+                <li class="en" style="display:none">Press starter button (no throttle when cold).</li>
+                <li class="fr" style="display:none">Appuyer sur le démarreur (sans gaz à froid).</li>
+                <li class="es">Dejar calentar 2–3 min en frío (< 10°C) o hasta ralentí estable.</li>
+                <li class="en" style="display:none">Warm up 2–3 min when cold (&lt;10°C) or until idle is stable.</li>
+                <li class="fr" style="display:none">Laisser chauffer 2–3 min à froid (&lt;10°C) ou jusqu'à ralenti stable.</li>
+                <li class="es">No repartir hasta que la T° de agua alcance al menos 50°C.</li>
+                <li class="en" style="display:none">Do not depart until water temp reaches at least 50°C.</li>
+                <li class="fr" style="display:none">Ne pas partir avant que la T° eau atteigne 50°C minimum.</li>
+              </ol>
+            </div>
+            <div class="despiece-block" style="margin-top:1.5rem">
+              <h3>
+                <span class="es-inline">Despiece oficial</span>
+                <span class="en-inline">Official diagram</span>
+                <span class="fr-inline">Dessin officiel</span>
+              </h3>
+              <div class="despiece-img">
+                <img src="/images/sm_arranque.png" alt="Motor VOGE 800 DSX" loading="lazy" />
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="maint-card">
-          <div class="maint-km">10.000 km</div>
-          <ul class="maint-items">
-            <li>Cambio aceite + filtro</li>
-            <li>Filtro aire</li>
-            <li>Bujías</li>
-            <li>Cadena de distribución</li>
-          </ul>
+      </section>
+
+      <!-- ACEITE -->
+      <section class="section" id="aceite">
+        <div class="section-header">
+          <div class="section-icon">🛢️</div>
+          <h2 class="section-title">
+            <span class="es">Cambio de Aceite</span>
+            <span class="en">Oil Change</span>
+            <span class="fr">Vidange d'Huile</span>
+          </h2>
         </div>
-        <div class="maint-card">
-          <div class="maint-km">20.000 km</div>
-          <ul class="maint-items">
-            <li>Todo lo anterior</li>
-            <li>Refrigerante</li>
-            <li>Pastillas de freno</li>
-            <li>Rodamientos dirección</li>
-          </ul>
+        <div class="section-body">
+          <div>
+            <div class="specs-block">
+              <h3>
+                <span class="es-inline">Especificaciones</span>
+                <span class="en-inline">Specifications</span>
+                <span class="fr-inline">Spécifications</span>
+              </h3>
+              <table class="specs-table">
+                <tr><td><span class="es-inline">Tipo aceite</span><span class="en-inline">Oil type</span><span class="fr-inline">Type huile</span></td><td>SAE 10W/40 SL (4T)</td></tr>
+                <tr><td><span class="es-inline">Capacidad total</span><span class="en-inline">Total capacity</span><span class="fr-inline">Capacité totale</span></td><td>3.2 L</td></tr>
+                <tr><td><span class="es-inline">Capacidad (sin filtro)</span><span class="en-inline">Without filter</span><span class="fr-inline">Sans filtre</span></td><td>~2.8 L</td></tr>
+                <tr><td><span class="es-inline">1er cambio</span><span class="en-inline">First change</span><span class="fr-inline">Premier vidange</span></td><td>1000 km</td></tr>
+                <tr><td><span class="es-inline">Intervalo regular</span><span class="en-inline">Regular interval</span><span class="fr-inline">Intervalle régulier</span></td><td>5000 km o 12 meses</td></tr>
+                <tr><td><span class="es-inline">Par filtro aceite</span><span class="en-inline">Oil filter torque</span><span class="fr-inline">Couple filtre huile</span></td><td>11 Nm</td></tr>
+                <tr><td><span class="es-inline">Par unión tubo</span><span class="en-inline">Pipe union torque</span><span class="fr-inline">Couple union tuyau</span></td><td>28 Nm</td></tr>
+                <tr><td><span class="es-inline">Tapón vaciado</span><span class="en-inline">Drain plug torque</span><span class="fr-inline">Bouchon de vidange</span></td><td>18 Nm</td></tr>
+              </table>
+            </div>
+            <div class="alert alert-info" style="margin-top:1rem">
+              ℹ️ <span>
+                <span class="es">Cambiar el filtro de aceite cada 2 cambios de aceite o según intervalos de mantenimiento.</span>
+                <span class="en">Replace oil filter every 2 oil changes or per maintenance schedule.</span>
+                <span class="fr">Remplacer le filtre à huile tous les 2 vidanges ou selon le programme d'entretien.</span>
+              </span>
+            </div>
+          </div>
+          <div>
+            <div class="procedure-block">
+              <h3>
+                <span class="es-inline">Procedimiento</span>
+                <span class="en-inline">Procedure</span>
+                <span class="fr-inline">Procédure</span>
+              </h3>
+              <ol class="procedure-list">
+                <li class="es">Calentar el motor 5 min. Apagar. Esperar 3 min.</li>
+                <li class="en" style="display:none">Warm up engine 5 min. Switch off. Wait 3 min.</li>
+                <li class="fr" style="display:none">Chauffer le moteur 5 min. Éteindre. Attendre 3 min.</li>
+                <li class="es">Colocar recipiente bajo el tapón de vaciado (lado derecho).</li>
+                <li class="en" style="display:none">Place container under drain plug (right side).</li>
+                <li class="fr" style="display:none">Placer un récipient sous le bouchon de vidange (côté droit).</li>
+                <li class="es">Retirar tapón de vaciado (18 Nm al montar). Drenar completamente.</li>
+                <li class="en" style="display:none">Remove drain plug (torque 18 Nm on install). Drain completely.</li>
+                <li class="fr" style="display:none">Retirer le bouchon (couple 18 Nm à la pose). Vider complètement.</li>
+                <li class="es">Sustituir el filtro de aceite. Par de apriete: 11 Nm.</li>
+                <li class="en" style="display:none">Replace oil filter. Tightening torque: 11 Nm.</li>
+                <li class="fr" style="display:none">Remplacer le filtre à huile. Couple: 11 Nm.</li>
+                <li class="es">Colocar tapón de vaciado con junta nueva. Apretar a 18 Nm.</li>
+                <li class="en" style="display:none">Install drain plug with new gasket. Torque 18 Nm.</li>
+                <li class="fr" style="display:none">Poser le bouchon avec joint neuf. Serrer à 18 Nm.</li>
+                <li class="es">Añadir 3.2 L de aceite 10W/40 SL por el tapón superior.</li>
+                <li class="en" style="display:none">Add 3.2 L of 10W/40 SL oil through top cap.</li>
+                <li class="fr" style="display:none">Ajouter 3,2 L d'huile 10W/40 SL par le bouchon supérieur.</li>
+                <li class="es">Arrancar, dejar circular 2 min. Apagar y verificar nivel con varilla.</li>
+                <li class="en" style="display:none">Start, run 2 min. Switch off and check level with dipstick.</li>
+                <li class="fr" style="display:none">Démarrer, laisser tourner 2 min. Éteindre et vérifier le niveau avec la jauge.</li>
+                <li class="es">Comprobar que no hay fugas.</li>
+                <li class="en" style="display:none">Check for leaks.</li>
+                <li class="fr" style="display:none">Vérifier l'absence de fuites.</li>
+              </ol>
+            </div>
+            <div class="despiece-block" style="margin-top:1.5rem">
+              <h3>
+                <span class="es-inline">Despiece oficial</span>
+                <span class="en-inline">Official diagram</span>
+                <span class="fr-inline">Dessin officiel</span>
+              </h3>
+              <div class="despiece-img">
+                <img src="/images/sm_aceite.png" alt="Sistema de aceite VOGE 800 DSX" loading="lazy" />
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="maint-card">
-          <div class="maint-km">Cada 2 años</div>
-          <ul class="maint-items">
-            <li>Líquido de frenos DOT 4</li>
-          </ul>
+      </section>
+
+      <!-- FRENOS -->
+      <section class="section" id="frenos">
+        <div class="section-header">
+          <div class="section-icon">🛑</div>
+          <h2 class="section-title">
+            <span class="es">Sistema de Frenos</span>
+            <span class="en">Brake System</span>
+            <span class="fr">Système de Freinage</span>
+          </h2>
         </div>
-      </div>
-    </div>
-  </details>
-
-  <details class="accordion">
-    <summary>🛢️ Aceite del motor</summary>
-    <div class="accordion-body">
-      <div class="cards">
-        <div class="card">
-          <h3>Especificaciones</h3>
-          <table class="spec-table">
-            <tr><td>Capacidad total</td><td>3,2 L</td></tr>
-            <tr><td>Con filtro nuevo</td><td>3,0 L</td></tr>
-            <tr><td>Tipo</td><td>SAE 10W/40 – SL</td></tr>
-            <tr><td>Primer cambio</td><td>1.000 km</td></tr>
-            <tr><td>Cambios siguientes</td><td>Cada 5.000 km</td></tr>
-          </table>
+        <div class="section-body">
+          <div>
+            <div class="specs-block">
+              <h3>
+                <span class="es-inline">Especificaciones</span>
+                <span class="en-inline">Specifications</span>
+                <span class="fr-inline">Spécifications</span>
+              </h3>
+              <table class="specs-table">
+                <tr><td><span class="es-inline">Freno delantero</span><span class="en-inline">Front brake</span><span class="fr-inline">Frein avant</span></td><td>Doble disco 310 mm, pinza radial 4P</td></tr>
+                <tr><td><span class="es-inline">Freno trasero</span><span class="en-inline">Rear brake</span><span class="fr-inline">Frein arrière</span></td><td>Disco simple 240 mm</td></tr>
+                <tr><td><span class="es-inline">Líquido</span><span class="en-inline">Brake fluid</span><span class="fr-inline">Liquide de frein</span></td><td>DOT 4</td></tr>
+                <tr><td>ABS</td><td>2 canales (desactivable)</td></tr>
+                <tr><td><span class="es-inline">Grosor mín. pastilla del</span><span class="en-inline">Min front pad thickness</span><span class="fr-inline">Épaisseur min plaquette av</span></td><td>1.5 mm</td></tr>
+                <tr><td><span class="es-inline">Grosor mín. pastilla tra</span><span class="en-inline">Min rear pad thickness</span><span class="fr-inline">Épaisseur min plaquette ar</span></td><td>2.0 mm</td></tr>
+                <tr><td><span class="es-inline">Cambio líquido</span><span class="en-inline">Fluid change interval</span><span class="fr-inline">Intervalle changement</span></td><td>2 años / 20000 km</td></tr>
+              </table>
+            </div>
+            <div class="alert alert-danger" style="margin-top:1rem">
+              🛑 <span>
+                <span class="es">No mezclar distintos tipos de líquido de frenos. Usar siempre DOT 4.</span>
+                <span class="en">Do not mix different brake fluid types. Always use DOT 4.</span>
+                <span class="fr">Ne pas mélanger différents types de liquide. Toujours utiliser du DOT 4.</span>
+              </span>
+            </div>
+          </div>
+          <div>
+            <div class="procedure-block">
+              <h3>
+                <span class="es-inline">Purga de frenos</span>
+                <span class="en-inline">Brake bleeding</span>
+                <span class="fr-inline">Purge des freins</span>
+              </h3>
+              <ol class="procedure-list">
+                <li class="es">Limpiar el depósito del líquido de frenos.</li>
+                <li class="en" style="display:none">Clean brake fluid reservoir.</li>
+                <li class="fr" style="display:none">Nettoyer le réservoir de liquide de frein.</li>
+                <li class="es">Conectar tubo transparente al tornillo de purga de la pinza.</li>
+                <li class="en" style="display:none">Connect clear tube to caliper bleed nipple.</li>
+                <li class="fr" style="display:none">Connecter un tuyau transparent à la vis de purge de l'étrier.</li>
+                <li class="es">Bombear la palanca / pedal repetidamente y abrir el tornillo de purga.</li>
+                <li class="en" style="display:none">Pump lever/pedal repeatedly, open bleed screw.</li>
+                <li class="fr" style="display:none">Pomper le levier/pédale, ouvrir la vis de purge.</li>
+                <li class="es">Cerrar tornillo antes de soltar la palanca. Repetir hasta sin burbujas.</li>
+                <li class="en" style="display:none">Close screw before releasing lever. Repeat until no bubbles.</li>
+                <li class="fr" style="display:none">Fermer la vis avant de relâcher le levier. Répéter jusqu'à absence de bulles.</li>
+                <li class="es">Rellenar depósito hasta MAX. Tapar herméticamente.</li>
+                <li class="en" style="display:none">Fill reservoir to MAX. Close cap tightly.</li>
+                <li class="fr" style="display:none">Remplir le réservoir jusqu'au MAX. Fermer hermétiquement.</li>
+                <li class="es">Verificar tacto firme de la palanca. Comprobar fugas.</li>
+                <li class="en" style="display:none">Verify firm lever feel. Check for leaks.</li>
+                <li class="fr" style="display:none">Vérifier la fermeté du levier. Contrôler les fuites.</li>
+              </ol>
+            </div>
+            <div class="despiece-block" style="margin-top:1.5rem">
+              <h3>
+                <span class="es-inline">Despiece oficial</span>
+                <span class="en-inline">Official diagram</span>
+                <span class="fr-inline">Dessin officiel</span>
+              </h3>
+              <div class="despiece-img">
+                <img src="/images/sm_frenos.png" alt="Sistema frenos VOGE 800 DSX" loading="lazy" />
+              </div>
+              <a class="despiece-link" href="https://www.azmotors.fr/PIECES_VOGE/800_RALLY/vue-eclate-800DS-RALLY-EURO5.html" target="_blank" rel="noopener">
+                🔗 <span class="es-inline">Despiece AZMotors</span><span class="en-inline">AZMotors Parts</span><span class="fr-inline">Pièces AZMotors</span>
+              </a>
+            </div>
+          </div>
         </div>
-        <div class="card">
-          <h3>Procedimiento</h3>
-          <ul class="maint-items" style="list-style:none">
-            <li>Calentar el motor antes de drenar</li>
-            <li>Retirar tornillo drenaje (inferior derecho)</li>
-            <li>Par filtro de aceite: <strong>11 Nm</strong></li>
-            <li>Par unión tubo filtro: <strong>28 Nm</strong></li>
-            <li>Arrancar 2-3 min a ralentí</li>
-            <li>Verificar nivel en mirilla (moto vertical)</li>
-          </ul>
+      </section>
+
+      <!-- SUSPENSION -->
+      <section class="section" id="suspension">
+        <div class="section-header">
+          <div class="section-icon">↕</div>
+          <h2 class="section-title">
+            <span class="es">Suspensión</span>
+            <span class="en">Suspension</span>
+            <span class="fr">Suspension</span>
+          </h2>
         </div>
-      </div>
-    </div>
-  </details>
+        <div class="section-body">
+          <div>
+            <div class="specs-block">
+              <h3>
+                <span class="es-inline">Horquilla delantera</span>
+                <span class="en-inline">Front fork</span>
+                <span class="fr-inline">Fourche avant</span>
+              </h3>
+              <table class="specs-table">
+                <tr><td><span class="es-inline">Tipo</span><span class="en-inline">Type</span><span class="fr-inline">Type</span></td><td>Invertida Ø 43 mm</td></tr>
+                <tr><td><span class="es-inline">Recorrido</span><span class="en-inline">Travel</span><span class="fr-inline">Débattement</span></td><td>200 mm</td></tr>
+                <tr><td><span class="es-inline">Rebote</span><span class="en-inline">Rebound</span><span class="fr-inline">Détente</span></td><td>10 posiciones</td></tr>
+                <tr><td><span class="es-inline">Compresión</span><span class="en-inline">Compression</span><span class="fr-inline">Compression</span></td><td>10 posiciones</td></tr>
+                <tr><td><span class="es-inline">Precarga fábrica</span><span class="en-inline">Factory preload</span><span class="fr-inline">Précharge usine</span></td><td>19 mm</td></tr>
+              </table>
+            </div>
+            <div class="specs-block" style="margin-top:1.5rem">
+              <h3>
+                <span class="es-inline">Amortiguador trasero</span>
+                <span class="en-inline">Rear shock</span>
+                <span class="fr-inline">Amortisseur arrière</span>
+              </h3>
+              <table class="specs-table">
+                <tr><td><span class="es-inline">Longitud</span><span class="en-inline">Length</span><span class="fr-inline">Longueur</span></td><td>183 mm</td></tr>
+                <tr><td><span class="es-inline">Precarga</span><span class="en-inline">Preload</span><span class="fr-inline">Précharge</span></td><td>Ajustable (5 posiciones)</td></tr>
+                <tr><td><span class="es-inline">Recorrido trasero</span><span class="en-inline">Rear travel</span><span class="fr-inline">Débattement arrière</span></td><td>~45 mm</td></tr>
+              </table>
+            </div>
+          </div>
+          <div>
+            <div class="procedure-block">
+              <h3>
+                <span class="es-inline">Ajuste para uso off-road</span>
+                <span class="en-inline">Off-road setup</span>
+                <span class="fr-inline">Réglage off-road</span>
+              </h3>
+              <ol class="procedure-list">
+                <li class="es">Aumentar precarga trasera 2–3 posiciones respecto a fábrica.</li>
+                <li class="en" style="display:none">Increase rear preload 2–3 positions from factory.</li>
+                <li class="fr" style="display:none">Augmenter la précharge arrière de 2–3 positions par rapport à l'usine.</li>
+                <li class="es">Reducir compresión delantera a posición 6–7 (más blanda).</li>
+                <li class="en" style="display:none">Reduce front compression to position 6–7 (softer).</li>
+                <li class="fr" style="display:none">Réduire la compression avant à la position 6–7 (plus souple).</li>
+                <li class="es">Ajustar rebote delantero a posición 5–6 para absorber irregularidades.</li>
+                <li class="en" style="display:none">Set front rebound to position 5–6 for better absorption.</li>
+                <li class="fr" style="display:none">Régler la détente avant en position 5–6 pour une meilleure absorption.</li>
+                <li class="es">Verificar altura de suspensión con carga del piloto (SAG: 30–35 mm).</li>
+                <li class="en" style="display:none">Verify sag with rider weight (SAG: 30–35 mm).</li>
+                <li class="fr" style="display:none">Vérifier le débattement sous le poids du pilote (SAG: 30–35 mm).</li>
+                <li class="es">Para asfalto: volver a posiciones de fábrica.</li>
+                <li class="en" style="display:none">For tarmac: return to factory settings.</li>
+                <li class="fr" style="display:none">Pour l'asphalte: revenir aux réglages d'usine.</li>
+              </ol>
+            </div>
+            <div class="despiece-block" style="margin-top:1.5rem">
+              <h3>
+                <span class="es-inline">Despiece oficial</span>
+                <span class="en-inline">Official diagram</span>
+                <span class="fr-inline">Dessin officiel</span>
+              </h3>
+              <div class="despiece-img">
+                <img src="/images/sm_suspension.png" alt="Suspensión VOGE 800 DSX" loading="lazy" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
-  <details class="accordion">
-    <summary>⛓️ Cadena de transmisión</summary>
-    <div class="accordion-body">
-      <table class="spec-table" style="max-width:500px">
-        <tr><td>Modelo</td><td>520SX2 × 122 eslabones (sin abertura)</td></tr>
-        <tr><td>Tuerca eje rueda trasera</td><td><strong>105 ± 7 Nm</strong></td></tr>
-        <tr><td>Perno ajustable tensor</td><td><strong>18 ± 1,8 Nm</strong></td></tr>
-      </table>
-      <p style="color:var(--red);font-size:0.875rem;margin-top:1rem">⚠️ Cadena sin abertura. Sustitución solo en taller autorizado con herramientas específicas.</p>
-    </div>
-  </details>
-</section>
+      <!-- CADENA -->
+      <section class="section" id="cadena">
+        <div class="section-header">
+          <div class="section-icon">⛓️</div>
+          <h2 class="section-title">
+            <span class="es">Cadena de Transmisión</span>
+            <span class="en">Drive Chain</span>
+            <span class="fr">Chaîne de Transmission</span>
+          </h2>
+        </div>
+        <div class="section-body">
+          <div>
+            <div class="specs-block">
+              <h3>
+                <span class="es-inline">Especificaciones</span>
+                <span class="en-inline">Specifications</span>
+                <span class="fr-inline">Spécifications</span>
+              </h3>
+              <table class="specs-table">
+                <tr><td><span class="es-inline">Tipo cadena</span><span class="en-inline">Chain type</span><span class="fr-inline">Type chaîne</span></td><td>520 SX2 (O-ring)</td></tr>
+                <tr><td><span class="es-inline">Eslabones</span><span class="en-inline">Links</span><span class="fr-inline">Maillons</span></td><td>122</td></tr>
+                <tr><td><span class="es-inline">Holgura correcta</span><span class="en-inline">Correct slack</span><span class="fr-inline">Jeu correct</span></td><td>25 – 35 mm (zona lateral)</td></tr>
+                <tr><td><span class="es-inline">Tuerca eje trasero</span><span class="en-inline">Rear axle nut</span><span class="fr-inline">Écrou axe arrière</span></td><td>105 ± 7 Nm</td></tr>
+                <tr><td><span class="es-inline">Tensor ajuste</span><span class="en-inline">Adjuster bolt</span><span class="fr-inline">Boulon tendeur</span></td><td>18 ± 1.8 Nm</td></tr>
+                <tr><td><span class="es-inline">Lubricación</span><span class="en-inline">Lubrication</span><span class="fr-inline">Lubrification</span></td><td>Cada 500 km (spray cadena)</td></tr>
+                <tr><td><span class="es-inline">Sustitución</span><span class="en-inline">Replacement</span><span class="fr-inline">Remplacement</span></td><td>Cada 15000–20000 km</td></tr>
+              </table>
+            </div>
+          </div>
+          <div>
+            <div class="procedure-block">
+              <h3>
+                <span class="es-inline">Ajuste de cadena</span>
+                <span class="en-inline">Chain adjustment</span>
+                <span class="fr-inline">Réglage de la chaîne</span>
+              </h3>
+              <ol class="procedure-list">
+                <li class="es">Colocar moto en caballete central o soporte trasero.</li>
+                <li class="en" style="display:none">Place motorcycle on centre stand or rear support.</li>
+                <li class="fr" style="display:none">Placer la moto sur béquille centrale ou support arrière.</li>
+                <li class="es">Medir holgura a mitad del tramo inferior: debe ser 25–35 mm.</li>
+                <li class="en" style="display:none">Measure slack at mid-lower run: should be 25–35 mm.</li>
+                <li class="fr" style="display:none">Mesurer le jeu au milieu de la partie basse: 25–35 mm.</li>
+                <li class="es">Aflojar tuerca eje trasero sin retirar (105 Nm al apretar).</li>
+                <li class="en" style="display:none">Loosen rear axle nut without removing (105 Nm on tighten).</li>
+                <li class="fr" style="display:none">Desserrer l'écrou d'axe arrière sans l'enlever (105 Nm au serrage).</li>
+                <li class="es">Girar los tensores simétricamente hasta holgura correcta.</li>
+                <li class="en" style="display:none">Turn adjusters symmetrically to correct slack.</li>
+                <li class="fr" style="display:none">Tourner les tendeurs symétriquement jusqu'au jeu correct.</li>
+                <li class="es">Apretar contra-tuerca del tensor: 18 ± 1.8 Nm.</li>
+                <li class="en" style="display:none">Tighten adjuster lock nut: 18 ± 1.8 Nm.</li>
+                <li class="fr" style="display:none">Serrer l'écrou de blocage du tendeur: 18 ± 1,8 Nm.</li>
+                <li class="es">Apretar tuerca eje trasero: 105 ± 7 Nm.</li>
+                <li class="en" style="display:none">Tighten rear axle nut: 105 ± 7 Nm.</li>
+                <li class="fr" style="display:none">Serrer l'écrou d'axe arrière: 105 ± 7 Nm.</li>
+                <li class="es">Lubricar cadena uniformemente con spray específico.</li>
+                <li class="en" style="display:none">Lubricate chain evenly with chain spray.</li>
+                <li class="fr" style="display:none">Lubrifier la chaîne uniformément avec spray spécial.</li>
+              </ol>
+            </div>
+            <div class="despiece-block" style="margin-top:1.5rem">
+              <h3>
+                <span class="es-inline">Despiece oficial</span>
+                <span class="en-inline">Official diagram</span>
+                <span class="fr-inline">Dessin officiel</span>
+              </h3>
+              <div class="despiece-img">
+                <img src="/images/sm_cadena.png" alt="Cadena VOGE 800 DSX" loading="lazy" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
-<!-- PARES DE APRIETE -->
-<section class="section" id="torque">
-  <div class="section-title">Pares de apriete</div>
-  <table class="torque-table">
-    <thead>
-      <tr><th>Elemento</th><th>Par de apriete</th></tr>
-    </thead>
-    <tbody>
-      <tr><td>Filtro de aceite</td><td>11 Nm</td></tr>
-      <tr><td>Unión tubo filtro aceite</td><td>28 Nm</td></tr>
-      <tr><td>Tuerca eje rueda trasera</td><td>105 ± 7 Nm</td></tr>
-      <tr><td>Perno ajustable tensor cadena</td><td>18 ± 1,8 Nm</td></tr>
-      <tr><td>Perno sensor ABS (M6)</td><td>6 Nm</td></tr>
-      <tr><td>Perno carrocería (M6)</td><td>6 Nm</td></tr>
-      <tr><td>Tornillo chapa (ST4.2)</td><td>1 Nm</td></tr>
-      <tr><td>Perno luz intermitente (M10)</td><td>4 Nm</td></tr>
-      <tr><td>Perno ranura piezas cobertura (M5)</td><td>4,5 Nm</td></tr>
-    </tbody>
-  </table>
-  <p style="color:var(--text2);font-size:0.8rem;margin-top:1rem">⚠️ Utilizar siempre dinamométrica. Consultar el manual de taller para valores completos.</p>
-</section>
+      <!-- PARES DE APRIETE -->
+      <section class="section" id="pares">
+        <div class="section-header">
+          <div class="section-icon">🔩</div>
+          <h2 class="section-title">
+            <span class="es">Pares de Apriete</span>
+            <span class="en">Torque Values</span>
+            <span class="fr">Couples de Serrage</span>
+          </h2>
+        </div>
+        <div class="section-body full-width">
+          <div class="torque-grid">
+            <div class="torque-card">
+              <div class="torque-part">
+                <span class="es-inline">Tapón vaciado aceite</span>
+                <span class="en-inline">Oil drain plug</span>
+                <span class="fr-inline">Bouchon vidange huile</span>
+              </div>
+              <div class="torque-value">18 <span class="torque-unit">Nm</span></div>
+            </div>
+            <div class="torque-card">
+              <div class="torque-part">
+                <span class="es-inline">Filtro aceite</span>
+                <span class="en-inline">Oil filter</span>
+                <span class="fr-inline">Filtre à huile</span>
+              </div>
+              <div class="torque-value">11 <span class="torque-unit">Nm</span></div>
+            </div>
+            <div class="torque-card">
+              <div class="torque-part">
+                <span class="es-inline">Unión tubo aceite</span>
+                <span class="en-inline">Oil pipe union</span>
+                <span class="fr-inline">Raccord tuyau huile</span>
+              </div>
+              <div class="torque-value">28 <span class="torque-unit">Nm</span></div>
+            </div>
+            <div class="torque-card">
+              <div class="torque-part">
+                <span class="es-inline">Tuerca eje trasero</span>
+                <span class="en-inline">Rear axle nut</span>
+                <span class="fr-inline">Écrou axe arrière</span>
+              </div>
+              <div class="torque-value">105±7 <span class="torque-unit">Nm</span></div>
+            </div>
+            <div class="torque-card">
+              <div class="torque-part">
+                <span class="es-inline">Tensor cadena</span>
+                <span class="en-inline">Chain adjuster</span>
+                <span class="fr-inline">Tendeur chaîne</span>
+              </div>
+              <div class="torque-value">18±1.8 <span class="torque-unit">Nm</span></div>
+            </div>
+            <div class="torque-card">
+              <div class="torque-part">
+                <span class="es-inline">Pinza freno delantera</span>
+                <span class="en-inline">Front brake caliper</span>
+                <span class="fr-inline">Étrier frein avant</span>
+              </div>
+              <div class="torque-value">35 <span class="torque-unit">Nm</span></div>
+            </div>
+            <div class="torque-card">
+              <div class="torque-part">
+                <span class="es-inline">Disc. freno delantero</span>
+                <span class="en-inline">Front brake disc</span>
+                <span class="fr-inline">Disque frein avant</span>
+              </div>
+              <div class="torque-value">18 <span class="torque-unit">Nm</span></div>
+            </div>
+            <div class="torque-card">
+              <div class="torque-part">
+                <span class="es-inline">Eje de horquilla (tija)</span>
+                <span class="en-inline">Fork stem nut</span>
+                <span class="fr-inline">Écrou de fourche</span>
+              </div>
+              <div class="torque-value">65 <span class="torque-unit">Nm</span></div>
+            </div>
+            <div class="torque-card">
+              <div class="torque-part">
+                <span class="es-inline">Abrazaderas horquilla</span>
+                <span class="en-inline">Fork clamp bolts</span>
+                <span class="fr-inline">Boulons de fourche</span>
+              </div>
+              <div class="torque-value">20 <span class="torque-unit">Nm</span></div>
+            </div>
+            <div class="torque-card">
+              <div class="torque-part">
+                <span class="es-inline">Amortiguador trasero (arriba)</span>
+                <span class="en-inline">Rear shock (upper)</span>
+                <span class="fr-inline">Amortisseur arrière (haut)</span>
+              </div>
+              <div class="torque-value">44 <span class="torque-unit">Nm</span></div>
+            </div>
+            <div class="torque-card">
+              <div class="torque-part">
+                <span class="es-inline">Amortiguador trasero (abajo)</span>
+                <span class="en-inline">Rear shock (lower)</span>
+                <span class="fr-inline">Amortisseur arrière (bas)</span>
+              </div>
+              <div class="torque-value">44 <span class="torque-unit">Nm</span></div>
+            </div>
+            <div class="torque-card">
+              <div class="torque-part">
+                <span class="es-inline">Caballete lateral</span>
+                <span class="en-inline">Side stand</span>
+                <span class="fr-inline">Béquille latérale</span>
+              </div>
+              <div class="torque-value">44 <span class="torque-unit">Nm</span></div>
+            </div>
+          </div>
+          <div class="alert alert-warning" style="margin-top:1.5rem">
+            ⚠️ <span>
+              <span class="es">Usar siempre un torquímetro calibrado. Los valores son para tornillos con rosca limpia y seca salvo indicación.</span>
+              <span class="en">Always use a calibrated torque wrench. Values are for clean dry threads unless stated otherwise.</span>
+              <span class="fr">Toujours utiliser une clé dynamométrique calibrée. Les valeurs s'appliquent aux filetages propres et secs sauf indication contraire.</span>
+            </span>
+          </div>
+        </div>
+      </section>
 
-<!-- SUSPENSIÓN -->
-<section class="section" id="suspension">
-  <div class="section-title">Suspensión</div>
-  <div class="cards">
-    <div class="card">
-      <h3>🔧 Horquilla delantera (43 mm invertida)</h3>
-      <table class="spec-table">
-        <tr><td>Recorrido</td><td>200 mm</td></tr>
-        <tr><td>Precarga fábrica</td><td>19 mm</td></tr>
-        <tr><td>Ajuste rebote (superior)</td><td>10 posiciones</td></tr>
-        <tr><td>Ajuste compresión (inferior)</td><td>10 posiciones</td></tr>
-      </table>
-      <p style="font-size:0.8rem;color:var(--text2);margin-top:1rem">Giro antihorario = más suave · Giro horario = más duro. Ajustar igual en ambos lados.</p>
-    </div>
-    <div class="card">
-      <h3>🔧 Amortiguador trasero</h3>
-      <table class="spec-table">
-        <tr><td>Recorrido</td><td>183 mm</td></tr>
-        <tr><td>Ajuste precarga</td><td>Giro ajustador 1</td></tr>
-      </table>
-      <p style="font-size:0.8rem;color:var(--text2);margin-top:1rem">Antihorario = suaviza · Horario = endurece. Consultar manual argentino para configuraciones avanzadas.</p>
-    </div>
-  </div>
-</section>
+      <!-- REFRIGERANTE -->
+      <section class="section" id="refrigerante">
+        <div class="section-header">
+          <div class="section-icon">❄</div>
+          <h2 class="section-title">
+            <span class="es">Sistema de Refrigeración</span>
+            <span class="en">Cooling System</span>
+            <span class="fr">Système de Refroidissement</span>
+          </h2>
+        </div>
+        <div class="section-body">
+          <div>
+            <div class="specs-block">
+              <h3>
+                <span class="es-inline">Especificaciones</span>
+                <span class="en-inline">Specifications</span>
+                <span class="fr-inline">Spécifications</span>
+              </h3>
+              <table class="specs-table">
+                <tr><td><span class="es-inline">Tipo</span><span class="en-inline">Type</span><span class="fr-inline">Type</span></td><td>
+                  <span class="es-inline">Líquido, termosifón</span>
+                  <span class="en-inline">Liquid, thermosiphon</span>
+                  <span class="fr-inline">Liquide, thermosiphon</span>
+                </td></tr>
+                <tr><td><span class="es-inline">Capacidad</span><span class="en-inline">Capacity</span><span class="fr-inline">Capacité</span></td><td>~1.8 L</td></tr>
+                <tr><td><span class="es-inline">Mezcla</span><span class="en-inline">Mixture</span><span class="fr-inline">Mélange</span></td><td>50% agua / 50% anticongelante</td></tr>
+                <tr><td><span class="es-inline">Anticongelante</span><span class="en-inline">Antifreeze</span><span class="fr-inline">Antigel</span></td><td>Etilén-glicol (verde/azul)</td></tr>
+                <tr><td><span class="es-inline">Temperatura apertura termostato</span><span class="en-inline">Thermostat opening temp</span><span class="fr-inline">T° ouverture thermostat</span></td><td>~80°C</td></tr>
+                <tr><td><span class="es-inline">Cambio</span><span class="en-inline">Change interval</span><span class="fr-inline">Intervalle</span></td><td>2 años / 20000 km</td></tr>
+              </table>
+            </div>
+          </div>
+          <div>
+            <div class="procedure-block">
+              <h3>
+                <span class="es-inline">Cambio de refrigerante</span>
+                <span class="en-inline">Coolant change</span>
+                <span class="fr-inline">Changement du liquide</span>
+              </h3>
+              <ol class="procedure-list">
+                <li class="es">Motor FRÍO. No abrir el tapón con motor caliente (presión).</li>
+                <li class="en" style="display:none">Cold engine only. Never open cap on warm engine (pressure).</li>
+                <li class="fr" style="display:none">Moteur FROID uniquement. Ne jamais ouvrir le bouchon à chaud.</li>
+                <li class="es">Retirar la cubierta del radiador.</li>
+                <li class="en" style="display:none">Remove radiator cover.</li>
+                <li class="fr" style="display:none">Retirer le carénage du radiateur.</li>
+                <li class="es">Colocar recipiente bajo el purgador inferior del radiador. Abrir.</li>
+                <li class="en" style="display:none">Place container under radiator lower drain. Open drain.</li>
+                <li class="fr" style="display:none">Placer un récipient sous le purgeur inférieur. Ouvrir.</li>
+                <li class="es">Drenar por completo. Cerrar purgador.</li>
+                <li class="en" style="display:none">Drain completely. Close drain.</li>
+                <li class="fr" style="display:none">Vider complètement. Fermer le purgeur.</li>
+                <li class="es">Añadir mezcla 50/50 agua destilada + anticongelante hasta nivel MAX.</li>
+                <li class="en" style="display:none">Add 50/50 mix of distilled water + antifreeze to MAX level.</li>
+                <li class="fr" style="display:none">Ajouter mélange 50/50 eau distillée + antigel jusqu'au niveau MAX.</li>
+                <li class="es">Arrancar con tapón abierto, purgar burbujas. Tapar y completar nivel.</li>
+                <li class="en" style="display:none">Start with cap open, purge air bubbles. Cap and top up.</li>
+                <li class="fr" style="display:none">Démarrer bouchon ouvert, purger les bulles. Fermer et compléter.</li>
+              </ol>
+            </div>
+            <div class="despiece-block" style="margin-top:1.5rem">
+              <h3>
+                <span class="es-inline">Despiece oficial</span>
+                <span class="en-inline">Official diagram</span>
+                <span class="fr-inline">Dessin officiel</span>
+              </h3>
+              <div class="despiece-img">
+                <img src="/images/sm_refrigerante.png" alt="Sistema refrigeración VOGE 800 DSX" loading="lazy" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
-<!-- PERFORMANCE -->
-<section class="section" id="performance">
-  <div class="section-title">Performance y mejoras</div>
-  <div class="perf-grid">
-    <div class="perf-card">
-      <div class="perf-icon">🔥</div>
-      <h3>Escape aftermarket</h3>
-      <p>Akrapovic, Arrow, GPR, SC Project. Ganar entre 3-8 CV y reducir peso. Verificar homologación Euro 5.</p>
-    </div>
-    <div class="perf-card">
-      <div class="perf-icon">💨</div>
-      <h3>Filtro de aire</h3>
-      <p>K&N o BMC de alto rendimiento. Mejora respuesta del acelerador y ligero incremento de potencia.</p>
-    </div>
-    <div class="perf-card">
-      <div class="perf-icon">🖥️</div>
-      <h3>Remapeado ECU</h3>
-      <p>Autotuner o remapeado profesional para optimizar la inyección. Especialmente útil tras escape aftermarket.</p>
-    </div>
-    <div class="perf-card">
-      <div class="perf-icon">⛓️</div>
-      <h3>Piñón y corona</h3>
-      <p>Cambiar relaciones para más aceleración (corona mayor) o más velocidad punta (corona menor).</p>
-    </div>
-    <div class="perf-card">
-      <div class="perf-icon">🛑</div>
-      <h3>Frenos sport</h3>
-      <p>Pastillas Brembo, EBC o Ferodo Racing. Latiguillos de acero trenzado para mejor feedback.</p>
-    </div>
-    <div class="perf-card">
-      <div class="perf-icon">⚡</div>
-      <h3>Quick shifter</h3>
-      <p>Cambio sin embrague en subidas. Compatible con la ECU stock en algunos casos.</p>
-    </div>
-  </div>
-</section>
+      <!-- MANTENIMIENTO -->
+      <section class="section" id="mantenimiento">
+        <div class="section-header">
+          <div class="section-icon">🔧</div>
+          <h2 class="section-title">
+            <span class="es">Plan de Mantenimiento</span>
+            <span class="en">Maintenance Schedule</span>
+            <span class="fr">Plan d'Entretien</span>
+          </h2>
+        </div>
+        <div class="section-body full-width">
+          <div style="overflow-x:auto">
+            <table class="maint-table">
+              <thead>
+                <tr>
+                  <th>
+                    <span class="es-inline">Elemento</span>
+                    <span class="en-inline">Item</span>
+                    <span class="fr-inline">Élément</span>
+                  </th>
+                  <th>1000 km</th>
+                  <th>5000 km</th>
+                  <th>10000 km</th>
+                  <th>15000 km</th>
+                  <th>20000 km</th>
+                  <th>
+                    <span class="es-inline">Notas</span>
+                    <span class="en-inline">Notes</span>
+                    <span class="fr-inline">Notes</span>
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    <span class="es-inline">Aceite motor</span>
+                    <span class="en-inline">Engine oil</span>
+                    <span class="fr-inline">Huile moteur</span>
+                  </td>
+                  <td class="replace">R</td>
+                  <td class="replace">R</td>
+                  <td class="replace">R</td>
+                  <td class="replace">R</td>
+                  <td class="replace">R</td>
+                  <td>10W/40 SL · 3.2 L</td>
+                </tr>
+                <tr>
+                  <td>
+                    <span class="es-inline">Filtro aceite</span>
+                    <span class="en-inline">Oil filter</span>
+                    <span class="fr-inline">Filtre huile</span>
+                  </td>
+                  <td class="replace">R</td>
+                  <td class="inspect">I</td>
+                  <td class="replace">R</td>
+                  <td class="inspect">I</td>
+                  <td class="replace">R</td>
+                  <td>11 Nm</td>
+                </tr>
+                <tr>
+                  <td>
+                    <span class="es-inline">Cadena</span>
+                    <span class="en-inline">Chain</span>
+                    <span class="fr-inline">Chaîne</span>
+                  </td>
+                  <td class="check">✓</td>
+                  <td class="check">✓</td>
+                  <td class="check">✓</td>
+                  <td class="replace">R</td>
+                  <td class="replace">R</td>
+                  <td>520 SX2 · 122 esp.</td>
+                </tr>
+                <tr>
+                  <td>
+                    <span class="es-inline">Pastillas freno del</span>
+                    <span class="en-inline">Front brake pads</span>
+                    <span class="fr-inline">Plaquettes av</span>
+                  </td>
+                  <td class="inspect">I</td>
+                  <td class="inspect">I</td>
+                  <td class="inspect">I</td>
+                  <td class="inspect">I</td>
+                  <td class="inspect">I</td>
+                  <td>
+                    <span class="es-inline">Mín. 1.5 mm</span>
+                    <span class="en-inline">Min 1.5 mm</span>
+                    <span class="fr-inline">Min 1,5 mm</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <span class="es-inline">Líquido frenos</span>
+                    <span class="en-inline">Brake fluid</span>
+                    <span class="fr-inline">Liquide freins</span>
+                  </td>
+                  <td class="check">✓</td>
+                  <td class="check">✓</td>
+                  <td class="replace">R</td>
+                  <td class="check">✓</td>
+                  <td class="replace">R</td>
+                  <td>DOT 4</td>
+                </tr>
+                <tr>
+                  <td>
+                    <span class="es-inline">Refrigerante</span>
+                    <span class="en-inline">Coolant</span>
+                    <span class="fr-inline">Liquide refroid.</span>
+                  </td>
+                  <td class="check">✓</td>
+                  <td class="check">✓</td>
+                  <td class="replace">R</td>
+                  <td class="check">✓</td>
+                  <td class="replace">R</td>
+                  <td>50% anticongelante</td>
+                </tr>
+                <tr>
+                  <td>
+                    <span class="es-inline">Bujías</span>
+                    <span class="en-inline">Spark plugs</span>
+                    <span class="fr-inline">Bougies</span>
+                  </td>
+                  <td class="check">✓</td>
+                  <td class="inspect">I</td>
+                  <td class="replace">R</td>
+                  <td class="inspect">I</td>
+                  <td class="replace">R</td>
+                  <td>NGK LMAR8J-9E</td>
+                </tr>
+                <tr>
+                  <td>
+                    <span class="es-inline">Filtro aire</span>
+                    <span class="en-inline">Air filter</span>
+                    <span class="fr-inline">Filtre à air</span>
+                  </td>
+                  <td class="check">✓</td>
+                  <td class="inspect">I</td>
+                  <td class="replace">R</td>
+                  <td class="inspect">I</td>
+                  <td class="replace">R</td>
+                  <td>
+                    <span class="es-inline">Más frec. en polvo</span>
+                    <span class="en-inline">More often in dusty conditions</span>
+                    <span class="fr-inline">Plus souvent si poussière</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <span class="es-inline">Horquilla (aceite)</span>
+                    <span class="en-inline">Fork oil</span>
+                    <span class="fr-inline">Huile fourche</span>
+                  </td>
+                  <td>—</td>
+                  <td>—</td>
+                  <td class="replace">R</td>
+                  <td>—</td>
+                  <td class="replace">R</td>
+                  <td>
+                    <span class="es-inline">o cada 2 años</span>
+                    <span class="en-inline">or every 2 years</span>
+                    <span class="fr-inline">ou tous les 2 ans</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <span class="es-inline">Batería</span>
+                    <span class="en-inline">Battery</span>
+                    <span class="fr-inline">Batterie</span>
+                  </td>
+                  <td class="check">✓</td>
+                  <td class="check">✓</td>
+                  <td class="check">✓</td>
+                  <td class="check">✓</td>
+                  <td class="replace">R</td>
+                  <td>12V 10Ah</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div style="margin-top:0.75rem; font-size:0.78rem; color:#6b7280">
+            <strong>R</strong> =
+            <span class="es-inline">Sustituir</span><span class="en-inline">Replace</span><span class="fr-inline">Remplacer</span>
+            &nbsp;·&nbsp;
+            <strong>I</strong> =
+            <span class="es-inline">Inspeccionar/limpiar</span><span class="en-inline">Inspect/clean</span><span class="fr-inline">Inspecter/nettoyer</span>
+            &nbsp;·&nbsp;
+            <strong>✓</strong> =
+            <span class="es-inline">Comprobar nivel</span><span class="en-inline">Check level</span><span class="fr-inline">Vérifier le niveau</span>
+          </div>
+        </div>
+      </section>
 
-<!-- ACCESORIOS -->
-<section class="section" id="accessories">
-  <div class="section-title">Accesorios</div>
-  <div class="cards">
-    <div class="card">
-      <h3>🛡️ Protección</h3>
-      <ul class="maint-items">
-        <li>Defensas de motor</li>
-        <li>Protector de radiador</li>
-        <li>Protector de depósito</li>
-        <li>Sliders de chasis</li>
-        <li>Guardamanos</li>
-      </ul>
-    </div>
-    <div class="card">
-      <h3>🧳 Equipaje</h3>
-      <ul class="maint-items">
-        <li>Maletas laterales compatibles</li>
-        <li>Top case</li>
-        <li>Bolsa de depósito</li>
-        <li>Portaequipajes trasero</li>
-        <li>Bolsas de herramientas</li>
-      </ul>
-    </div>
-    <div class="card">
-      <h3>📱 Navegación y tech</h3>
-      <ul class="maint-items">
-        <li>Soporte para móvil/GPS</li>
-        <li>Cargador USB impermeable</li>
-        <li>Dashcam para moto</li>
-        <li>Interfaz CarBit / mirror link</li>
-        <li>Intercomunicador Bluetooth</li>
-      </ul>
-    </div>
-    <div class="card">
-      <h3>🪑 Ergonomía</h3>
-      <ul class="maint-items">
-        <li>Manillares alternativos</li>
-        <li>Puños calefactables</li>
-        <li>Asiento confort</li>
-        <li>Reposapiés ajustables</li>
-        <li>Parabrisas ajustable</li>
-      </ul>
-    </div>
-    <div class="card">
-      <h3>🔒 Seguridad</h3>
-      <ul class="maint-items">
-        <li>Alarma GPS con app</li>
-        <li>Candado de disco</li>
-        <li>Cadena de seguridad</li>
-        <li>Funda de moto</li>
-      </ul>
-    </div>
-  </div>
-</section>
+      <!-- ELÉCTRICO -->
+      <section class="section" id="electrico">
+        <div class="section-header">
+          <div class="section-icon">⚡</div>
+          <h2 class="section-title">
+            <span class="es">Sistema Eléctrico</span>
+            <span class="en">Electrical System</span>
+            <span class="fr">Système Électrique</span>
+          </h2>
+        </div>
+        <div class="section-body">
+          <div>
+            <div class="specs-block">
+              <h3>
+                <span class="es-inline">Especificaciones</span>
+                <span class="en-inline">Specifications</span>
+                <span class="fr-inline">Spécifications</span>
+              </h3>
+              <table class="specs-table">
+                <tr><td><span class="es-inline">Batería</span><span class="en-inline">Battery</span><span class="fr-inline">Batterie</span></td><td>12V / 10 Ah (YTX12-BS)</td></tr>
+                <tr><td><span class="es-inline">Alternador</span><span class="en-inline">Alternator</span><span class="fr-inline">Alternateur</span></td><td>3 fases, ~350W</td></tr>
+                <tr><td><span class="es-inline">Fusible principal</span><span class="en-inline">Main fuse</span><span class="fr-inline">Fusible principal</span></td><td>40 A</td></tr>
+                <tr><td><span class="es-inline">Fusible ventilador</span><span class="en-inline">Fan fuse</span><span class="fr-inline">Fusible ventilateur</span></td><td>25 A</td></tr>
+                <tr><td><span class="es-inline">Fusible luces/accs.</span><span class="en-inline">Lights/acc fuse</span><span class="fr-inline">Fusible éclairage</span></td><td>15 A</td></tr>
+                <tr><td><span class="es-inline">Fusibles adicionales</span><span class="en-inline">Additional fuses</span><span class="fr-inline">Fusibles additionnels</span></td><td>10 A</td></tr>
+                <tr><td><span class="es-inline">Bujía</span><span class="en-inline">Spark plug</span><span class="fr-inline">Bougie</span></td><td>NGK LMAR8J-9E</td></tr>
+                <tr><td><span class="es-inline">Gap bujía</span><span class="en-inline">Plug gap</span><span class="fr-inline">Écartement bougie</span></td><td>0.8 – 0.9 mm</td></tr>
+                <tr><td>
+                  <span class="es-inline">Luz delantera</span>
+                  <span class="en-inline">Headlight</span>
+                  <span class="fr-inline">Phare avant</span>
+                </td><td>LED</td></tr>
+                <tr><td>
+                  <span class="es-inline">Intermitentes</span>
+                  <span class="en-inline">Turn signals</span>
+                  <span class="fr-inline">Clignotants</span>
+                </td><td>LED</td></tr>
+              </table>
+            </div>
+          </div>
+          <div>
+            <div class="procedure-block">
+              <h3>
+                <span class="es-inline">Comprobación batería</span>
+                <span class="en-inline">Battery check</span>
+                <span class="fr-inline">Vérification batterie</span>
+              </h3>
+              <ol class="procedure-list">
+                <li class="es">Medir tensión en reposo: debe ser 12.6–12.8V.</li>
+                <li class="en" style="display:none">Measure rest voltage: should be 12.6–12.8V.</li>
+                <li class="fr" style="display:none">Mesurer la tension au repos: doit être 12,6–12,8V.</li>
+                <li class="es">Con motor a 3000 rpm, tensión alternador: 13.5–14.5V.</li>
+                <li class="en" style="display:none">At 3000 rpm, alternator voltage: 13.5–14.5V.</li>
+                <li class="fr" style="display:none">À 3000 tr/min, tension alternateur: 13,5–14,5V.</li>
+                <li class="es">Si &lt; 12.4V en reposo: recargar o sustituir.</li>
+                <li class="en" style="display:none">If &lt; 12.4V at rest: recharge or replace.</li>
+                <li class="fr" style="display:none">Si &lt; 12,4V au repos: recharger ou remplacer.</li>
+                <li class="es">Limpiar bornes con mezcla agua+bicarbonato si hay oxidación.</li>
+                <li class="en" style="display:none">Clean terminals with water+baking soda if oxidized.</li>
+                <li class="fr" style="display:none">Nettoyer les bornes avec eau+bicarbonate si oxydées.</li>
+                <li class="es">Desconectar: primero negativo (-), luego positivo (+). Conectar al revés.</li>
+                <li class="en" style="display:none">Disconnect: negative (-) first, then positive (+). Connect in reverse.</li>
+                <li class="fr" style="display:none">Déconnecter: négatif (-) d'abord, puis positif (+). Brancher dans l'ordre inverse.</li>
+              </ol>
+            </div>
+            <div class="despiece-block" style="margin-top:1.5rem">
+              <h3>
+                <span class="es-inline">Despiece oficial</span>
+                <span class="en-inline">Official diagram</span>
+                <span class="fr-inline">Dessin officiel</span>
+              </h3>
+              <div class="despiece-img">
+                <img src="/images/sm_electrico.png" alt="Eléctrico VOGE 800 DSX" loading="lazy" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
-<!-- TIENDAS -->
-<section class="section" id="shops">
-  <div class="section-title">Tiendas y repuestos</div>
-  <div class="shops-grid">
-    <a href="https://www.azmotors.fr/PIECES_VOGE/800_RALLY/vue-eclate-800DS-RALLY-EURO5.html" target="_blank" class="shop-card">
-      <span class="shop-tag despiece">Despiece oficial</span>
-      <h3>AZMotors (Francia)</h3>
-      <p>Catálogo de piezas originales Voge 800 Rally Euro 5. Vista explosionada por secciones.</p>
-      <p class="shop-arrow">Ver catálogo →</p>
-    </a>
-    <a href="https://vogerus.ru/parts/model/mototsikl-voge-rally-800/diagrams" target="_blank" class="shop-card">
-      <span class="shop-tag despiece">Despiece</span>
-      <h3>VogeRus (Rusia)</h3>
-      <p>Catálogo de piezas en ruso con diagramas de despiece por sistemas.</p>
-      <p class="shop-arrow">Ver catálogo →</p>
-    </a>
-    <a href="https://www.amazon.es/s?k=voge+800+dsx+accesorios" target="_blank" class="shop-card">
-      <span class="shop-tag accesorios">Accesorios</span>
-      <h3>Amazon España</h3>
-      <p>Accesorios y repuestos para la Voge 800 DSX con entrega rápida.</p>
-      <p class="shop-arrow">Buscar en Amazon →</p>
-    </a>
-    <a href="https://www.motea.com" target="_blank" class="shop-card">
-      <span class="shop-tag accesorios">Accesorios</span>
-      <h3>Motea</h3>
-      <p>Accesorios y recambios para moto. Gran catálogo de marcas aftermarket.</p>
-      <p class="shop-arrow">Ver tienda →</p>
-    </a>
-    <a href="https://www.sportsbikeshop.co.uk/search?q=voge+800" target="_blank" class="shop-card">
-      <span class="shop-tag accesorios">Accesorios UK</span>
-      <h3>SportsBikeShop (UK)</h3>
-      <p>Accesorios y ropa moto. Buenas ofertas en escapes y equipamiento técnico.</p>
-      <p class="shop-arrow">Ver tienda →</p>
-    </a>
-    <a href="https://www.bikers-superstore.es" target="_blank" class="shop-card">
-      <span class="shop-tag accesorios">Accesorios ES</span>
-      <h3>Bikers Superstore</h3>
-      <p>Tienda española de accesorios y equipamiento para moto.</p>
-      <p class="shop-arrow">Ver tienda →</p>
-    </a>
-  </div>
-</section>
+      <!-- PERFORMANCE -->
+      <section class="section" id="performance">
+        <div class="section-header">
+          <div class="section-icon">🏁</div>
+          <h2 class="section-title">
+            <span class="es">Performance y Ruedas</span>
+            <span class="en">Performance & Wheels</span>
+            <span class="fr">Performance & Roues</span>
+          </h2>
+        </div>
+        <div class="section-body">
+          <div>
+            <div class="specs-block">
+              <h3>
+                <span class="es-inline">Neumáticos</span>
+                <span class="en-inline">Tyres</span>
+                <span class="fr-inline">Pneumatiques</span>
+              </h3>
+              <table class="specs-table">
+                <tr><td>
+                  <span class="es-inline">Delantero</span>
+                  <span class="en-inline">Front</span>
+                  <span class="fr-inline">Avant</span>
+                </td><td>90/90-21 M/C 54S</td></tr>
+                <tr><td>
+                  <span class="es-inline">Trasero</span>
+                  <span class="en-inline">Rear</span>
+                  <span class="fr-inline">Arrière</span>
+                </td><td>150/70 R18 M/C 70H</td></tr>
+                <tr><td>
+                  <span class="es-inline">Presión del. (asfalto)</span>
+                  <span class="en-inline">Front pressure (road)</span>
+                  <span class="fr-inline">Pression av. (route)</span>
+                </td><td>2.25 bar</td></tr>
+                <tr><td>
+                  <span class="es-inline">Presión tra. (asfalto)</span>
+                  <span class="en-inline">Rear pressure (road)</span>
+                  <span class="fr-inline">Pression ar. (route)</span>
+                </td><td>2.50 bar</td></tr>
+                <tr><td>
+                  <span class="es-inline">Presión del. (off-road)</span>
+                  <span class="en-inline">Front pressure (off-road)</span>
+                  <span class="fr-inline">Pression av. (hors-route)</span>
+                </td><td>1.5 – 1.8 bar</td></tr>
+                <tr><td>
+                  <span class="es-inline">Presión tra. (off-road)</span>
+                  <span class="en-inline">Rear pressure (off-road)</span>
+                  <span class="fr-inline">Pression ar. (hors-route)</span>
+                </td><td>1.8 – 2.1 bar</td></tr>
+              </table>
+            </div>
+            <div class="specs-block" style="margin-top:1.5rem">
+              <h3>
+                <span class="es-inline">Datos de rendimiento</span>
+                <span class="en-inline">Performance data</span>
+                <span class="fr-inline">Données de performance</span>
+              </h3>
+              <table class="specs-table">
+                <tr><td><span class="es-inline">Vel. máxima</span><span class="en-inline">Top speed</span><span class="fr-inline">Vitesse max.</span></td><td>~210 km/h</td></tr>
+                <tr><td>0–100 km/h</td><td>~3.8 s</td></tr>
+                <tr><td><span class="es-inline">Consumo medio</span><span class="en-inline">Average consumption</span><span class="fr-inline">Consommation moy.</span></td><td>~5.5 L/100 km</td></tr>
+                <tr><td><span class="es-inline">Autonomía aprox.</span><span class="en-inline">Range approx.</span><span class="fr-inline">Autonomie approx.</span></td><td>~400 km</td></tr>
+              </table>
+            </div>
+          </div>
+          <div>
+            <div class="despiece-block">
+              <h3>
+                <span class="es-inline">Rueda delantera</span>
+                <span class="en-inline">Front wheel diagram</span>
+                <span class="fr-inline">Roue avant</span>
+              </h3>
+              <div class="despiece-img">
+                <img src="/images/sm_rueda_del.png" alt="Rueda delantera VOGE 800 DSX" loading="lazy" />
+              </div>
+            </div>
+            <div class="despiece-block" style="margin-top:1.5rem">
+              <h3>
+                <span class="es-inline">Rueda trasera</span>
+                <span class="en-inline">Rear wheel diagram</span>
+                <span class="fr-inline">Roue arrière</span>
+              </h3>
+              <div class="despiece-img">
+                <img src="/images/sm_rueda_tra.png" alt="Rueda trasera VOGE 800 DSX" loading="lazy" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
-</div><!-- /container -->
+      <!-- ACCESORIOS -->
+      <section class="section" id="accesorios">
+        <div class="section-header">
+          <div class="section-icon">🎒</div>
+          <h2 class="section-title">
+            <span class="es">Accesorios Populares</span>
+            <span class="en">Popular Accessories</span>
+            <span class="fr">Accessoires Populaires</span>
+          </h2>
+        </div>
+        <div class="section-body full-width">
+          <div class="acc-grid">
+            <div class="acc-card">
+              <div class="acc-icon">🧳</div>
+              <div class="acc-name">
+                <span class="es-inline">Maletas laterales</span>
+                <span class="en-inline">Side cases</span>
+                <span class="fr-inline">Valises latérales</span>
+              </div>
+              <div class="acc-desc">
+                <span class="es-inline">Givi / Shad · Montaje OEM disponible</span>
+                <span class="en-inline">Givi / Shad · OEM mounting available</span>
+                <span class="fr-inline">Givi / Shad · Fixation OEM disponible</span>
+              </div>
+            </div>
+            <div class="acc-card">
+              <div class="acc-icon">🛡️</div>
+              <div class="acc-name">
+                <span class="es-inline">Protector cárter</span>
+                <span class="en-inline">Engine guard</span>
+                <span class="fr-inline">Sabot moteur</span>
+              </div>
+              <div class="acc-desc">
+                <span class="es-inline">Aluminio CNC · Protección off-road</span>
+                <span class="en-inline">CNC aluminium · Off-road protection</span>
+                <span class="fr-inline">Aluminium CNC · Protection hors-route</span>
+              </div>
+            </div>
+            <div class="acc-card">
+              <div class="acc-icon">🔭</div>
+              <div class="acc-name">
+                <span class="es-inline">Soporte GPS / smartphone</span>
+                <span class="en-inline">GPS / phone mount</span>
+                <span class="fr-inline">Support GPS / smartphone</span>
+              </div>
+              <div class="acc-desc">RAM Mount · Quad Lock</div>
+            </div>
+            <div class="acc-card">
+              <div class="acc-icon">💡</div>
+              <div class="acc-name">
+                <span class="es-inline">Luces auxiliares LED</span>
+                <span class="en-inline">Auxiliary LED lights</span>
+                <span class="fr-inline">Feux LED auxiliaires</span>
+              </div>
+              <div class="acc-desc">Denali · Clearwater</div>
+            </div>
+            <div class="acc-card">
+              <div class="acc-icon">🤲</div>
+              <div class="acc-name">
+                <span class="es-inline">Puños calefactados</span>
+                <span class="en-inline">Heated grips</span>
+                <span class="fr-inline">Poignées chauffantes</span>
+              </div>
+              <div class="acc-desc">Oxford · Grip Puppies</div>
+            </div>
+            <div class="acc-card">
+              <div class="acc-icon">🏕️</div>
+              <div class="acc-name">
+                <span class="es-inline">Bolsa de manillar</span>
+                <span class="en-inline">Handlebar bag</span>
+                <span class="fr-inline">Sacoche de guidon</span>
+              </div>
+              <div class="acc-desc">Ortlieb · Kriega</div>
+            </div>
+            <div class="acc-card">
+              <div class="acc-icon">⛽</div>
+              <div class="acc-name">
+                <span class="es-inline">Tapón depósito CNC</span>
+                <span class="en-inline">CNC fuel cap</span>
+                <span class="fr-inline">Bouchon de réservoir CNC</span>
+              </div>
+              <div class="acc-desc">
+                <span class="es-inline">Aluminio anodizado</span>
+                <span class="en-inline">Anodized aluminium</span>
+                <span class="fr-inline">Aluminium anodisé</span>
+              </div>
+            </div>
+            <div class="acc-card">
+              <div class="acc-icon">🔊</div>
+              <div class="acc-name">
+                <span class="es-inline">Sistema intercomunicador</span>
+                <span class="en-inline">Intercom system</span>
+                <span class="fr-inline">Système intercom</span>
+              </div>
+              <div class="acc-desc">Sena · Cardo</div>
+            </div>
+          </div>
+        </div>
+      </section>
 
-<footer>
-  <p>VOGE 800 DSX Rally · Guía técnica no oficial · Basada en manuales oficiales Loncin/VOGE</p>
-  <p style="margin-top:0.5rem">Datos extraídos del Manual del Propietario y Manual de Taller LX800-2 (Agosto 2025)</p>
-</footer>
+      <!-- DESPIECE -->
+      <section class="section" id="despiece">
+        <div class="section-header">
+          <div class="section-icon">📦</div>
+          <h2 class="section-title">
+            <span class="es">Despiece Oficial</span>
+            <span class="en">Official Parts Catalogue</span>
+            <span class="fr">Catalogue Officiel des Pièces</span>
+          </h2>
+        </div>
+        <div class="section-body full-width">
+          <p style="margin-bottom:1.5rem; color:#6b7280; font-size:0.9rem">
+            <span class="es">Accede al despiece oficial de la VOGE 800 DSX Rally Euro5 en AZMotors France. Incluye todas las vistas explosionadas con referencias de piezas originales.</span>
+            <span class="en">Access the official VOGE 800 DSX Rally Euro5 parts catalogue at AZMotors France. Includes all exploded views with original part references.</span>
+            <span class="fr">Accédez au catalogue officiel des pièces VOGE 800 DSX Rally Euro5 sur AZMotors France. Comprend toutes les vues éclatées avec les références de pièces d'origine.</span>
+          </p>
+          <a class="despiece-link" href="https://www.azmotors.fr/PIECES_VOGE/800_RALLY/vue-eclate-800DS-RALLY-EURO5.html" target="_blank" rel="noopener" style="font-size:1rem; padding:0.75rem 1.5rem">
+            🔗 AZMotors — VOGE 800 DSX Rally Euro5
+          </a>
+          <div style="margin-top:2rem; display:grid; grid-template-columns:repeat(auto-fill, minmax(280px, 1fr)); gap:1rem">
+            <div style="border:1px solid #e5e7eb; border-radius:10px; overflow:hidden">
+              <img src="/images/sm_rueda_del.png" alt="Despiece rueda delantera" style="width:100%; height:auto" loading="lazy" />
+              <div style="padding:0.75rem; font-size:0.8rem; color:#6b7280">
+                <span class="es-inline">Rueda delantera</span>
+                <span class="en-inline">Front wheel</span>
+                <span class="fr-inline">Roue avant</span>
+              </div>
+            </div>
+            <div style="border:1px solid #e5e7eb; border-radius:10px; overflow:hidden">
+              <img src="/images/sm_rueda_tra.png" alt="Despiece rueda trasera" style="width:100%; height:auto" loading="lazy" />
+              <div style="padding:0.75rem; font-size:0.8rem; color:#6b7280">
+                <span class="es-inline">Rueda trasera</span>
+                <span class="en-inline">Rear wheel</span>
+                <span class="fr-inline">Roue arrière</span>
+              </div>
+            </div>
+            <div style="border:1px solid #e5e7eb; border-radius:10px; overflow:hidden">
+              <img src="/images/sm_frenos.png" alt="Despiece frenos" style="width:100%; height:auto" loading="lazy" />
+              <div style="padding:0.75rem; font-size:0.8rem; color:#6b7280">
+                <span class="es-inline">Sistema de frenos</span>
+                <span class="en-inline">Brake system</span>
+                <span class="fr-inline">Système de freinage</span>
+              </div>
+            </div>
+            <div style="border:1px solid #e5e7eb; border-radius:10px; overflow:hidden">
+              <img src="/images/sm_cadena.png" alt="Despiece cadena transmisión" style="width:100%; height:auto" loading="lazy" />
+              <div style="padding:0.75rem; font-size:0.8rem; color:#6b7280">
+                <span class="es-inline">Transmisión / cadena</span>
+                <span class="en-inline">Transmission / chain</span>
+                <span class="fr-inline">Transmission / chaîne</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- TIENDAS -->
+      <section class="section" id="tiendas">
+        <div class="section-header">
+          <div class="section-icon">🏪</div>
+          <h2 class="section-title">
+            <span class="es">Distribuidores y Tiendas</span>
+            <span class="en">Dealers & Shops</span>
+            <span class="fr">Concessionnaires & Boutiques</span>
+          </h2>
+        </div>
+        <div class="section-body full-width">
+          <div class="tiendas-grid">
+            <div class="tienda-card">
+              <div class="tienda-flag">🇪🇸</div>
+              <div class="tienda-name">VOGE España (Loncin Motors)</div>
+              <a class="tienda-url" href="https://www.vogemoto.es" target="_blank" rel="noopener">vogemoto.es</a>
+              <div class="tienda-desc">
+                <span class="es-inline">Distribuidor oficial España</span>
+                <span class="en-inline">Official Spanish distributor</span>
+                <span class="fr-inline">Distributeur officiel Espagne</span>
+              </div>
+            </div>
+            <div class="tienda-card">
+              <div class="tienda-flag">🇫🇷</div>
+              <div class="tienda-name">AZMotors France</div>
+              <a class="tienda-url" href="https://www.azmotors.fr/PIECES_VOGE/800_RALLY/vue-eclate-800DS-RALLY-EURO5.html" target="_blank" rel="noopener">azmotors.fr</a>
+              <div class="tienda-desc">
+                <span class="es-inline">Despieces y recambios originales</span>
+                <span class="en-inline">Original parts and spare parts</span>
+                <span class="fr-inline">Pièces détachées et accessoires originaux</span>
+              </div>
+            </div>
+            <div class="tienda-card">
+              <div class="tienda-flag">🇬🇧</div>
+              <div class="tienda-name">VOGE UK</div>
+              <a class="tienda-url" href="https://www.vogemotorbikes.co.uk" target="_blank" rel="noopener">vogemotorbikes.co.uk</a>
+              <div class="tienda-desc">
+                <span class="es-inline">Distribuidor oficial UK</span>
+                <span class="en-inline">Official UK distributor</span>
+                <span class="fr-inline">Distributeur officiel UK</span>
+              </div>
+            </div>
+            <div class="tienda-card">
+              <div class="tienda-flag">🌍</div>
+              <div class="tienda-name">VOGE International</div>
+              <a class="tienda-url" href="https://www.vogemoto.com" target="_blank" rel="noopener">vogemoto.com</a>
+              <div class="tienda-desc">
+                <span class="es-inline">Web oficial global</span>
+                <span class="en-inline">Official global website</span>
+                <span class="fr-inline">Site officiel mondial</span>
+              </div>
+            </div>
+            <div class="tienda-card">
+              <div class="tienda-flag">🛒</div>
+              <div class="tienda-name">Amazon / eBay</div>
+              <a class="tienda-url" href="https://www.amazon.es/s?k=VOGE+800+DSX" target="_blank" rel="noopener">amazon.es</a>
+              <div class="tienda-desc">
+                <span class="es-inline">Accesorios compatibles y piezas de repuesto</span>
+                <span class="en-inline">Compatible accessories and spare parts</span>
+                <span class="fr-inline">Accessoires compatibles et pièces de rechange</span>
+              </div>
+            </div>
+            <div class="tienda-card">
+              <div class="tienda-flag">💬</div>
+              <div class="tienda-name">Foro VOGE (ADVRider)</div>
+              <a class="tienda-url" href="https://advrider.com/f/threads/voge-800-dsx-rally.html" target="_blank" rel="noopener">advrider.com</a>
+              <div class="tienda-desc">
+                <span class="es-inline">Comunidad internacional de propietarios</span>
+                <span class="en-inline">International owners community</span>
+                <span class="fr-inline">Communauté internationale des propriétaires</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div><!-- .content -->
+
+    <footer class="footer">
+      <p>
+        VOGE 800 DSX Rally — 
+        <span class="es-inline">Guía Técnica para propietarios.</span>
+        <span class="en-inline">Technical guide for owners.</span>
+        <span class="fr-inline">Guide technique pour propriétaires.</span>
+        &nbsp;·&nbsp;
+        <span class="es-inline">Información extraída del manual oficial. No es documentación oficial de VOGE/Loncin.</span>
+        <span class="en-inline">Information extracted from official manual. Not official VOGE/Loncin documentation.</span>
+        <span class="fr-inline">Informations extraites du manuel officiel. Pas de la documentation officielle VOGE/Loncin.</span>
+      </p>
+    </footer>
+
+  </div><!-- .main -->
+</div><!-- .layout -->
 
 <script>
-  // Lang selector (placeholder — expandir con i18n completo)
   function setLang(lang) {
-    document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
-    document.querySelector(`.lang-btn[onclick="setLang('${lang}')"]`).classList.add('active');
-    // TODO: cargar traducciones dinámicamente
-  }
-  
-  // Mobile nav
-  function toggleNav() {
-    document.getElementById('navLinks').classList.toggle('open');
-  }
-  
-  // Smooth scroll
-  document.querySelectorAll('a[href^="#"]').forEach(a => {
-    a.addEventListener('click', e => {
-      e.preventDefault();
-      const target = document.querySelector(a.getAttribute('href'));
-      if (target) target.scrollIntoView({behavior:'smooth', block:'start'});
+    document.getElementById('html-root').dataset.lang = lang;
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+      btn.classList.toggle('active', btn.textContent.toLowerCase() === lang);
     });
-  });
+    // Show/hide procedure list items by lang
+    document.querySelectorAll('.procedure-list li.es').forEach(el => {
+      el.style.display = lang === 'es' ? 'flex' : 'none';
+    });
+    document.querySelectorAll('.procedure-list li.en').forEach(el => {
+      el.style.display = lang === 'en' ? 'flex' : 'none';
+    });
+    document.querySelectorAll('.procedure-list li.fr').forEach(el => {
+      el.style.display = lang === 'fr' ? 'flex' : 'none';
+    });
+  }
+
+  // Active sidebar nav on scroll
+  const sections = document.querySelectorAll('section[id]');
+  const navItems = document.querySelectorAll('.nav-item');
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        navItems.forEach(item => {
+          item.classList.toggle('active', item.getAttribute('href') === '#' + entry.target.id);
+        });
+      }
+    });
+  }, { threshold: 0.3 });
+
+  sections.forEach(s => observer.observe(s));
+
+  // Init ES display
+  setLang('es');
 </script>
 
 </body>
