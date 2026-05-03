@@ -1,0 +1,608 @@
+---
+import data from '../data.json';
+const lang = 'es';
+import t from '../i18n/es.json';
+---
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>VOGE 800 DSX Rally — Guía Técnica</title>
+  <meta name="description" content="Guía técnica completa para la VOGE 800 DSX Rally. Especificaciones, mantenimiento, pares de apriete, suspensión, performance y accesorios." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0d1117;
+      --bg2: #161b22;
+      --bg3: #21262d;
+      --border: #30363d;
+      --text: #e6edf3;
+      --text2: #8b949e;
+      --accent: #1f6feb;
+      --accent2: #388bfd;
+      --green: #3fb950;
+      --orange: #d29922;
+      --red: #f85149;
+      --white: #ffffff;
+    }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { font-family:'Inter',sans-serif; background:var(--bg); color:var(--text); line-height:1.6; }
+    
+    /* NAV */
+    nav { position:sticky; top:0; z-index:100; background:rgba(13,17,23,0.95); backdrop-filter:blur(10px); border-bottom:1px solid var(--border); padding:0 1rem; }
+    .nav-inner { max-width:1200px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; height:60px; }
+    .nav-logo { font-weight:700; font-size:1.1rem; color:var(--white); text-decoration:none; display:flex; align-items:center; gap:8px; }
+    .nav-logo span { color:var(--accent2); }
+    .nav-links { display:flex; gap:1.5rem; list-style:none; }
+    .nav-links a { color:var(--text2); text-decoration:none; font-size:0.875rem; transition:color 0.2s; }
+    .nav-links a:hover { color:var(--text); }
+    .lang-selector { display:flex; gap:6px; }
+    .lang-btn { padding:4px 10px; border:1px solid var(--border); border-radius:6px; background:transparent; color:var(--text2); cursor:pointer; font-size:0.8rem; transition:all 0.2s; }
+    .lang-btn.active, .lang-btn:hover { background:var(--accent); border-color:var(--accent); color:white; }
+    .nav-mobile-toggle { display:none; background:none; border:none; color:var(--text); cursor:pointer; font-size:1.5rem; }
+    
+    /* HERO */
+    .hero { background:linear-gradient(135deg, #0d1117 0%, #0a1628 50%, #0d1117 100%); padding:5rem 1rem 4rem; text-align:center; border-bottom:1px solid var(--border); position:relative; overflow:hidden; }
+    .hero::before { content:''; position:absolute; top:0; left:0; right:0; bottom:0; background:radial-gradient(ellipse at 50% 0%, rgba(31,111,235,0.15) 0%, transparent 70%); }
+    .hero-content { position:relative; max-width:800px; margin:0 auto; }
+    .hero-badge { display:inline-block; padding:4px 14px; border:1px solid var(--accent); border-radius:20px; font-size:0.75rem; color:var(--accent2); margin-bottom:1.5rem; letter-spacing:1px; text-transform:uppercase; }
+    .hero h1 { font-size:clamp(2rem,5vw,3.5rem); font-weight:700; margin-bottom:1rem; }
+    .hero h1 span { color:var(--accent2); }
+    .hero-sub { color:var(--text2); font-size:1.1rem; margin-bottom:2rem; }
+    .hero-stats { display:flex; justify-content:center; gap:2rem; flex-wrap:wrap; margin-bottom:2.5rem; }
+    .stat { text-align:center; }
+    .stat-val { font-size:1.8rem; font-weight:700; color:var(--white); display:block; }
+    .stat-label { font-size:0.75rem; color:var(--text2); text-transform:uppercase; letter-spacing:1px; }
+    .cta-btn { display:inline-block; padding:12px 28px; background:var(--accent); color:white; border-radius:8px; text-decoration:none; font-weight:600; transition:background 0.2s; }
+    .cta-btn:hover { background:var(--accent2); }
+    
+    /* LAYOUT */
+    .container { max-width:1200px; margin:0 auto; padding:0 1rem; }
+    .section { padding:3rem 1rem; border-bottom:1px solid var(--border); }
+    .section:last-child { border-bottom:none; }
+    .section-title { font-size:1.5rem; font-weight:700; margin-bottom:1.5rem; display:flex; align-items:center; gap:10px; }
+    .section-title::before { content:''; display:block; width:4px; height:1.5rem; background:var(--accent); border-radius:2px; }
+    
+    /* CARDS GRID */
+    .cards { display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:1rem; margin-bottom:1.5rem; }
+    .card { background:var(--bg2); border:1px solid var(--border); border-radius:10px; padding:1.5rem; }
+    .card h3 { font-size:0.875rem; color:var(--text2); text-transform:uppercase; letter-spacing:1px; margin-bottom:1rem; }
+    
+    /* SPEC TABLE */
+    .spec-table { width:100%; border-collapse:collapse; }
+    .spec-table tr { border-bottom:1px solid var(--border); }
+    .spec-table tr:last-child { border-bottom:none; }
+    .spec-table td { padding:10px 0; font-size:0.9rem; }
+    .spec-table td:first-child { color:var(--text2); width:55%; }
+    .spec-table td:last-child { font-weight:500; color:var(--text); }
+    
+    /* TORQUE TABLE */
+    .torque-table { width:100%; border-collapse:collapse; background:var(--bg2); border-radius:10px; overflow:hidden; border:1px solid var(--border); }
+    .torque-table th { background:var(--bg3); padding:12px 16px; text-align:left; font-size:0.8rem; color:var(--text2); text-transform:uppercase; letter-spacing:1px; }
+    .torque-table td { padding:12px 16px; font-size:0.9rem; border-top:1px solid var(--border); }
+    .torque-table td:last-child { font-weight:600; color:var(--accent2); }
+    .torque-table tr:hover td { background:var(--bg3); }
+    
+    /* MAINTENANCE */
+    .maint-grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:1rem; }
+    .maint-card { background:var(--bg2); border:1px solid var(--border); border-radius:10px; padding:1.5rem; }
+    .maint-km { font-size:1.5rem; font-weight:700; color:var(--accent2); margin-bottom:0.5rem; }
+    .maint-items { list-style:none; }
+    .maint-items li { padding:4px 0; font-size:0.875rem; color:var(--text2); }
+    .maint-items li::before { content:'▸ '; color:var(--accent); }
+    
+    /* ACCORDION */
+    .accordion { border:1px solid var(--border); border-radius:10px; overflow:hidden; margin-bottom:1rem; }
+    .accordion summary { padding:1rem 1.5rem; cursor:pointer; background:var(--bg2); font-weight:600; display:flex; justify-content:space-between; align-items:center; list-style:none; }
+    .accordion summary::-webkit-details-marker { display:none; }
+    .accordion summary::after { content:'▸'; transition:transform 0.2s; color:var(--accent2); }
+    .accordion[open] summary::after { transform:rotate(90deg); }
+    .accordion-body { padding:1.5rem; background:var(--bg); border-top:1px solid var(--border); }
+    
+    /* SHOPS */
+    .shops-grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(250px, 1fr)); gap:1rem; }
+    .shop-card { background:var(--bg2); border:1px solid var(--border); border-radius:10px; padding:1.5rem; text-decoration:none; color:var(--text); transition:border-color 0.2s, transform 0.2s; display:block; }
+    .shop-card:hover { border-color:var(--accent); transform:translateY(-2px); }
+    .shop-tag { display:inline-block; padding:2px 10px; border-radius:20px; font-size:0.75rem; margin-bottom:0.75rem; }
+    .shop-tag.despiece { background:rgba(63,185,80,0.15); color:var(--green); border:1px solid rgba(63,185,80,0.3); }
+    .shop-tag.accesorios { background:rgba(31,111,235,0.15); color:var(--accent2); border:1px solid rgba(31,111,235,0.3); }
+    .shop-card h3 { font-size:1rem; font-weight:600; margin-bottom:0.5rem; }
+    .shop-card p { font-size:0.875rem; color:var(--text2); }
+    .shop-arrow { color:var(--accent2); margin-top:1rem; font-size:0.875rem; }
+    
+    /* PERFORMANCE */
+    .perf-grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(250px, 1fr)); gap:1rem; }
+    .perf-card { background:var(--bg2); border:1px solid var(--border); border-radius:10px; padding:1.5rem; }
+    .perf-icon { font-size:2rem; margin-bottom:0.75rem; }
+    .perf-card h3 { font-weight:600; margin-bottom:0.5rem; }
+    .perf-card p { font-size:0.875rem; color:var(--text2); }
+    
+    /* BADGE */
+    .badge { display:inline-block; padding:2px 10px; border-radius:20px; font-size:0.75rem; font-weight:500; }
+    .badge-green { background:rgba(63,185,80,0.15); color:var(--green); }
+    .badge-blue { background:rgba(31,111,235,0.15); color:var(--accent2); }
+    .badge-orange { background:rgba(210,153,34,0.15); color:var(--orange); }
+    
+    /* FOOTER */
+    footer { background:var(--bg2); border-top:1px solid var(--border); padding:2rem 1rem; text-align:center; color:var(--text2); font-size:0.875rem; }
+    footer a { color:var(--accent2); text-decoration:none; }
+    
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      .nav-links { display:none; }
+      .nav-links.open { display:flex; flex-direction:column; position:absolute; top:60px; left:0; right:0; background:var(--bg2); padding:1rem; border-bottom:1px solid var(--border); }
+      .nav-mobile-toggle { display:block; }
+      .hero-stats { gap:1rem; }
+      .stat-val { font-size:1.4rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">VOGE <span>800 DSX</span></a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#specs">Especificaciones</a></li>
+      <li><a href="#maintenance">Mantenimiento</a></li>
+      <li><a href="#torque">Pares de apriete</a></li>
+      <li><a href="#suspension">Suspensión</a></li>
+      <li><a href="#performance">Performance</a></li>
+      <li><a href="#shops">Tiendas</a></li>
+    </ul>
+    <div style="display:flex;gap:10px;align-items:center">
+      <div class="lang-selector">
+        <button class="lang-btn active" onclick="setLang('es')">ES</button>
+        <button class="lang-btn" onclick="setLang('en')">EN</button>
+        <button class="lang-btn" onclick="setLang('fr')">FR</button>
+      </div>
+      <button class="nav-mobile-toggle" onclick="toggleNav()">☰</button>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-badge">Guía Técnica Oficial</div>
+    <h1>VOGE <span>800 DSX Rally</span></h1>
+    <p class="hero-sub">800 cc · 70 kW · Euro 5+ · Bicilíndrico DOHC</p>
+    <div class="hero-stats">
+      <div class="stat"><span class="stat-val">798cc</span><span class="stat-label">Cilindrada</span></div>
+      <div class="stat"><span class="stat-val">95CV</span><span class="stat-label">Potencia</span></div>
+      <div class="stat"><span class="stat-val">81Nm</span><span class="stat-label">Par máximo</span></div>
+      <div class="stat"><span class="stat-val">210</span><span class="stat-label">km/h máx.</span></div>
+      <div class="stat"><span class="stat-val">227kg</span><span class="stat-label">Peso</span></div>
+      <div class="stat"><span class="stat-val">24L</span><span class="stat-label">Depósito</span></div>
+    </div>
+    <a href="#specs" class="cta-btn">Ver especificaciones completas</a>
+  </div>
+</section>
+
+<div class="container">
+
+<!-- ESPECIFICACIONES -->
+<section class="section" id="specs">
+  <div class="section-title">Especificaciones técnicas</div>
+  <div class="cards">
+    <div class="card">
+      <h3>⚙️ Motor</h3>
+      <table class="spec-table">
+        <tr><td>Tipo</td><td>Bicil. en línea, líquido, DOHC</td></tr>
+        <tr><td>Cilindrada</td><td>798 cc</td></tr>
+        <tr><td>Diámetro × carrera</td><td>84 × 72 mm</td></tr>
+        <tr><td>Compresión</td><td>12,0:1</td></tr>
+        <tr><td>Potencia máxima</td><td>70 kW @ 9.000 rpm</td></tr>
+        <tr><td>Par máximo</td><td>81,0 Nm @ 6.500 rpm</td></tr>
+        <tr><td>Ralentí</td><td>1.250 ± 100 rpm</td></tr>
+        <tr><td>Emisión</td><td><span class="badge badge-green">Euro 5+</span></td></tr>
+      </table>
+    </div>
+    <div class="card">
+      <h3>⛽ Alimentación y bujía</h3>
+      <table class="spec-table">
+        <tr><td>Alimentación</td><td>Inyección EFI</td></tr>
+        <tr><td>Aceite motor</td><td>3,2 L · SAE 10W/40 – SL</td></tr>
+        <tr><td>Bujía</td><td>LMAR8J-9E</td></tr>
+        <tr><td>Separación bujía</td><td>0,8 – 0,9 mm</td></tr>
+        <tr><td>Válvulas admisión</td><td>0,15 – 0,20 mm</td></tr>
+        <tr><td>Válvulas escape</td><td>0,20 – 0,25 mm</td></tr>
+        <tr><td>Depósito combustible</td><td>24 L</td></tr>
+        <tr><td>Consumo</td><td>≤ 5,2 L/100 km</td></tr>
+      </table>
+    </div>
+    <div class="card">
+      <h3>📐 Dimensiones y pesos</h3>
+      <table class="spec-table">
+        <tr><td>Peso en marcha</td><td>227 kg</td></tr>
+        <tr><td>Carga máxima</td><td>205 kg</td></tr>
+        <tr><td>Peso máximo total</td><td>432 kg</td></tr>
+        <tr><td>Velocidad máxima</td><td>210 km/h</td></tr>
+        <tr><td>Refrigerante</td><td>1,75 L</td></tr>
+        <tr><td>Cadena</td><td>520SX2 × 122 eslabones</td></tr>
+      </table>
+    </div>
+    <div class="card">
+      <h3>🔄 Transmisión</h3>
+      <table class="spec-table">
+        <tr><td>Cambio</td><td>6 velocidades</td></tr>
+        <tr><td>Embrague</td><td>Discos en baño aceite</td></tr>
+        <tr><td>Trans. primaria</td><td>1,816</td></tr>
+        <tr><td>Trans. final</td><td>3,067</td></tr>
+        <tr><td>1ª / 2ª / 3ª</td><td>2,833 / 2,125 / 1,667</td></tr>
+        <tr><td>4ª / 5ª / 6ª</td><td>1,333 / 1,087 / 0,960</td></tr>
+      </table>
+    </div>
+    <div class="card">
+      <h3>🛞 Ruedas y frenos</h3>
+      <table class="spec-table">
+        <tr><td>Neumático delantero</td><td>90/90-21 M/C</td></tr>
+        <tr><td>Neumático trasero</td><td>150/70 R18 M/C</td></tr>
+        <tr><td>Llanta delantera</td><td>1.85×21</td></tr>
+        <tr><td>Llanta trasera</td><td>4.00×18</td></tr>
+        <tr><td>Freno delantero</td><td>Doble disco 310 mm</td></tr>
+        <tr><td>Freno trasero</td><td>Disco 240 mm</td></tr>
+        <tr><td>ABS</td><td>2 canales</td></tr>
+        <tr><td>Líquido frenos</td><td>DOT 4</td></tr>
+      </table>
+    </div>
+    <div class="card">
+      <h3>⚡ Sistema eléctrico</h3>
+      <table class="spec-table">
+        <tr><td>Batería</td><td>12V 10Ah</td></tr>
+        <tr><td>Fusibles</td><td>40A, 25A, 15A, 10A</td></tr>
+        <tr><td>Faro largas/cortas</td><td>12V 25/14W</td></tr>
+        <tr><td>Bujía</td><td>LMAR8J-9E</td></tr>
+      </table>
+    </div>
+    <div class="card">
+      <h3>🏍️ Suspensión</h3>
+      <table class="spec-table">
+        <tr><td>Delantera</td><td>Horquilla inv. 43 mm</td></tr>
+        <tr><td>Recorrido delantero</td><td>200 mm</td></tr>
+        <tr><td>Trasera</td><td>Amortiguador central</td></tr>
+        <tr><td>Recorrido trasero</td><td>183 mm</td></tr>
+        <tr><td>Precarga fábrica</td><td>19 mm</td></tr>
+        <tr><td>Ajuste rebote</td><td>10 posiciones</td></tr>
+        <tr><td>Ajuste compresión</td><td>10 posiciones</td></tr>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- MANTENIMIENTO -->
+<section class="section" id="maintenance">
+  <div class="section-title">Mantenimiento</div>
+  
+  <details class="accordion" open>
+    <summary>🏁 Período de rodaje</summary>
+    <div class="accordion-body">
+      <div class="cards">
+        <div class="card">
+          <h3>0 – 500 km</h3>
+          <p style="color:var(--orange);font-weight:600;font-size:1.2rem">Máx. 5.000 rpm</p>
+          <p style="color:var(--text2);font-size:0.875rem;margin-top:0.5rem">Varía marchas frecuentemente. No mantengas régimen fijo.</p>
+        </div>
+        <div class="card">
+          <h3>500 – 1.000 km</h3>
+          <p style="color:var(--orange);font-weight:600;font-size:1.2rem">Máx. 7.000 rpm</p>
+          <p style="color:var(--text2);font-size:0.875rem;margin-top:0.5rem">Evita aceleraciones y frenadas bruscas.</p>
+        </div>
+        <div class="card">
+          <h3>⚠️ A los 1.000 km</h3>
+          <p style="color:var(--red);font-weight:600">Cambio de aceite OBLIGATORIO</p>
+          <p style="color:var(--text2);font-size:0.875rem;margin-top:0.5rem">Primera revisión completa en taller autorizado.</p>
+        </div>
+      </div>
+    </div>
+  </details>
+
+  <details class="accordion">
+    <summary>🔧 Intervalos de mantenimiento</summary>
+    <div class="accordion-body">
+      <div class="maint-grid">
+        <div class="maint-card">
+          <div class="maint-km">1.000 km</div>
+          <ul class="maint-items">
+            <li>Cambio aceite motor + filtro</li>
+            <li>Inspección general</li>
+            <li>Revisión cadena</li>
+          </ul>
+        </div>
+        <div class="maint-card">
+          <div class="maint-km">5.000 km</div>
+          <ul class="maint-items">
+            <li>Cambio aceite motor + filtro</li>
+            <li>Inspección cadena</li>
+            <li>Revisión frenos</li>
+            <li>Comprobación neumáticos</li>
+          </ul>
+        </div>
+        <div class="maint-card">
+          <div class="maint-km">10.000 km</div>
+          <ul class="maint-items">
+            <li>Cambio aceite + filtro</li>
+            <li>Filtro aire</li>
+            <li>Bujías</li>
+            <li>Cadena de distribución</li>
+          </ul>
+        </div>
+        <div class="maint-card">
+          <div class="maint-km">20.000 km</div>
+          <ul class="maint-items">
+            <li>Todo lo anterior</li>
+            <li>Refrigerante</li>
+            <li>Pastillas de freno</li>
+            <li>Rodamientos dirección</li>
+          </ul>
+        </div>
+        <div class="maint-card">
+          <div class="maint-km">Cada 2 años</div>
+          <ul class="maint-items">
+            <li>Líquido de frenos DOT 4</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </details>
+
+  <details class="accordion">
+    <summary>🛢️ Aceite del motor</summary>
+    <div class="accordion-body">
+      <div class="cards">
+        <div class="card">
+          <h3>Especificaciones</h3>
+          <table class="spec-table">
+            <tr><td>Capacidad total</td><td>3,2 L</td></tr>
+            <tr><td>Con filtro nuevo</td><td>3,0 L</td></tr>
+            <tr><td>Tipo</td><td>SAE 10W/40 – SL</td></tr>
+            <tr><td>Primer cambio</td><td>1.000 km</td></tr>
+            <tr><td>Cambios siguientes</td><td>Cada 5.000 km</td></tr>
+          </table>
+        </div>
+        <div class="card">
+          <h3>Procedimiento</h3>
+          <ul class="maint-items" style="list-style:none">
+            <li>Calentar el motor antes de drenar</li>
+            <li>Retirar tornillo drenaje (inferior derecho)</li>
+            <li>Par filtro de aceite: <strong>11 Nm</strong></li>
+            <li>Par unión tubo filtro: <strong>28 Nm</strong></li>
+            <li>Arrancar 2-3 min a ralentí</li>
+            <li>Verificar nivel en mirilla (moto vertical)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </details>
+
+  <details class="accordion">
+    <summary>⛓️ Cadena de transmisión</summary>
+    <div class="accordion-body">
+      <table class="spec-table" style="max-width:500px">
+        <tr><td>Modelo</td><td>520SX2 × 122 eslabones (sin abertura)</td></tr>
+        <tr><td>Tuerca eje rueda trasera</td><td><strong>105 ± 7 Nm</strong></td></tr>
+        <tr><td>Perno ajustable tensor</td><td><strong>18 ± 1,8 Nm</strong></td></tr>
+      </table>
+      <p style="color:var(--red);font-size:0.875rem;margin-top:1rem">⚠️ Cadena sin abertura. Sustitución solo en taller autorizado con herramientas específicas.</p>
+    </div>
+  </details>
+</section>
+
+<!-- PARES DE APRIETE -->
+<section class="section" id="torque">
+  <div class="section-title">Pares de apriete</div>
+  <table class="torque-table">
+    <thead>
+      <tr><th>Elemento</th><th>Par de apriete</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Filtro de aceite</td><td>11 Nm</td></tr>
+      <tr><td>Unión tubo filtro aceite</td><td>28 Nm</td></tr>
+      <tr><td>Tuerca eje rueda trasera</td><td>105 ± 7 Nm</td></tr>
+      <tr><td>Perno ajustable tensor cadena</td><td>18 ± 1,8 Nm</td></tr>
+      <tr><td>Perno sensor ABS (M6)</td><td>6 Nm</td></tr>
+      <tr><td>Perno carrocería (M6)</td><td>6 Nm</td></tr>
+      <tr><td>Tornillo chapa (ST4.2)</td><td>1 Nm</td></tr>
+      <tr><td>Perno luz intermitente (M10)</td><td>4 Nm</td></tr>
+      <tr><td>Perno ranura piezas cobertura (M5)</td><td>4,5 Nm</td></tr>
+    </tbody>
+  </table>
+  <p style="color:var(--text2);font-size:0.8rem;margin-top:1rem">⚠️ Utilizar siempre dinamométrica. Consultar el manual de taller para valores completos.</p>
+</section>
+
+<!-- SUSPENSIÓN -->
+<section class="section" id="suspension">
+  <div class="section-title">Suspensión</div>
+  <div class="cards">
+    <div class="card">
+      <h3>🔧 Horquilla delantera (43 mm invertida)</h3>
+      <table class="spec-table">
+        <tr><td>Recorrido</td><td>200 mm</td></tr>
+        <tr><td>Precarga fábrica</td><td>19 mm</td></tr>
+        <tr><td>Ajuste rebote (superior)</td><td>10 posiciones</td></tr>
+        <tr><td>Ajuste compresión (inferior)</td><td>10 posiciones</td></tr>
+      </table>
+      <p style="font-size:0.8rem;color:var(--text2);margin-top:1rem">Giro antihorario = más suave · Giro horario = más duro. Ajustar igual en ambos lados.</p>
+    </div>
+    <div class="card">
+      <h3>🔧 Amortiguador trasero</h3>
+      <table class="spec-table">
+        <tr><td>Recorrido</td><td>183 mm</td></tr>
+        <tr><td>Ajuste precarga</td><td>Giro ajustador 1</td></tr>
+      </table>
+      <p style="font-size:0.8rem;color:var(--text2);margin-top:1rem">Antihorario = suaviza · Horario = endurece. Consultar manual argentino para configuraciones avanzadas.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PERFORMANCE -->
+<section class="section" id="performance">
+  <div class="section-title">Performance y mejoras</div>
+  <div class="perf-grid">
+    <div class="perf-card">
+      <div class="perf-icon">🔥</div>
+      <h3>Escape aftermarket</h3>
+      <p>Akrapovic, Arrow, GPR, SC Project. Ganar entre 3-8 CV y reducir peso. Verificar homologación Euro 5.</p>
+    </div>
+    <div class="perf-card">
+      <div class="perf-icon">💨</div>
+      <h3>Filtro de aire</h3>
+      <p>K&N o BMC de alto rendimiento. Mejora respuesta del acelerador y ligero incremento de potencia.</p>
+    </div>
+    <div class="perf-card">
+      <div class="perf-icon">🖥️</div>
+      <h3>Remapeado ECU</h3>
+      <p>Autotuner o remapeado profesional para optimizar la inyección. Especialmente útil tras escape aftermarket.</p>
+    </div>
+    <div class="perf-card">
+      <div class="perf-icon">⛓️</div>
+      <h3>Piñón y corona</h3>
+      <p>Cambiar relaciones para más aceleración (corona mayor) o más velocidad punta (corona menor).</p>
+    </div>
+    <div class="perf-card">
+      <div class="perf-icon">🛑</div>
+      <h3>Frenos sport</h3>
+      <p>Pastillas Brembo, EBC o Ferodo Racing. Latiguillos de acero trenzado para mejor feedback.</p>
+    </div>
+    <div class="perf-card">
+      <div class="perf-icon">⚡</div>
+      <h3>Quick shifter</h3>
+      <p>Cambio sin embrague en subidas. Compatible con la ECU stock en algunos casos.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ACCESORIOS -->
+<section class="section" id="accessories">
+  <div class="section-title">Accesorios</div>
+  <div class="cards">
+    <div class="card">
+      <h3>🛡️ Protección</h3>
+      <ul class="maint-items">
+        <li>Defensas de motor</li>
+        <li>Protector de radiador</li>
+        <li>Protector de depósito</li>
+        <li>Sliders de chasis</li>
+        <li>Guardamanos</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>🧳 Equipaje</h3>
+      <ul class="maint-items">
+        <li>Maletas laterales compatibles</li>
+        <li>Top case</li>
+        <li>Bolsa de depósito</li>
+        <li>Portaequipajes trasero</li>
+        <li>Bolsas de herramientas</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>📱 Navegación y tech</h3>
+      <ul class="maint-items">
+        <li>Soporte para móvil/GPS</li>
+        <li>Cargador USB impermeable</li>
+        <li>Dashcam para moto</li>
+        <li>Interfaz CarBit / mirror link</li>
+        <li>Intercomunicador Bluetooth</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>🪑 Ergonomía</h3>
+      <ul class="maint-items">
+        <li>Manillares alternativos</li>
+        <li>Puños calefactables</li>
+        <li>Asiento confort</li>
+        <li>Reposapiés ajustables</li>
+        <li>Parabrisas ajustable</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>🔒 Seguridad</h3>
+      <ul class="maint-items">
+        <li>Alarma GPS con app</li>
+        <li>Candado de disco</li>
+        <li>Cadena de seguridad</li>
+        <li>Funda de moto</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- TIENDAS -->
+<section class="section" id="shops">
+  <div class="section-title">Tiendas y repuestos</div>
+  <div class="shops-grid">
+    <a href="https://www.azmotors.fr/PIECES_VOGE/800_RALLY/vue-eclate-800DS-RALLY-EURO5.html" target="_blank" class="shop-card">
+      <span class="shop-tag despiece">Despiece oficial</span>
+      <h3>AZMotors (Francia)</h3>
+      <p>Catálogo de piezas originales Voge 800 Rally Euro 5. Vista explosionada por secciones.</p>
+      <p class="shop-arrow">Ver catálogo →</p>
+    </a>
+    <a href="https://vogerus.ru/parts/model/mototsikl-voge-rally-800/diagrams" target="_blank" class="shop-card">
+      <span class="shop-tag despiece">Despiece</span>
+      <h3>VogeRus (Rusia)</h3>
+      <p>Catálogo de piezas en ruso con diagramas de despiece por sistemas.</p>
+      <p class="shop-arrow">Ver catálogo →</p>
+    </a>
+    <a href="https://www.amazon.es/s?k=voge+800+dsx+accesorios" target="_blank" class="shop-card">
+      <span class="shop-tag accesorios">Accesorios</span>
+      <h3>Amazon España</h3>
+      <p>Accesorios y repuestos para la Voge 800 DSX con entrega rápida.</p>
+      <p class="shop-arrow">Buscar en Amazon →</p>
+    </a>
+    <a href="https://www.motea.com" target="_blank" class="shop-card">
+      <span class="shop-tag accesorios">Accesorios</span>
+      <h3>Motea</h3>
+      <p>Accesorios y recambios para moto. Gran catálogo de marcas aftermarket.</p>
+      <p class="shop-arrow">Ver tienda →</p>
+    </a>
+    <a href="https://www.sportsbikeshop.co.uk/search?q=voge+800" target="_blank" class="shop-card">
+      <span class="shop-tag accesorios">Accesorios UK</span>
+      <h3>SportsBikeShop (UK)</h3>
+      <p>Accesorios y ropa moto. Buenas ofertas en escapes y equipamiento técnico.</p>
+      <p class="shop-arrow">Ver tienda →</p>
+    </a>
+    <a href="https://www.bikers-superstore.es" target="_blank" class="shop-card">
+      <span class="shop-tag accesorios">Accesorios ES</span>
+      <h3>Bikers Superstore</h3>
+      <p>Tienda española de accesorios y equipamiento para moto.</p>
+      <p class="shop-arrow">Ver tienda →</p>
+    </a>
+  </div>
+</section>
+
+</div><!-- /container -->
+
+<footer>
+  <p>VOGE 800 DSX Rally · Guía técnica no oficial · Basada en manuales oficiales Loncin/VOGE</p>
+  <p style="margin-top:0.5rem">Datos extraídos del Manual del Propietario y Manual de Taller LX800-2 (Agosto 2025)</p>
+</footer>
+
+<script>
+  // Lang selector (placeholder — expandir con i18n completo)
+  function setLang(lang) {
+    document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+    document.querySelector(`.lang-btn[onclick="setLang('${lang}')"]`).classList.add('active');
+    // TODO: cargar traducciones dinámicamente
+  }
+  
+  // Mobile nav
+  function toggleNav() {
+    document.getElementById('navLinks').classList.toggle('open');
+  }
+  
+  // Smooth scroll
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      e.preventDefault();
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) target.scrollIntoView({behavior:'smooth', block:'start'});
+    });
+  });
+</script>
+
+</body>
+</html>

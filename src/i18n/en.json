@@ -1,0 +1,40 @@
+{
+  "nav": {
+    "specs": "Specifications",
+    "maintenance": "Maintenance",
+    "torque": "Torque specs",
+    "suspension": "Suspension",
+    "performance": "Performance",
+    "accessories": "Accessories",
+    "shops": "Shops"
+  },
+  "hero": {
+    "subtitle": "Official technical guide · 800 cc · 70 kW · Euro 5+",
+    "cta": "View specifications"
+  },
+  "sections": {
+    "specs": "Technical specifications",
+    "engine": "Engine",
+    "transmission": "Transmission",
+    "dimensions": "Dimensions & weight",
+    "suspension": "Suspension & brakes",
+    "electrical": "Electrical system",
+    "maintenance": "Maintenance",
+    "runin": "Break-in period",
+    "intervals": "Maintenance intervals",
+    "oil": "Engine oil",
+    "chain": "Drive chain",
+    "torque": "Torque specifications",
+    "performance": "Performance & upgrades",
+    "accessories": "Accessories",
+    "shops": "Shops & spare parts"
+  },
+  "units": {
+    "km": "km",
+    "rpm": "rpm",
+    "nm": "N·m",
+    "kw": "kW",
+    "cv": "HP",
+    "liters": "L"
+  }
+}

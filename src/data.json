@@ -1,0 +1,123 @@
+{
+  "moto": {
+    "marca": "VOGE",
+    "modelo": "800 DSX Rally",
+    "año": "2024",
+    "motor_ref": "LX800-2"
+  },
+  "specs": {
+    "motor": {
+      "tipo": "Bicilíndrico en línea, refrigeración líquida, 4 válvulas/cil, DOHC",
+      "cilindrada": "798 cc",
+      "diametro_carrera": "84 × 72 mm",
+      "compresion": "12,0:1",
+      "potencia": "70 kW (95 CV) @ 9.000 rpm",
+      "par": "81,0 Nm @ 6.500 rpm",
+      "ralenti": "1.250 ± 100 rpm",
+      "cambio": "6 velocidades",
+      "embrague": "Discos múltiples en baño de aceite",
+      "aceite_capacidad": "3,2 l",
+      "aceite_tipo": "SAE 10W/40 – SL",
+      "alimentacion": "Inyección electrónica EFI",
+      "emision": "Euro 5+",
+      "bujia": "LMAR8J-9E",
+      "separacion_bujia": "0,8 – 0,9 mm",
+      "valvulas_admision": "0,15 – 0,20 mm",
+      "valvulas_escape": "0,20 – 0,25 mm"
+    },
+    "transmision": {
+      "primaria": "1,816",
+      "final": "3,067",
+      "1a": "2,833",
+      "2a": "2,125",
+      "3a": "1,667",
+      "4a": "1,333",
+      "5a": "1,087",
+      "6a": "0,960",
+      "cadena": "520SX2 × 122 eslabones"
+    },
+    "dimensiones": {
+      "peso_marcha": "227 kg",
+      "carga_maxima": "205 kg",
+      "peso_maximo": "432 kg",
+      "velocidad_maxima": "210 km/h",
+      "deposito": "24 l",
+      "refrigerante": "1,75 l",
+      "consumo": "≤ 5,2 l/100 km"
+    },
+    "suspension": {
+      "delantera": "Horquilla hidráulica invertida 43 mm. Recorrido 200 mm",
+      "trasera": "Amortiguador central. Recorrido 183 mm",
+      "ajuste_delantero": {
+        "precarga_fabrica": "19 mm",
+        "rebote_posiciones": "10",
+        "compresion_posiciones": "10"
+      }
+    },
+    "frenos": {
+      "delantero": "Doble disco 310 mm, pinza 2 pistones flotante",
+      "trasero": "Disco 240 mm, pinza 1 pistón flotante",
+      "abs": "2 canales",
+      "liquido": "DOT 4",
+      "cambio_liquido": "Cada 2 años"
+    },
+    "ruedas": {
+      "llanta_delantera": "1.85×21",
+      "llanta_trasera": "4.00×18",
+      "neumatico_delantero": "90/90-21 M/C",
+      "neumatico_trasero": "150/70 R18 M/C"
+    },
+    "electrico": {
+      "bateria": "12V 10Ah",
+      "fusibles": "40A, 25A, 15A, 10A",
+      "faro": "12V 25/14W",
+      "bujia": "LMAR8J-9E"
+    }
+  },
+  "mantenimiento": {
+    "rodaje": {
+      "0_500km": "Máx. 5.000 rpm",
+      "500_1000km": "Máx. 7.000 rpm",
+      "primer_cambio_aceite": "1.000 km (obligatorio)"
+    },
+    "intervalos": [
+      {"km": 1000, "items": ["Cambio aceite motor + filtro", "Inspección general"]},
+      {"km": 5000, "items": ["Cambio aceite motor + filtro", "Inspección cadena", "Revisión frenos"]},
+      {"km": 10000, "items": ["Cambio aceite motor + filtro", "Filtro aire", "Bujías", "Líquido frenos", "Cadena de distribución"]},
+      {"km": 20000, "items": ["Todo lo anterior", "Refrigerante", "Pastillas de freno", "Rodamientos dirección"]},
+      {"anual": "2 años", "items": ["Líquido de frenos (DOT 4)"]}
+    ],
+    "aceite": {
+      "capacidad_total": "3,2 l",
+      "con_filtro": "3,0 l",
+      "tipo": "SAE 10W/40 – SL",
+      "primer_cambio": "1.000 km",
+      "siguientes": "Cada 5.000 km",
+      "filtro_torque": "11 Nm",
+      "union_filtro_torque": "28 Nm"
+    },
+    "cadena": {
+      "modelo": "520SX2 × 122 eslabones (sin abertura)",
+      "holgura": "Ver manual",
+      "tuerca_eje_trasero": "105 ± 7 Nm",
+      "perno_ajustable": "18 ± 1,8 Nm"
+    }
+  },
+  "pares_apriete": [
+    {"elemento": "Filtro de aceite", "valor": "11 Nm"},
+    {"elemento": "Unión tubo filtro aceite", "valor": "28 Nm"},
+    {"elemento": "Tuerca eje rueda trasera", "valor": "105 ± 7 Nm"},
+    {"elemento": "Perno ajustable tensor cadena", "valor": "18 ± 1,8 Nm"},
+    {"elemento": "Perno sensor ABS (M6)", "valor": "6 Nm"},
+    {"elemento": "Perno piezas carrocería (M6)", "valor": "6 Nm"},
+    {"elemento": "Tornillo chapa (ST4.2)", "valor": "1 Nm"},
+    {"elemento": "Perno luz intermitente (M10)", "valor": "4 Nm"},
+    {"elemento": "Perno ranura piezas cobertura (M5)", "valor": "4,5 Nm"}
+  ],
+  "tiendas": [
+    {"nombre": "AZMotors (FR)", "url": "https://www.azmotors.fr/PIECES_VOGE/800_RALLY/vue-eclate-800DS-RALLY-EURO5.html", "tipo": "despiece", "descripcion": "Despiece oficial Voge 800 Rally Euro 5"},
+    {"nombre": "Vogerus Despiece (RU)", "url": "https://vogerus.ru/parts/model/mototsikl-voge-rally-800/diagrams", "tipo": "despiece", "descripcion": "Catálogo de piezas en ruso"},
+    {"nombre": "Amazon Accesorios Voge", "url": "https://www.amazon.es/s?k=voge+800+dsx+accesorios", "tipo": "accesorios", "descripcion": "Accesorios en Amazon"},
+    {"nombre": "Motea", "url": "https://www.motea.com/accesorios-moto/voge", "tipo": "accesorios", "descripcion": "Accesorios y recambios"}
+  ]
+}

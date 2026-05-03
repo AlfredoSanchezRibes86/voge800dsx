@@ -1,0 +1,40 @@
+{
+  "nav": {
+    "specs": "Especificaciones",
+    "maintenance": "Mantenimiento",
+    "torque": "Pares de apriete",
+    "suspension": "Suspensión",
+    "performance": "Performance",
+    "accessories": "Accesorios",
+    "shops": "Tiendas"
+  },
+  "hero": {
+    "subtitle": "Guía técnica oficial · 800 cc · 70 kW · Euro 5+",
+    "cta": "Ver especificaciones"
+  },
+  "sections": {
+    "specs": "Especificaciones técnicas",
+    "engine": "Motor",
+    "transmission": "Transmisión",
+    "dimensions": "Dimensiones y pesos",
+    "suspension": "Suspensión y frenos",
+    "electrical": "Sistema eléctrico",
+    "maintenance": "Mantenimiento",
+    "runin": "Período de rodaje",
+    "intervals": "Intervalos de mantenimiento",
+    "oil": "Aceite del motor",
+    "chain": "Cadena de transmisión",
+    "torque": "Pares de apriete",
+    "performance": "Performance y mejoras",
+    "accessories": "Accesorios",
+    "shops": "Tiendas y repuestos"
+  },
+  "units": {
+    "km": "km",
+    "rpm": "rpm",
+    "nm": "N·m",
+    "kw": "kW",
+    "cv": "CV",
+    "liters": "l"
+  }
+}

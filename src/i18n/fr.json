@@ -1,0 +1,40 @@
+{
+  "nav": {
+    "specs": "Spécifications",
+    "maintenance": "Entretien",
+    "torque": "Couples de serrage",
+    "suspension": "Suspension",
+    "performance": "Performance",
+    "accessories": "Accessoires",
+    "shops": "Boutiques"
+  },
+  "hero": {
+    "subtitle": "Guide technique officiel · 800 cc · 70 kW · Euro 5+",
+    "cta": "Voir les spécifications"
+  },
+  "sections": {
+    "specs": "Spécifications techniques",
+    "engine": "Moteur",
+    "transmission": "Transmission",
+    "dimensions": "Dimensions et poids",
+    "suspension": "Suspension et freins",
+    "electrical": "Système électrique",
+    "maintenance": "Entretien",
+    "runin": "Rodage",
+    "intervals": "Intervalles d'entretien",
+    "oil": "Huile moteur",
+    "chain": "Chaîne de transmission",
+    "torque": "Couples de serrage",
+    "performance": "Performance et améliorations",
+    "accessories": "Accessoires",
+    "shops": "Boutiques et pièces"
+  },
+  "units": {
+    "km": "km",
+    "rpm": "tr/min",
+    "nm": "N·m",
+    "kw": "kW",
+    "cv": "CV",
+    "liters": "L"
+  }
+}
